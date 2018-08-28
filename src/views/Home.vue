@@ -2,21 +2,57 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-        <img src="@/assets/logo.png" alt="Vuetify.js" class="mb-5">
-        <blockquote>
-          &#8220;First, solve the problem. Then, write the code.&#8221;
-          <footer>
-            <small>
-              <em>&mdash;John Johnson</em>
-            </small>
-          </footer>
-        </blockquote>
+        <h2>Recent Blocks</h2>
+        <v-data-table
+          :headers="headers"
+          :items="blocks"
+          :pagination.sync="pagination"
+        >
+          <template slot="items" slot-scope="props">
+            <td><router-link :to="'blocks/' + props.item.index">
+              {{ props.item.index }}</router-link></td>
+            <td><router-link :to="'blocks/' + props.item.hash">
+              {{ props.item.hash }}</router-link></td>
+            <td>{{ props.item.author }}</td>
+            <td>{{ props.item.dataSize }}</td>
+            <td>{{ props.item.timestamp }}</td>
+            <td>{{ props.item.body.length }}</td>
+          </template>
+        </v-data-table>
       </v-layout>
     </v-slide-y-transition>
   </v-container>
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<script>
+import { mapState } from 'vuex'
+
+export default {
+  data () {
+    return {
+      headers: [
+        { text: 'Block #', sortable: false},
+        { text: 'Block Hash', sortable: false},
+        { text: 'Author', sortable: false},
+        { text: 'Size', sortable: false},
+        { text: 'Date', sortable: false},
+        { text: 'Block # of TXs', sortable: false}
+      ],
+
+      pagination: {
+        rowsPerPage: 10
+      }
+    }
+  },
+
+  computed: {
+    ...mapState([
+      'blocks'
+    ])
+  }
+}
+</script>
 <style scoped>
 h1, h2 {
   font-weight: normal;
