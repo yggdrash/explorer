@@ -1,70 +1,52 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      persistent
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      enable-resize-watcher
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i"
-        >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar
-      app
-      :clipped-left="clipped"
-    >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>remove</v-icon>
-      </v-btn>
+    <v-toolbar flat dark color="primary">
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>menu</v-icon>
-      </v-btn>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn to="/" flat>Explorer</v-btn>
+        <v-btn to="/blocks" flat>Blocks</v-btn>
+        <v-btn to="/txs" flat>Transactions</v-btn>
+      </v-toolbar-items>
     </v-toolbar>
     <v-content>
       <router-view/>
     </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-      app
+    <!--<v-footer fixed app>-->
+      <!--<span>&copy; 2018</span>-->
+    <!--</v-footer>-->
+
+
+    <v-footer
+            dark
+            height="auto"
     >
-      <v-list>
-        <v-list-tile @click="right = !right">
-          <v-list-tile-action>
-            <v-icon>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
+      <v-card
+              flat
+              tile
+              class="primary white--text text-xs-center"
+      >
+        <v-card-text>
+          <v-btn
+                  v-for="icon in icons"
+                  :key="icon"
+                  class="mx-3 white--text"
+                  icon
+          >
+            <v-icon size="24px">{{ icon }}</v-icon>
+          </v-btn>
+        </v-card-text>
+
+        <v-card-text class="white--text pt-0">
+          Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-text class="white--text">
+          &copy;2018 — AKASHIC FOUNDATION LTD
+        </v-card-text>
+      </v-card>
     </v-footer>
   </v-app>
 </template>
@@ -75,17 +57,14 @@ export default {
   name: 'App',
   data () {
     return {
-      clipped: false,
-      drawer: true,
-      fixed: false,
-      items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire'
-      }],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'YGGDRASH Explorer',
+      icons: [
+        'fab fa-facebook',
+        'fab fa-twitter',
+        'fab fa-google-plus',
+        'fab fa-linkedin',
+        'fab fa-instagram'
+      ]
     }
   }
 }
