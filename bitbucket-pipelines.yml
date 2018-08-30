@@ -16,3 +16,4 @@ pipelines:
             - npm install
             - npm test
             - npm run build
+            - rsync -avz dist/ $DEPLOY_TARGET
