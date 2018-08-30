@@ -13,7 +13,8 @@ pipelines:
       - step:
           name: Build And Deploy
           script:
+            - apt-get update -y && apt-get -qq install rsync
             - npm install
             - npm test
             - npm run build
-            - scp -r dist/ $DEPLOY_TARGET
+            - rsync -zrSlh --stats --exclude-from=deployment-exclude-list.txt dist/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
