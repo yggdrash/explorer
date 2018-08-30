@@ -1,0 +1,16 @@
+{
+  "status": "UP",
+  "details": {
+    "node": {
+      "status": "UP",
+      "details": {
+        "name": "yggdrash",
+        "version": "0.0.2",
+        "p2pVersion": "0.0.1",
+        "network": "TESTNET",
+        "height": 24,
+        "activePeers": 0
+      }
+    }
+  }
+}
