@@ -22,6 +22,11 @@
       <pre>
       {{ blockDetail }}
       </pre>
+      <v-layout column>
+        <v-flex v-for="(value, props) in blockDetail" :key="props">
+          {{ props }} : {{ value }}
+        </v-flex>
+      </v-layout>
     </template>
   </div>
 </template>
@@ -57,7 +62,7 @@ export default {
             return b.hash === this.$route.params.id
           }
           return String(b.index) === this.$route.params.id
-        })
+        })[0]
       }
       return this.blocks
     }
