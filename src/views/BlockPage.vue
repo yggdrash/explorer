@@ -51,10 +51,8 @@ export default {
     ]),
 
     blockDetail () {
-      console.log(this.$route.params.id)
       if(this.$route.params.id) {
         return this.blocks.filter(b => {
-          console.log(isNaN(this.$route.params.id));
           if (isNaN(this.$route.params.id)) {
             return b.hash === this.$route.params.id
           }

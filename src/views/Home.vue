@@ -134,6 +134,10 @@ export default {
     ...mapState([
       'blocks'
     ])
+  },
+
+  created () {
+    this.$store.dispatch('getBlocks');
   }
 }
 </script>
