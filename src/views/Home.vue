@@ -3,7 +3,10 @@
     <v-slide-y-transition mode="out-in">
       <v-layout column>
         <v-flex mb-4>
-          <h1>Welcome to YGGDRASH Explorer</h1>
+          <span class="font-weight-black display-2 mr-2">Stem</span>
+          <span class="font-italic grey--text">
+            d7ad8fd320fc1174590d8774604a422ca45a9fd6a5801784942aaf341d2ef723
+          </span>
         </v-flex>
         <v-flex>
           <v-layout mb-4>
@@ -70,7 +73,6 @@
                   {{ props.item.hash }}
                 </router-link>
               </td>
-              <td>{{ props.item.author }}</td>
               <td>{{ props.item.dataSize }}</td>
               <td>{{ props.item.timestamp }}</td>
               <td>{{ props.item.body.length }}</td>
@@ -93,7 +95,6 @@
                 {{ props.item.index }}</router-link></td>
               <td><router-link :to="'blocks/' + props.item.hash">
                 {{ props.item.hash }}</router-link></td>
-              <td>{{ props.item.author }}</td>
               <td>{{ props.item.dataSize }}</td>
               <td>{{ props.item.timestamp }}</td>
               <td>{{ props.item.body.length }}</td>
@@ -118,14 +119,13 @@ export default {
       headers: [
         { text: 'Block #', sortable: false},
         { text: 'Block Hash', sortable: false},
-        { text: 'Author', sortable: false},
         { text: 'Size', sortable: false},
         { text: 'Date', sortable: false},
         { text: 'Block # of TXs', sortable: false}
       ],
 
       pagination: {
-        rowsPerPage: 10
+        rowsPerPage: 5
       }
     }
   },
@@ -142,18 +142,7 @@ export default {
 }
 </script>
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+td {
+  font-family: 'Roboto Mono', monospace;
 }
 </style>
