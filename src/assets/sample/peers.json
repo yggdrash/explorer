@@ -1,0 +1,12 @@
+[
+  {
+    "host": "localhost",
+    "port": 9090,
+    "ynodeUri": "ynode://0e0fb5b705934dbe14537e000fd17f08ac27f6729ba123e85329a424dc66b3505560880720b2cda4a17f265c96c4cbb7d2eacc392035d8f4b43c0eb5dea3dd54@localhost:9090"
+  },
+  {
+    "host": "node2",
+    "port": 9090,
+    "ynodeUri": "ynode://87c53e14188ab8a42317d9458c048da94687ae7820e21ff63c721e3bdd6c95703aa0027ed2e7f8de0d247bb61a12809578423b71cc8cc2caaf5cd7f1434cd5b5@node2:9090"
+  }
+]
