@@ -1,35 +1,34 @@
 <template>
   <v-footer
-          dark
-          app
           fixed
+          dark
           height="auto"
+          app
   >
     <v-card
+            class="flex"
             flat
             tile
-            class="primary white--text text-xs-center"
     >
-      <v-card-text>
+      <v-card-title class="grey darken-3">
+        <strong class="subheading">Get connected with us on social networks!</strong>
+
+        <v-spacer></v-spacer>
+
         <v-btn
                 v-for="icon in icons"
                 :key="icon"
-                class="mx-3 white--text"
+                class="mx-3"
+                dark
                 icon
         >
           <v-icon size="24px">{{ icon }}</v-icon>
         </v-btn>
-      </v-card-text>
+      </v-card-title>
 
-      <v-card-text class="white--text pt-0">
-        Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-      </v-card-text>
-
-      <v-divider></v-divider>
-
-      <v-card-text class="white--text">
-        &copy;2018 — AKASHIC FOUNDATION LTD
-      </v-card-text>
+      <v-card-actions class="primary justify-center">
+        &copy;2018 — <strong>AKASHIC FOUNDATION</strong>
+      </v-card-actions>
     </v-card>
   </v-footer>
 </template>
