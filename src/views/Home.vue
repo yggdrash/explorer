@@ -8,54 +8,33 @@
             d7ad8fd320fc1174590d8774604a422ca45a9fd6a5801784942aaf341d2ef723
           </span>
         </v-flex>
-        <v-flex>
+        <v-flex mb-4>
           <v-layout mb-4>
             <v-flex sm4>
-              <v-card color="blue-grey darken-2" class="white--text">
-                <v-card-title primary-title>
-                  <div class="headline">Total transactions</div>
-                  <div>Listen to your favorite artists and albums whenever and wherever, online and
-                    offline.
-                  </div>
-                </v-card-title>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn flat dark>View All</v-btn>
-                </v-card-actions>
-              </v-card>
+              <CountCard
+                      title="Total Transactions"
+                      count="100000"
+                      link="/tx"
+                      color="blue-grey darken-2" />
             </v-flex>
             <v-flex sm4>
-              <v-card color="secondary" class="white--text">
-                <v-card-title primary-title>
-                  <div class="headline">Last block</div>
-                  <div>Listen to your favorite artists and albums whenever and wherever, online and
-                    offline.
-                  </div>
-                </v-card-title>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn flat dark>View All</v-btn>
-                </v-card-actions>
-              </v-card>
+              <CountCard
+                      title="Last block"
+                      count="100000"
+                      link="/blocks"
+                      color="secondary" />
             </v-flex>
             <v-flex sm4>
-              <v-card color="blue-grey darken-2" class="white--text">
-                <v-card-title primary-title>
-                  <div class="headline">Wallet addresses created</div>
-                  <div>Listen to your favorite artists and albums whenever and wherever, online and
-                    offline.
-                  </div>
-                </v-card-title>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn flat dark>View All</v-btn>
-                </v-card-actions>
-              </v-card>
+              <CountCard
+                      title="BranchChain created"
+                      count="5"
+                      link="/branches"
+                      color="blue-grey darken-2" />
             </v-flex>
           </v-layout>
         </v-flex>
         <v-flex mb-5>
-          <h2>Last 5 Blocks</h2>
+          <h2 class="headline font-weight-medium mb-2">Last 5 Blocks</h2>
           <v-data-table
                   :headers="headers"
                   :items="blocks"
@@ -112,8 +91,12 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <script>
 import { mapState } from 'vuex'
+import CountCard from '../components/CountCard'
 
 export default {
+  components: {
+    CountCard
+  },
   data () {
     return {
       headers: [
