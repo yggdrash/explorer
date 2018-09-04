@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Home from './views/Home'
 
 Vue.use(Router)
 
@@ -25,6 +25,11 @@ export default new Router({
       path: '/blocks',
       name: 'blocks',
       component: () => import('./views/BlockPage.vue'),
+    },
+    {
+      path: '/branches/:id',
+      name: 'branchesDetail',
+      component: () => import('./views/BranchOverview.vue')
     },
     {
       path: '/blocks/:id',
