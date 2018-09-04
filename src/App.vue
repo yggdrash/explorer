@@ -1,6 +1,5 @@
 <template>
   <v-app>
-
     <Toolbar></Toolbar>
     <NavigationDrawer></NavigationDrawer>
     <v-content>
@@ -30,6 +29,9 @@ export default {
       drawer: true,
       miniVariant: false,
     }
+  },
+  created () {
+    this.$store.dispatch('getBlocks');
   }
 }
 </script>

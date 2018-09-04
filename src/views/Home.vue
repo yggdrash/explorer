@@ -13,21 +13,21 @@
             <v-flex sm4>
               <CountCard
                       title="Total Transactions"
-                      count="100000"
+                      count="21,563"
                       link="/tx"
                       color="blue-grey darken-2" />
             </v-flex>
             <v-flex sm4>
               <CountCard
                       title="Last block"
-                      count="100000"
+                      count="1,181"
                       link="/blocks"
                       color="secondary" />
             </v-flex>
             <v-flex sm4>
               <CountCard
                       title="BranchChain created"
-                      count="5"
+                      count="3"
                       link="/branches"
                       color="blue-grey darken-2" />
             </v-flex>
@@ -62,7 +62,7 @@
           </div>
         </v-flex>
         <v-flex mb-5>
-          <h2>Last 5 Transactions</h2>
+          <h2 class="headline font-weight-medium mb-2">Last 5 Transactions</h2>
           <v-data-table
                   :headers="headers"
                   :items="blocks"
@@ -117,15 +117,11 @@ export default {
     ...mapState([
       'blocks'
     ])
-  },
-
-  created () {
-    this.$store.dispatch('getBlocks');
   }
 }
 </script>
-<style scoped>
-td {
-  font-family: 'Roboto Mono', monospace;
-}
+<style lang="scss" scoped>
+  td {
+    font-family: 'Roboto Mono', monospace;
+  }
 </style>

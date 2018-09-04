@@ -1,13 +1,6 @@
 <template>
-  <v-container>
     <v-slide-y-transition mode="out-in">
       <v-layout column>
-        <v-flex mb-4>
-          <span class="font-weight-black display-2 mr-2">{{ $route.params.id }}</span>
-          <span class="font-italic grey--text">
-            d7ad8fd320fc1174590d8774604a422ca45a9fd6a5801784942aaf341d2ef723
-          </span>
-        </v-flex>
         <v-flex mb-4>
           <v-layout mb-4>
             <v-flex sm4>
@@ -43,7 +36,7 @@
           >
             <template slot="items" slot-scope="props">
               <td>
-                <router-link :to="'blocks/' + props.item.index">
+                <router-link :to="'/blocks/' + props.item.index">
                   {{ props.item.index }}
                 </router-link>
               </td>
@@ -85,7 +78,6 @@
         </v-flex>
       </v-layout>
     </v-slide-y-transition>
-  </v-container>
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
