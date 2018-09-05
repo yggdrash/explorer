@@ -46,7 +46,7 @@
                       </td>
                       <td>
                         <router-link :to="'blocks/' + props.item.hash">
-                          {{ props.item.hash }}
+                          {{ props.item.hash | shortHash }}
                         </router-link>
                       </td>
                       <td>{{ props.item.dataSize }}</td>
@@ -72,7 +72,7 @@
                       <td><router-link :to="'blocks/' + props.item.index">
                         {{ props.item.index }}</router-link></td>
                       <td><router-link :to="'blocks/' + props.item.hash">
-                        {{ props.item.hash }}</router-link></td>
+                        {{ props.item.hash | shortHash }}</router-link></td>
                       <td>{{ props.item.dataSize }}</td>
                       <td>{{ props.item.timestamp }}</td>
                       <td>{{ props.item.body.length }}</td>

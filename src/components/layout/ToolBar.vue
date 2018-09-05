@@ -15,7 +15,7 @@
     <v-toolbar-items class="hidden-sm-and-down">
       <v-menu offset-y>
         <v-btn slot="activator" flat>
-          TESTNAT
+          TESTNET
           <v-icon>
             arrow_drop_down
           </v-icon>

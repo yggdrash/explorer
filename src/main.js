@@ -4,8 +4,11 @@ import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import { shortHash } from './filters'
 
 Vue.config.productionTip = false
+
+Vue.filter('shortHash', shortHash)
 
 new Vue({
   router,
