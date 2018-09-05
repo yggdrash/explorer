@@ -14,7 +14,7 @@
               <CountCard
                       title="Last block"
                       :count="blocks.length"
-                      link="/blocks"
+                      :link="`${currentBranch.id}/blocks`"
                       color="secondary" />
             </v-flex>
             <v-flex sm4>

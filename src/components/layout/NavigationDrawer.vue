@@ -22,7 +22,7 @@
       <!--</v-flex>-->
     <!--</v-layout>-->
     <v-list dense>
-      <v-list-tile v-for="item in items" :key="item.text" @click="" :to="item.link">
+      <v-list-tile v-for="item in items" :key="item.text" :to="item.link">
         <v-list-tile-action>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-tile-action>
@@ -33,7 +33,7 @@
         </v-list-tile-content>
       </v-list-tile>
       <v-divider class="my-3"></v-divider>
-      <v-list-tile avatar to="/">
+      <v-list-tile avatar @click="goStem()">
         <v-list-tile-avatar>
           <img src="@/assets/images/yeed.png" alt="">
         </v-list-tile-avatar>
@@ -71,9 +71,9 @@
     data () {
       return {
         items: [
-          { icon: 'trending_up', text: 'Most Popular' },
-          { icon: 'subscriptions', text: 'Subscriptions' },
-          { icon: 'history', text: 'History' },
+          { icon: 'trending_up', text: 'Most Popular' , link: '/' },
+          { icon: 'subscriptions', text: 'Subscriptions', link: '/' },
+          { icon: 'history', text: 'History', link: '/' },
         ],
         items2: [
           { picture: 'yeed', text: 'YEED' },
@@ -87,6 +87,11 @@
       changeBranch(selectedItem) {
         this.$store.dispatch('changeBranch', selectedItem)
         this.$router.push(`/branches/${selectedItem.id}`)
+      },
+
+      goStem() {
+        this.$store.dispatch('changeBranch', {name: "STEM", id:"STEM"})
+        this.$router.push('/stem')
       }
     },
 
