@@ -40,7 +40,7 @@
         <v-list-tile-title>STEM</v-list-tile-title>
       </v-list-tile>
       <v-subheader class="mt-3 grey--text text--darken-1">BRANCHES</v-subheader>
-      <v-list-tile v-for="item in branches" :key="item.branchId" avatar
+      <v-list-tile v-for="item in branches" :key="item.id" avatar
                    @click="changeBranch(item)">
         <v-list-tile-avatar>
           <img src="@/assets/images/dart.png" alt="">
@@ -86,7 +86,7 @@
     methods: {
       changeBranch(selectedItem) {
         this.$store.dispatch('changeBranch', selectedItem)
-        this.$router.push(`/branches/${selectedItem.branchId}`)
+        this.$router.push(`/branches/${selectedItem.id}`)
       }
     },
 
