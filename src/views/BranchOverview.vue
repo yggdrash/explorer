@@ -1,7 +1,7 @@
 <template>
     <v-slide-y-transition mode="out-in">
       <v-layout column>
-        <v-flex mb-4>
+        <v-flex mb-3>
           <v-layout mb-4>
             <v-flex sm4>
               <CountCard
@@ -29,7 +29,7 @@
         <v-flex>
           <v-layout>
             <v-flex xs8>
-              <v-flex mb-5>
+              <v-flex mb-4>
                 <h2 class="headline font-weight-medium mb-2">Last 5 Blocks</h2>
                 <v-card>
                   <v-data-table
@@ -59,7 +59,7 @@
                   <v-btn to="/blocks" color="secondary">See all blocks</v-btn>
                 </div>
               </v-flex>
-              <v-flex mb-5>
+              <v-flex mb-4>
                 <h2 class="headline font-weight-medium mb-2">Last 5 Transactions</h2>
                 <v-card>
                   <v-data-table
