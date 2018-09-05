@@ -3,6 +3,5 @@ export function getBranches () {
 }
 
 export function getBlocks (id) {
-  console.log(`Loading... ${id} branch.`)
   return require('./assets/sample/blocks')[id]
 }

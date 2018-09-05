@@ -1,6 +1,6 @@
 <template>
   <v-toolbar flat dark color="primary" app fixed clipped-left>
-    <v-toolbar-side-icon @click.native="miniVariant = !miniVariant"></v-toolbar-side-icon>
+    <v-toolbar-side-icon></v-toolbar-side-icon>
     <span class="title ml-3 mr-5" @click="goHome" style="cursor: pointer">
       YGGDRASH&nbsp;<span class="font-weight-light">Explorer</span>
     </span>

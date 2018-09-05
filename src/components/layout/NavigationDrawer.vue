@@ -1,9 +1,7 @@
 <template>
   <v-navigation-drawer
-          v-model="drawer"
           fiexd
           clipped
-          :mini-variant="miniVariant"
           class="grey lighten-4"
           app
           width="270"

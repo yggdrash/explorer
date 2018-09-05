@@ -10,7 +10,7 @@ export default new Vuex.Store({
   state: {
     blocks: [],
     branches: [],
-    currentBranch: { name: '', id: ''}
+    currentBranch: { name: 'STEM', id: 'STEM'}
   },
   mutations: {
     setBlocks (state, payload) {
@@ -30,7 +30,6 @@ export default new Vuex.Store({
       //   console.log(res)
       //   commit('setBlocks', res.data)
       // })
-      console.log(this.state.currentBranch.id)
       commit('setBlocks', request.getBlocks(this.state.currentBranch.id))
     },
 

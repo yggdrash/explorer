@@ -18,11 +18,20 @@
                       color="secondary" />
             </v-flex>
             <v-flex sm4>
-              <CountCard
-                      title="Account created"
-                      :count="parseInt(blocks.length / 10) + 1"
-                      link="/account"
-                      color="blue-grey darken-2" />
+              <template v-if="currentBranch.id === 'STEM'">
+                  <CountCard
+                          title="BranchChain created"
+                          :count="branches.length"
+                          link="/branches"
+                          color="blue-grey darken-2"/>
+              </template>
+              <template v-else>
+                <CountCard
+                        title="Account created"
+                        :count="parseInt(blocks.length / 10) + 1"
+                        link="/account"
+                        color="blue-grey darken-2" />
+              </template>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -40,12 +49,14 @@
                   >
                     <template slot="items" slot-scope="props">
                       <td>
-                        <router-link :to="'/blocks/' + props.item.index">
+                        <router-link
+                                :to="`/branches/${currentBranch.id}/blocks/${props.item.index}`">
                           {{ props.item.index }}
                         </router-link>
                       </td>
                       <td>
-                        <router-link :to="'blocks/' + props.item.hash">
+                        <router-link
+                                :to="`/branches/${currentBranch.id}/blocks/${props.item.hash}`">
                           {{ props.item.hash | shortHash }}
                         </router-link>
                       </td>
@@ -124,7 +135,7 @@ export default {
 
   computed: {
     ...mapState([
-      'blocks', 'currentBranch'
+      'blocks', 'currentBranch', 'branches'
     ])
   },
 

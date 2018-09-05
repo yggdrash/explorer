@@ -6,7 +6,7 @@
     </v-card-title>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn flat dark>
+      <v-btn flat dark :to="`/branches/${branchInfo.id}`">
         EXPLORE
       </v-btn>
     </v-card-actions>
