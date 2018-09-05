@@ -3,7 +3,9 @@
     <v-card-title primary-title>
       <v-layout column>
         <v-flex class="headline">{{ title }}</v-flex>
-        <v-flex class="font-weight-black display-1">{{ count }}</v-flex>
+        <v-flex class="font-weight-black display-1">
+          {{ Number(count).toLocaleString() }}
+        </v-flex>
       </v-layout>
     </v-card-title>
     <v-card-actions>

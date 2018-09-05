@@ -6,14 +6,14 @@
             <v-flex sm4>
               <CountCard
                       title="Total Transactions"
-                      count="21,563"
+                      count="21563"
                       link="/tx"
                       color="blue-grey darken-2" />
             </v-flex>
             <v-flex sm4>
               <CountCard
                       title="Last block"
-                      count="1,181"
+                      count="1181"
                       link="/blocks"
                       color="secondary" />
             </v-flex>
