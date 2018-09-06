@@ -15,7 +15,8 @@ export default new Router({
       children: [
         { path: '', component: () => import('./views/BranchOverview') },
         { path: 'blocks', component: () => import('./views/BlockList')},
-        { path: 'blocks/:hash', component: () => import('./views/BlockDetail') }
+        { path: 'blocks/:hash', component: () => import('./views/BlockDetail') },
+        { path: 'contract', component: () => import('./views/Contract') }
       ]
     },
     {
