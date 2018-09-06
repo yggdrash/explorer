@@ -8,6 +8,8 @@ import { shortHash } from './filters'
 
 Vue.config.productionTip = false
 
+Vue.use(require('vue-moment'))
+
 Vue.filter('shortHash', shortHash)
 
 new Vue({
