@@ -7,18 +7,18 @@
               <CountCard
                       title="Total Transactions"
                       :count="blocks.length * 15"
-                      link="/tx"
+                      :link="`${linkBase}/txs`"
                       color="blue-grey darken-2" />
             </v-flex>
             <v-flex sm4>
               <CountCard
                       title="Last block"
                       :count="blocks.length"
-                      :link="`${currentBranch.id}/blocks`"
+                      :link="`${linkBase}/blocks`"
                       color="secondary" />
             </v-flex>
             <v-flex sm4>
-              <template v-if="currentBranch.id === 'STEM'">
+              <template v-if="isStem">
                   <CountCard
                           title="BranchChain created"
                           :count="branches.length"
@@ -41,7 +41,7 @@
               <v-flex mb-4>
                 <h2 class="headline font-weight-medium mb-2">Last 5 Blocks</h2>
                 <v-card>
-                  <RecentBlockWidget :blocks="blocks"/>
+                  <RecentBlockWidget :blocks="blocks" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
                   <v-btn to="/blocks" color="secondary">See all blocks</v-btn>
@@ -62,7 +62,12 @@
                 <div>
                   <div style="">
                     <h3>install</h3>
-                    <kbd> > ygg plant {{ currentBranch.id | shortHash(16)}}</kbd>
+                    <template v-if="isStem">
+                      <kbd>Stem is installed by default.</kbd>
+                    </template>
+                    <template v-else>
+                      <kbd> > ygg plant {{ currentBranch.id | shortHash(16)}}</kbd>
+                    </template>
                     <BranchSidebar :info="require('@/assets/sample/view')"/>
                   </div>
                 </div>
@@ -90,8 +95,17 @@ export default {
   computed: {
     ...mapState([
       'blocks', 'currentBranch', 'branches'
-    ])
+    ]),
+
+    isStem() {
+      return this.currentBranch.name === 'STEM'
+    },
+
+    linkBase() {
+      return this.isStem ? '/stem' : `/branches/${this.currentBranch.id}`
+    }
   },
+
   watch: {
     currentBranch: function() {
       this.$store.dispatch('getBlocks');

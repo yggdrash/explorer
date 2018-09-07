@@ -8,13 +8,13 @@
     <template slot="items" slot-scope="props">
       <td>
         <router-link
-                :to="`/stem/blocks/${props.item.index}`">
+                :to="`${linkBase}/stem/blocks/${props.item.index}`">
           {{ props.item.index }}
         </router-link>
       </td>
       <td>
         <router-link
-                :to="`/stem/blocks/${props.item.hash}`">
+                :to="`${linkBase}/blocks/${props.item.hash}`">
           {{ props.item.hash | shortHash(16) }}...
         </router-link>
       </td>
@@ -26,7 +26,7 @@
 </template>
 <script>
   export default {
-    props: [ 'blocks' ],
+    props: [ 'blocks', 'linkBase' ],
     data: () => ({
       headers: [
         { text: 'Block #', sortable: false },

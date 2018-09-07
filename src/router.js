@@ -13,7 +13,7 @@ export default new Router({
     {
       path: '/stem', component: () => import('./views/Branch'),
       children: [
-        { path: '', component: () => import('./views/stem/Overview') },
+        { path: '', component: () => import('./views/ChainOverview') },
         { path: 'blocks', component: () => import('./views/BlockList')},
         { path: 'blocks/:hash', component: () => import('./views/BlockDetail') },
         { path: 'contract', component: () => import('./views/Contract') }
@@ -25,7 +25,7 @@ export default new Router({
     {
       path: '/branches/:id', component: () => import('./views/Branch'),
       children: [
-        { path: '', component: () => import('./views/BranchOverview') },
+        { path: '', component: () => import('./views/ChainOverview') },
         { path: 'blocks', component: () => import('./views/BlockList')},
         { path: 'blocks/:hash', component: () => import('./views/BlockDetail') }
       ]
