@@ -108,9 +108,6 @@ export default {
     }
   },
 
-  created () {
-    this.$store.dispatch('getBlocks');
-  }
 }
 </script>
 <style lang="scss" scoped>
