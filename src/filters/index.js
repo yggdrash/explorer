@@ -1,3 +1,3 @@
-export function shortHash (value) {
-  return value.slice(0, 8) + "..."
+export function shortHash (value, length) {
+  return value.slice(0, length)
 }

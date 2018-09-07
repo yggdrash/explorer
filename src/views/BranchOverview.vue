@@ -41,30 +41,7 @@
               <v-flex mb-4>
                 <h2 class="headline font-weight-medium mb-2">Last 5 Blocks</h2>
                 <v-card>
-                  <v-data-table
-                          :headers="headers"
-                          :items="blocks"
-                          :pagination.sync="pagination"
-                          hide-actions
-                  >
-                    <template slot="items" slot-scope="props">
-                      <td>
-                        <router-link
-                                :to="`/branches/${currentBranch.id}/blocks/${props.item.index}`">
-                          {{ props.item.index }}
-                        </router-link>
-                      </td>
-                      <td>
-                        <router-link
-                                :to="`/branches/${currentBranch.id}/blocks/${props.item.hash}`">
-                          {{ props.item.hash | shortHash }}
-                        </router-link>
-                      </td>
-                      <td>{{ props.item.dataSize }}</td>
-                      <td>{{ props.item.timestamp }}</td>
-                      <td>{{ props.item.body.length }}</td>
-                    </template>
-                  </v-data-table>
+                  <RecentBlockWidget :blocks="blocks"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
                   <v-btn to="/blocks" color="secondary">See all blocks</v-btn>
@@ -73,22 +50,7 @@
               <v-flex mb-4>
                 <h2 class="headline font-weight-medium mb-2">Last 5 Transactions</h2>
                 <v-card>
-                  <v-data-table
-                          :headers="headers"
-                          :items="blocks"
-                          :pagination.sync="pagination"
-                          hide-actions=""
-                  >
-                    <template slot="items" slot-scope="props">
-                      <td><router-link :to="'blocks/' + props.item.index">
-                        {{ props.item.index }}</router-link></td>
-                      <td><router-link :to="'blocks/' + props.item.hash">
-                        {{ props.item.hash | shortHash }}</router-link></td>
-                      <td>{{ props.item.dataSize }}</td>
-                      <td>{{ props.item.timestamp }}</td>
-                      <td>{{ props.item.body.length }}</td>
-                    </template>
-                  </v-data-table>
+                  <RecentBlockWidget :blocks="blocks"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
                   <v-btn to="/txs" color="secondary">See all transactions</v-btn>
@@ -100,34 +62,9 @@
                 <div>
                   <div style="">
                     <h3>install</h3>
-                    <p style="text-overflow: ellipsis; ">
-                    <code style="width: 100%; overflow: hidden;">ygg plant {{ currentBranch.id
-                      }}</code>
-                    </p>
+                    <kbd> > ygg plant {{ currentBranch.id | shortHash(16)}}</kbd>
+                    <BranchSidebar :info="require('@/assets/sample/view')"/>
                   </div>
-                  <v-layout wrap>
-                    <v-flex v-for="(value, props) in require('@/assets/sample/view')"
-                            :key="props" xs12 v-if="isLong(value)" class="py-3"
-                            style="border-bottom: 1px solid #DDD;">
-                      <div>
-                        <v-layout column style="font-family: 'Roboto Mono'; font-size: 0.91em;">
-                          <v-flex class="font-weight-bold grey--text subheading mb-1">{{props
-                            }}</v-flex>
-                          <v-flex>{{ value }}</v-flex>
-                        </v-layout>
-                      </div>
-                    </v-flex>
-                    <v-flex v-for="(value, props) in require('@/assets/sample/view')"
-                            :key="props" xs6 v-if="!isLong(value)" class="py-3"
-                            style="border-bottom: 1px solid #CCC;">
-                      <div>
-                        <v-layout column>
-                          <v-flex class="font-weight-bold grey--text subheading">{{props}}</v-flex>
-                          <v-flex>{{ value }}</v-flex>
-                        </v-layout>
-                      </div>
-                    </v-flex>
-                  </v-layout>
                 </div>
               </v-container>
             </v-flex>
@@ -141,37 +78,20 @@
 <script>
 import { mapState } from 'vuex'
 import CountCard from '../components/CountCard'
+import RecentBlockWidget from '../components/RecentBlockWidget'
+import BranchSidebar from '../components/BranchSidebar'
 
 export default {
   components: {
-    CountCard
-  },
-  data () {
-    return {
-      headers: [
-        { text: 'Block #', sortable: false},
-        { text: 'Block Hash', sortable: false},
-        { text: 'Size', sortable: false},
-        { text: 'Date', sortable: false},
-        { text: 'Block # of TXs', sortable: false}
-      ],
-
-      pagination: {
-        rowsPerPage: 5
-      }
-    }
-  },
-  methods: {
-    isLong(value) {
-      return value.length > 20
-    }
+    CountCard,
+    RecentBlockWidget,
+    BranchSidebar,
   },
   computed: {
     ...mapState([
       'blocks', 'currentBranch', 'branches'
     ])
   },
-
   watch: {
     currentBranch: function() {
       this.$store.dispatch('getBlocks');

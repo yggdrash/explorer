@@ -15,7 +15,7 @@
       <td>
         <router-link
                 :to="`/stem/blocks/${props.item.hash}`">
-          {{ props.item.hash | shortHash }}
+          {{ props.item.hash | shortHash(16) }}...
         </router-link>
       </td>
       <td>{{ props.item.bodyLength }}</td>
@@ -33,7 +33,7 @@
         { text: 'Block Hash', sortable: false },
         { text: 'Size', sortable: false },
         { text: 'Date', sortable: false },
-        { text: 'Block # of TXs', sortable: false }
+        { text: '# of TXs', sortable: false }
       ],
       pagination: {
         rowsPerPage: 5
@@ -41,3 +41,11 @@
     }),
   }
 </script>
+<style lang="scss" scoped>
+  td {
+    font-family: 'Roboto Mono', monospace;
+    > a {
+      text-decoration: none;
+    }
+  }
+</style>

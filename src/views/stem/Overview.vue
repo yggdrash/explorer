@@ -1,20 +1,20 @@
 <template>
   <v-slide-y-transition mode="out-in">
     <v-layout column>
-      <v-flex mb-3>
+      <v-flex>
         <v-layout mb-4>
           <v-flex sm4>
             <CountCard
                     title="Total Transactions"
                     :count="blocks.length * 15"
-                    link="/tx"
+                    link="/stem/txs"
                     color="blue-grey darken-2" />
           </v-flex>
           <v-flex sm4>
             <CountCard
                     title="Last block"
                     :count="blocks.length"
-                    :link="`/stem/blocks`"
+                    link="/stem/blocks"
                     color="secondary" />
           </v-flex>
           <v-flex sm4>
@@ -28,14 +28,14 @@
       </v-flex>
       <v-flex>
         <v-layout>
-          <v-flex xs8>
+          <v-flex xs8 class="mt-3">
             <v-flex mb-4>
               <h2 class="headline font-weight-medium mb-2">Last 5 Blocks</h2>
               <v-card>
                 <RecentBlockWidget :blocks="blocks"/>
               </v-card>
               <div class="text-xs-center mt-3">
-                <v-btn to="/blocks" color="secondary">See all blocks</v-btn>
+                <v-btn to="/stem/blocks" color="secondary">See all blocks</v-btn>
               </div>
             </v-flex>
             <v-flex mb-4>
@@ -44,20 +44,15 @@
                 <RecentBlockWidget :blocks="blocks"/>
               </v-card>
               <div class="text-xs-center mt-3">
-                <v-btn to="/txs" color="secondary">See all transactions</v-btn>
+                <v-btn to="/stem/txs" color="secondary">See all transactions</v-btn>
               </div>
             </v-flex>
           </v-flex>
           <v-flex xs4>
             <v-container>
-              <div>
-                  <h3>install</h3>
-                  <p style="text-overflow: ellipsis; ">
-                    <code style="width: 100%; overflow: hidden;">ygg plant {{ currentBranch.id
-                      }}</code>
-                  </p>
-                <BranchSidebar :info="require('@/assets/sample/view')"/>
-              </div>
+              <h3 class="font-weight-bold subheading grey--text mb-2">install</h3>
+              <kbd>Stem is installed by default.</kbd>
+              <BranchSidebar :info="require('@/assets/sample/view')"/>
             </v-container>
           </v-flex>
         </v-layout>

@@ -5,7 +5,7 @@
         <v-flex mb-4>
           <span class="font-weight-black display-2 mr-2">{{ currentBranch.name }}</span>
           <span class="font-italic grey--text">
-            <strong>{{ currentBranch.id.slice(0, 8) }}</strong>{{ currentBranch.id.slice(8) }}
+            <strong>{{ currentBranch.id.slice(0, 16) }}</strong>{{ currentBranch.id.slice(16) }}
           </span>
         </v-flex>
         <router-view></router-view>
