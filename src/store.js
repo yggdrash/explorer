@@ -40,5 +40,14 @@ export default new Vuex.Store({
     changeBranch ({ commit }, item) {
       commit('setCurrentBranch', item)
     }
+  },
+  getters: {
+    isStem(state) {
+      return state.currentBranch.name === 'STEM'
+    },
+
+    linkBase(state, getters) {
+      return getters.isStem ? '/stem' : `/branches/${state.currentBranch.id}`
+    }
   }
 })

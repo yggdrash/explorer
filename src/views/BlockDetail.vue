@@ -3,7 +3,8 @@
   <v-layout row justify-center>
     <v-flex xs2 class="text-xs-center">
       <v-btn fab small color="secondary"
-             :to="`/blocks/${block.index - 1}`"
+             :to="`${linkBase}/blocks/${block.index - 1}`"
+             v-if="block.index !== 0"
       >
         <v-icon>keyboard_arrow_left</v-icon>
       </v-btn>
@@ -13,13 +14,15 @@
     </v-flex>
     <v-flex xs2 class="text-xs-center">
       <v-btn fab small color="secondary"
-             :to="`/blocks/${block.index + 1}`"
+             :to="`${linkBase}/blocks/${block.index + 1}`"
+             v-if="blocks.length !== block.index + 1"
       >
         <v-icon>keyboard_arrow_right</v-icon>
       </v-btn>
     </v-flex>
   </v-layout>
   <div class="block-detail mt-5">
+    {{ linkBase }}
     <v-layout row v-for="(value, props) in block" :key="props" class="py-2">
       <v-flex xs2>{{ props }}</v-flex>
       <v-flex xs10>{{ value }}</v-flex>
@@ -28,11 +31,15 @@
 </v-container>
 </template>
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapGetters} from 'vuex'
 export default {
   computed: {
     ...mapState([
       'blocks'
+    ]),
+
+    ...mapGetters([
+      'linkBase'
     ]),
 
     block () {

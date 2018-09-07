@@ -81,7 +81,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import CountCard from '../components/CountCard'
 import RecentBlockWidget from '../components/RecentBlockWidget'
 import BranchSidebar from '../components/BranchSidebar'
@@ -97,13 +97,9 @@ export default {
       'blocks', 'currentBranch', 'branches'
     ]),
 
-    isStem() {
-      return this.currentBranch.name === 'STEM'
-    },
-
-    linkBase() {
-      return this.isStem ? '/stem' : `/branches/${this.currentBranch.id}`
-    }
+    ...mapGetters([
+      'linkBase', 'isStem'
+    ]),
   },
 
   watch: {
