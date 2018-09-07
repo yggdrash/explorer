@@ -30,5 +30,8 @@ export default new Router({
         { path: 'blocks/:hash', component: () => import('./views/BlockDetail') }
       ]
     },
+    {
+      path: '*', component: () => import('./views/NotFoundComponent')
+    },
   ]
 })

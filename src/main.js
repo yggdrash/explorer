@@ -12,6 +12,21 @@ Vue.use(require('vue-moment'))
 
 Vue.filter('shortHash', shortHash)
 
+router.beforeResolve((to, from, next) => {
+  if(to.params.id != null) {
+    let binfo = store.state.branches.find(item => {
+      return item.id === to.params.id
+    })
+
+    if ( binfo == null ) next('404')
+
+    store.dispatch('changeBranch', binfo)
+  } else if(to.path === '/stem') {
+    store.dispatch('changeBranch', { name: 'STEM', id: 'STEM' })
+  }
+  next()
+})
+
 new Vue({
   router,
   store,

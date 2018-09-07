@@ -39,7 +39,7 @@
       </v-list-tile>
       <v-subheader class="mt-3 grey--text text--darken-1">BRANCHES</v-subheader>
       <v-list-tile v-for="item in branches" :key="item.id" avatar
-                   @click="changeBranch(item)">
+                   :to="`/branches/${item.id}`">
         <v-list-tile-avatar>
           <img src="@/assets/images/dart.png" alt="">
         </v-list-tile-avatar>
@@ -82,11 +82,6 @@
     },
 
     methods: {
-      changeBranch(selectedItem) {
-        this.$store.dispatch('changeBranch', selectedItem)
-        this.$router.push(`/branches/${selectedItem.id}`)
-      },
-
       goStem() {
         this.$store.dispatch('changeBranch', {name: "STEM", id:"STEM"})
         this.$router.push('/stem')
@@ -97,10 +92,6 @@
       ...mapState([
         'branches'
       ])
-    },
-
-    created () {
-      this.$store.dispatch('getBranches')
     }
   }
 </script>
