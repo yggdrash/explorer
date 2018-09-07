@@ -6,32 +6,24 @@
           app
           width="270"
   >
-    <!--<v-layout>-->
-      <!--<v-flex>-->
-        <!--<v-card flat>-->
-          <!--<v-card-media src="http://cfile227.uf.daum.net/image/23030947533F72B714E409"-->
-                        <!--height="135px" class="white&#45;&#45;text">-->
-            <!--<v-card-title>-->
-              <!--<div class="font-weight-black display-2">Stem</div>-->
-              <!--<div class="font-italic grey&#45;&#45;text">d7ad8fd320fc117420fc117420fc1174</div>-->
-            <!--</v-card-title>-->
-          <!--</v-card-media>-->
-        <!--</v-card>-->
-      <!--</v-flex>-->
-    <!--</v-layout>-->
+    <!--
+    <v-layout>
+      <v-flex>
+        <v-card flat>
+          <v-card-media src="http://cfile227.uf.daum.net/image/23030947533F72B714E409"
+                        height="135px" class="white--text">
+            <v-card-title>
+              <div class="font-weight-black display-2">Stem</div>
+              <div class="font-italic grey--text">d7ad8fd320fc117420fc117420fc1174</div>
+            </v-card-title>
+          </v-card-media>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    -->
     <v-list dense>
-      <v-list-tile v-for="item in items" :key="item.text" :to="item.link">
-        <v-list-tile-action>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>
-            {{ item.text }}
-          </v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
       <v-divider class="my-3"></v-divider>
-      <v-list-tile avatar @click="goStem()">
+      <v-list-tile avatar to="/stem">
         <v-list-tile-avatar>
           <img src="@/assets/images/yeed.png" alt="">
         </v-list-tile-avatar>
@@ -68,11 +60,6 @@
   export default {
     data () {
       return {
-        items: [
-          { icon: 'trending_up', text: 'Most Popular' , link: '/' },
-          { icon: 'subscriptions', text: 'Subscriptions', link: '/' },
-          { icon: 'history', text: 'History', link: '/' },
-        ],
         items2: [
           { picture: 'yeed', text: 'YEED' },
           { picture: 'ethereum', text: 'YEEDtoETH' },

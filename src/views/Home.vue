@@ -5,6 +5,7 @@
         <v-flex mb-4>
           <span class="font-weight-black display-2 mr-2">Welcome to YGGDRASH Explorer</span>
         </v-flex>
+        <!--
         <v-flex mb-4>
           <v-layout mb-4>
             <v-flex sm4>
@@ -30,6 +31,7 @@
             </v-flex>
           </v-layout>
         </v-flex>
+        -->
         <v-flex class="mb-4">
           <h2 class="headline font-weight-medium mb-2">Recently updated branches</h2>
           <BranchCardList :branches="branches"/>
@@ -49,13 +51,13 @@
               <template slot="items" slot-scope="props">
                 <td>
                   <router-link
-                          to="/branches/a32e3fd320fc1174590d8774604a422ca45a9fd6a5801784942aaf341d2ef723">
+                          to="stem">
                     <v-layout>
                       <v-flex><img src="@/assets/images/yeed.png"
                                    style="height: 30px; display: inline-block"></v-flex>
                       <v-flex style="padding-top: 7px; padding-left: 3px">
-                        <strong>YEED</strong>
-                        <span class="grey--text">(a32e3fd3)</span>
+                        <strong>STEM</strong>
+                        <!--<span class="grey&#45;&#45;text">(a32e3fd3)</span>-->
                       </v-flex>
                     </v-layout>
                   </router-link>
