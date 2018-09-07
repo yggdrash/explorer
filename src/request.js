@@ -3,5 +3,8 @@ export function getBranches () {
 }
 
 export function getBlocks (id) {
+  if (id === 'STEM') {
+    return require('./assets/sample/stem-blocks')
+  }
   return require('./assets/sample/blocks')[id]
 }
