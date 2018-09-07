@@ -1,0 +1,13 @@
+{
+  "name": "Ethereum TO YEED",
+  "owner": "0X75E2C5175E2E618F48E70343B14C31B280E42D90",
+  "symbol":"ETH TO YEED",
+  "property":"exchange",
+  "type":"immutable",
+  "timestamp":"0000016531dfa31c",
+  "description": "ETH TO YEED",
+  "tag":0.1,
+  "version":"0xe1980adeafbb9ac6c9be60955484ab1547ab0b76",
+  "reference_address":"0x5db10750e8caff27f906b41c71b3471057dd2007",
+  "reserve_address":"0x1F8f8A219550f89f9D372ab2eE0D1f023EC665a3"
+}

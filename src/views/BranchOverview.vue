@@ -97,9 +97,38 @@
             </v-flex>
             <v-flex xs4>
               <v-container>
-                install
-                > ygg plant b4ad8fd320fc1174590d8774604a422ca45a9fd6a5801784942aaf341d2ef723
-                {{ require('@/assets/sample/branch')}}
+                <div>
+                  <div style="">
+                    <h3>install</h3>
+                    <p style="text-overflow: ellipsis; ">
+                    <code style="width: 100%; overflow: hidden;">ygg plant {{ currentBranch.id
+                      }}</code>
+                    </p>
+                  </div>
+                  <v-layout wrap>
+                    <v-flex v-for="(value, props) in require('@/assets/sample/view')"
+                            :key="props" xs12 v-if="isLong(value)" class="py-3"
+                            style="border-bottom: 1px solid #DDD;">
+                      <div>
+                        <v-layout column style="font-family: 'Roboto Mono'; font-size: 0.91em;">
+                          <v-flex class="font-weight-bold grey--text subheading mb-1">{{props
+                            }}</v-flex>
+                          <v-flex>{{ value }}</v-flex>
+                        </v-layout>
+                      </div>
+                    </v-flex>
+                    <v-flex v-for="(value, props) in require('@/assets/sample/view')"
+                            :key="props" xs6 v-if="!isLong(value)" class="py-3"
+                            style="border-bottom: 1px solid #CCC;">
+                      <div>
+                        <v-layout column>
+                          <v-flex class="font-weight-bold grey--text subheading">{{props}}</v-flex>
+                          <v-flex>{{ value }}</v-flex>
+                        </v-layout>
+                      </div>
+                    </v-flex>
+                  </v-layout>
+                </div>
               </v-container>
             </v-flex>
           </v-layout>
@@ -132,7 +161,11 @@ export default {
       }
     }
   },
-
+  methods: {
+    isLong(value) {
+      return value.length > 20
+    }
+  },
   computed: {
     ...mapState([
       'blocks', 'currentBranch', 'branches'
