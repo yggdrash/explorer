@@ -44,16 +44,16 @@
                   <RecentBlockWidget :blocks="blocks" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
-                  <v-btn to="/blocks" color="secondary">See all blocks</v-btn>
+                  <v-btn :to="`${linkBase}/blocks`" color="secondary">See all blocks</v-btn>
                 </div>
               </v-flex>
               <v-flex mb-4>
                 <h2 class="headline font-weight-medium mb-2">Last 5 Transactions</h2>
                 <v-card>
-                  <RecentBlockWidget :blocks="blocks"/>
+                  <RecentBlockWidget :blocks="blocks" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
-                  <v-btn to="/txs" color="secondary">See all transactions</v-btn>
+                  <v-btn :to="`${linkBase}/txs`" color="secondary">See all transactions</v-btn>
                 </div>
               </v-flex>
             </v-flex>

@@ -16,6 +16,8 @@ export default new Router({
         { path: '', component: () => import('./views/ChainOverview') },
         { path: 'blocks', component: () => import('./views/BlockList')},
         { path: 'blocks/:hash', component: () => import('./views/BlockDetail') },
+        { path: 'txs', component: () => import('./views/TxList')},
+        { path: 'txs/:hash', component: () => import('./views/TxDetail')},
         { path: 'contract', component: () => import('./views/Contract') }
       ]
     },
@@ -27,7 +29,9 @@ export default new Router({
       children: [
         { path: '', component: () => import('./views/ChainOverview') },
         { path: 'blocks', component: () => import('./views/BlockList')},
-        { path: 'blocks/:hash', component: () => import('./views/BlockDetail') }
+        { path: 'blocks/:hash', component: () => import('./views/BlockDetail') },
+        { path: 'txs', component: () => import('./views/TxList')},
+        { path: 'txs/:hash', component: () => import('./views/TxDetail')},
       ]
     },
     {
