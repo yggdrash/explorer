@@ -51,36 +51,12 @@
           <v-flex xs4>
             <v-container>
               <div>
-                <div style="">
                   <h3>install</h3>
                   <p style="text-overflow: ellipsis; ">
                     <code style="width: 100%; overflow: hidden;">ygg plant {{ currentBranch.id
                       }}</code>
                   </p>
-                </div>
-                <v-layout wrap>
-                  <v-flex v-for="(value, props) in require('@/assets/sample/view')"
-                          :key="props" xs12 v-if="isLong(value)" class="py-3"
-                          style="border-bottom: 1px solid #DDD;">
-                    <div>
-                      <v-layout column style="font-family: 'Roboto Mono'; font-size: 0.91em;">
-                        <v-flex class="font-weight-bold grey--text subheading mb-1">{{props
-                          }}</v-flex>
-                        <v-flex>{{ value }}</v-flex>
-                      </v-layout>
-                    </div>
-                  </v-flex>
-                  <v-flex v-for="(value, props) in require('@/assets/sample/view')"
-                          :key="props" xs6 v-if="!isLong(value)" class="py-3"
-                          style="border-bottom: 1px solid #CCC;">
-                    <div>
-                      <v-layout column>
-                        <v-flex class="font-weight-bold grey--text subheading">{{props}}</v-flex>
-                        <v-flex>{{ value }}</v-flex>
-                      </v-layout>
-                    </div>
-                  </v-flex>
-                </v-layout>
+                <BranchSidebar :info="require('@/assets/sample/view')"/>
               </div>
             </v-container>
           </v-flex>
@@ -95,19 +71,16 @@
   import { mapState } from 'vuex'
   import CountCard from '../../components/CountCard'
   import RecentBlockWidget from '../../components/RecentBlockWidget'
+  import BranchSidebar from '../../components/BranchSidebar'
 
   export default {
     components: {
       CountCard,
       RecentBlockWidget,
+      BranchSidebar,
     },
     data () {
       return {
-      }
-    },
-    methods: {
-      isLong(value) {
-        return value.length > 20
       }
     },
     computed: {
