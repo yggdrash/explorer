@@ -8,7 +8,20 @@
     <template slot="items" slot-scope="props">
       <td>
         <router-link
-                :to="`${linkBase}/blocks/${props.item.index}`">
+                to="stem">
+          <v-layout>
+            <v-flex><img src="@/assets/images/yeed.png"
+                         style="height: 30px; display: inline-block"></v-flex>
+            <v-flex style="padding-top: 7px; padding-left: 3px">
+              <strong>STEM</strong>
+              <!--<span class="grey&#45;&#45;text">(a32e3fd3)</span>-->
+            </v-flex>
+          </v-layout>
+        </router-link>
+      </td>
+      <td>
+        <router-link
+                :to="`${linkBase}/stem/blocks/${props.item.index}`">
           {{ props.item.index }}
         </router-link>
       </td>
@@ -29,6 +42,7 @@
     props: [ 'blocks', 'linkBase' ],
     data: () => ({
       headers: [
+        { text: 'Branch', sortable: false },
         { text: 'Block #', sortable: false },
         { text: 'Block Hash', sortable: false },
         { text: 'Size', sortable: false },

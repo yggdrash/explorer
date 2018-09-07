@@ -42,41 +42,7 @@
         <v-flex mb-5>
           <h2 class="headline font-weight-medium mb-2">Recently Blocks</h2>
           <v-card>
-            <v-data-table
-                    :headers="headers"
-                    :items="blocks"
-                    :pagination.sync="pagination"
-                    hide-actions
-            >
-              <template slot="items" slot-scope="props">
-                <td>
-                  <router-link
-                          to="stem">
-                    <v-layout>
-                      <v-flex><img src="@/assets/images/yeed.png"
-                                   style="height: 30px; display: inline-block"></v-flex>
-                      <v-flex style="padding-top: 7px; padding-left: 3px">
-                        <strong>STEM</strong>
-                        <!--<span class="grey&#45;&#45;text">(a32e3fd3)</span>-->
-                      </v-flex>
-                    </v-layout>
-                  </router-link>
-                </td>
-                <td>
-                  <router-link :to="'blocks/' + props.item.index">
-                    {{ props.item.index }}
-                  </router-link>
-                </td>
-                <td>
-                  <router-link :to="'blocks/' + props.item.hash">
-                    {{ props.item.hash | shortHash }}
-                  </router-link>
-                </td>
-                <td>{{ props.item.dataSize }}</td>
-                <td>{{ props.item.timestamp }}</td>
-                <td>{{ props.item.body.length }}</td>
-              </template>
-            </v-data-table>
+            <IntegratedBlockWidget :blocks="blocks"/>
           </v-card>
         </v-flex>
       </v-layout>
@@ -89,11 +55,13 @@
   import { mapState } from 'vuex'
   import CountCard from '../components/CountCard'
   import BranchCardList from '../components/BranchCardList'
+  import IntegratedBlockWidget from '../components/IntegratedBlockWidget'
 
   export default {
     components: {
       CountCard,
       BranchCardList,
+      IntegratedBlockWidget,
     },
 
     data () {
