@@ -105,12 +105,14 @@ export default {
   created() {
     this.$store.dispatch('getLatestBlock')
     this.$store.dispatch('getBlocks')
+    this.$store.dispatch('getTxs')
   },
 
   watch: {
     currentBranch: function() {
       this.$store.dispatch('getLatestBlock')
-      this.$store.dispatch('getBlocks');
+      this.$store.dispatch('getBlocks')
+      this.$store.dispatch('getTxs')
     }
   },
 

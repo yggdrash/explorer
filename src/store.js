@@ -49,15 +49,15 @@ export default new Vuex.Store({
 
     async getLatestBlock ({ commit }) {
       const res = await request.getLatestBlock()
-      console.log('getLatestBlock', res)
       let payload = res.data
       commit('setLatestBlock', payload)
     },
 
     async getBranches ({ commit }) {
       const res = await request.getBranches()
-      console.log(res)
-      let payload = res.data
+      let payload = res.data.map(d => {
+        return JSON.parse(d)
+      })
       commit('setBranches', payload)
     },
 
