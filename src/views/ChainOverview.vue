@@ -6,14 +6,14 @@
             <v-flex sm4>
               <CountCard
                       title="Total Transactions"
-                      :count="blocks.length * 15"
+                      :count="txs.length"
                       :link="`${linkBase}/txs`"
                       color="blue-grey darken-2" />
             </v-flex>
             <v-flex sm4>
               <CountCard
                       title="Last block"
-                      :count="blocks.length"
+                      :count="latestBlock.index"
                       :link="`${linkBase}/blocks`"
                       color="secondary" />
             </v-flex>
@@ -21,7 +21,7 @@
               <template v-if="isStem">
                   <CountCard
                           title="BranchChain created"
-                          :count="branches.length"
+                          :count="countOfBranches"
                           link="/branches"
                           color="blue-grey darken-2"/>
               </template>
@@ -94,16 +94,22 @@ export default {
   },
   computed: {
     ...mapState([
-      'blocks', 'currentBranch', 'branches'
+      'blocks', 'currentBranch', 'branches', 'latestBlock', 'txs'
     ]),
 
     ...mapGetters([
-      'linkBase', 'isStem'
+      'linkBase', 'isStem', 'countOfBranches'
     ]),
+  },
+
+  created() {
+    this.$store.dispatch('getLatestBlock')
+    this.$store.dispatch('getBlocks')
   },
 
   watch: {
     currentBranch: function() {
+      this.$store.dispatch('getLatestBlock')
       this.$store.dispatch('getBlocks');
     }
   },

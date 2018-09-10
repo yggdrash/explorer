@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import request from 'axios'
 
 import * as request from './request'
 
@@ -8,8 +7,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    txs: [],
     blocks: [],
-    branches: [],
+    latestBlock: {},
+    branches: {},
     currentBranch: { name: 'STEM', id: 'STEM'}
   },
   mutations: {
@@ -22,19 +23,42 @@ export default new Vuex.Store({
 
     setCurrentBranch(state, payload) {
       state.currentBranch = payload
-    }
-  },
-  actions: {
-    getBlocks ({ commit }) {
-      // request.get('http://localhost:8080/blocks').then(res => {
-      //   console.log(res)
-      //   commit('setBlocks', res.data)
-      // })
-      commit('setBlocks', request.getBlocks(this.state.currentBranch.id))
     },
 
-    getBranches ({ commit }) {
-      commit('setBranches', request.getBranches())
+    setLatestBlock(state, payload) {
+      state.latestBlock = payload
+    },
+
+    setTxs(state, payload) {
+      state.txs = payload;
+    },
+  },
+  actions: {
+    async getTxs ({ commit }) {
+      const res = await request.getTxs(this.state.currentBranch.id)
+      let payload = res.data
+      commit('setTxs', payload)
+    },
+
+    async getBlocks ({ commit }) {
+      const res = await request.getBlocks(this.state.currentBranch.id)
+      let payload = res.data
+      if (!payload) payload = []
+      commit('setBlocks', payload)
+    },
+
+    async getLatestBlock ({ commit }) {
+      const res = await request.getLatestBlock()
+      console.log('getLatestBlock', res)
+      let payload = res.data
+      commit('setLatestBlock', payload)
+    },
+
+    async getBranches ({ commit }) {
+      const res = await request.getBranches()
+      console.log(res)
+      let payload = res.data
+      commit('setBranches', payload)
     },
 
     changeBranch ({ commit }, item) {
@@ -48,6 +72,10 @@ export default new Vuex.Store({
 
     linkBase(state, getters) {
       return getters.isStem ? '/stem' : `/branches/${state.currentBranch.id}`
+    },
+
+    countOfBranches(state) {
+      return Object.keys(state.branches).length
     }
   }
 })
