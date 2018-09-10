@@ -1,28 +1,35 @@
 <template>
-  <v-container>
-    <template>
+  <div>
+    <h2 class="display-1 font-weight-bold mb-2">Transactions</h2>
+    <v-card>
       <v-data-table
               :headers="headers"
               :items="txs"
               :pagination.sync="pagination"
       >
         <template slot="items" slot-scope="props">
-          <td><router-link :to="'txs/' + props.item.txHash">
-            {{ props.item.txHash }}</router-link></td>
+          <td>
+            <router-link :to="'txs/' + props.item.txHash">
+              {{ props.item.txHash }}
+            </router-link>
+          </td>
+          <td>{{ props.item.author | shortHash(32)}}...</td>
           <td>{{ props.item.timestamp | moment('from')}}</td>
         </template>
       </v-data-table>
-    </template>
-  </v-container>
+    </v-card>
+  </div>
 </template>
 <script>
   import { mapState } from 'vuex'
+
   export default {
     data () {
       return {
         headers: [
-          { text: 'Transaction Id', sortable: false},
-          { text: 'Date', sortable: false},
+          { text: 'Transaction Id', sortable: false },
+          { text: 'Author', sortable: false },
+          { text: 'Date', sortable: false },
         ],
 
         pagination: {
