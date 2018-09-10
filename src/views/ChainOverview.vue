@@ -50,7 +50,7 @@
               <v-flex mb-4>
                 <h2 class="headline font-weight-medium mb-2">Last 5 Transactions</h2>
                 <v-card>
-                  <RecentBlockWidget :blocks="blocks" :linkBase="linkBase"/>
+                  <RecentTxWidget :txs="txs" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
                   <v-btn :to="`${linkBase}/txs`" color="secondary">See all transactions</v-btn>
@@ -84,12 +84,14 @@
 import { mapState, mapGetters } from 'vuex'
 import CountCard from '../components/CountCard'
 import RecentBlockWidget from '../components/RecentBlockWidget'
+import RecentTxWidget from '../components/RecentTxWidget'
 import BranchSidebar from '../components/BranchSidebar'
 
 export default {
   components: {
     CountCard,
     RecentBlockWidget,
+    RecentTxWidget,
     BranchSidebar,
   },
   computed: {

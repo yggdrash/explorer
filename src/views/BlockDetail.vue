@@ -22,7 +22,6 @@
     </v-flex>
   </v-layout>
   <div class="block-detail mt-5">
-    {{ linkBase }}
     <v-layout row v-for="(value, props) in block" :key="props" class="py-2">
       <v-flex xs2>{{ props }}</v-flex>
       <v-flex xs10>{{ value }}</v-flex>
