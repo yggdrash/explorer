@@ -35,7 +35,7 @@
 <script>
   import { mapState } from 'vuex'
   import axios from 'axios'
-  const API_HOST = process.env.VUE_APP_API_HOST
+  const API_HOST = '/api'
 
   export default {
     data () {
