@@ -1,5 +1,6 @@
 import request from 'axios'
-const API_HOST = "http://localhost:8080"
+console.log('API_HOST', process.env.VUE_APP_API_HOST)
+const API_HOST = process.env.VUE_APP_API_HOST
 
 export function getTxs (id) {
   return request.get(`${API_HOST}/txs`)

@@ -12,9 +12,10 @@ pipelines:
     staging:
       - step:
           name: Build And Deploy
+          deployment: staging
           script:
             - apt-get update -y && apt-get -qq install rsync
             - npm install
             - npm test
-            - npm run build
+            - npm run build --mode=staging
             - rsync -zrSlh --stats --exclude-from=deployment-exclude-list.txt dist/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH

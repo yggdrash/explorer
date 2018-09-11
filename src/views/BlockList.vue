@@ -35,6 +35,7 @@
 <script>
   import { mapState } from 'vuex'
   import axios from 'axios'
+  const API_HOST = process.env.VUE_APP_API_HOST
 
   export default {
     data () {
@@ -74,11 +75,11 @@
         this.loading = true;
         const { page, rowsPerPage } = this.pagination
 
-        let latestBlocks = await axios.get('http://localhost:8080/blocks/latest')
+        let latestBlocks = await axios.get(`${API_HOST}/blocks/latest`)
         let lastIndex = latestBlocks.data.index
         let offset = lastIndex - ((page - 1) * rowsPerPage)
         let items = await
-          axios.get(`http://localhost:8080/blocks?offset=${offset}&limit=${rowsPerPage}`)
+          axios.get(`${API_HOST}/blocks?offset=${offset}&limit=${rowsPerPage}`)
         return {
           items: items.data,
           total: latestBlocks.data.index + 1
