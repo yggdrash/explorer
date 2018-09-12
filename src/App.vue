@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     connect() {
-      this.socket = new SockJS("http://localhost:8080/yggdrash-websocket")
+      this.socket = new SockJS("/api/yggdrash-websocket")
       this.stompClient = Stomp.over(this.socket, {debug: false})
       this.stompClient.connect(
         {},

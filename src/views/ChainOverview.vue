@@ -86,6 +86,10 @@ import CountCard from '../components/CountCard'
 import RecentBlockWidget from '../components/RecentBlockWidget'
 import RecentTxWidget from '../components/RecentTxWidget'
 import BranchSidebar from '../components/BranchSidebar'
+import {
+  LOAD_BLOCKS,
+  LOAD_TXS,
+} from '../store/action-types'
 
 export default {
   components: {
@@ -102,6 +106,18 @@ export default {
     ...mapGetters([
       'linkBase', 'isStem', 'countOfBranches'
     ]),
+  },
+
+  mounted () {
+    this.$store.dispatch(LOAD_BLOCKS)
+    this.$store.dispatch(LOAD_TXS)
+  },
+
+  watch: {
+    currentBranch: function() {
+      this.$store.dispatch(LOAD_BLOCKS)
+      this.$store.dispatch(LOAD_TXS)
+    },
   },
 }
 </script>
