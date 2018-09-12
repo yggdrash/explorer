@@ -5,7 +5,7 @@
       <template>
         <v-data-table
                 :headers="headers"
-                :items="blocks"
+                :items="listingBlocks"
                 :pagination.sync="pagination"
                 :total-items="totalBlocks"
                 :loading="loading"
@@ -34,18 +34,16 @@
 </template>
 <script>
   import { mapState } from 'vuex'
-  import axios from 'axios'
-  const API_HOST = '/api'
+  import {
+    LOAD_MORE_BLOCKS
+  } from '../store/action-types'
 
   export default {
     data () {
       return {
-        blocks: [],
-        totalBlocks: 0,
         loading: true,
         pagination: {
           rowsPerPage: 15,
-          rowsPerPageItems: [15, 20]
         },
         headers: [
           { text: 'Block #', sortable: false },
@@ -61,35 +59,30 @@
     watch: {
       pagination: {
         async handler () {
-          let data = await this.getDataFromApi()
-          this.blocks = data.items
-          this.totalBlocks = data.total
+          const { page, rowsPerPage } = this.pagination
+          if((page + 1) * rowsPerPage > this.blocks.length) {
+            let offset = this.blocks[this.blocks.length - 1].index
+            this.$store.dispatch(LOAD_MORE_BLOCKS, offset)
+          }
           this.loading = false
         },
         deep: true
-      }
-    },
-
-    methods: {
-      async getDataFromApi () {
-        this.loading = true;
-        const { page, rowsPerPage } = this.pagination
-
-        let latestBlocks = await axios.get(`${API_HOST}/blocks/latest`)
-        let lastIndex = latestBlocks.data.index
-        let offset = lastIndex - ((page - 1) * rowsPerPage)
-        let items = await
-          axios.get(`${API_HOST}/blocks?offset=${offset}&limit=${rowsPerPage}`)
-        return {
-          items: items.data,
-          total: latestBlocks.data.index + 1
-        }
-      }
+      },
     },
 
     computed: {
       ...mapState([
+        'blocks', 'latestBlock'
       ]),
+
+      listingBlocks() {
+        const { page, rowsPerPage } = this.pagination
+        return this.blocks.slice(0).slice((page - 1) * rowsPerPage, page * rowsPerPage)
+      },
+
+      totalBlocks() {
+        return this.latestBlock.index + 1
+      },
     },
   }
 </script>

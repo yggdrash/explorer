@@ -14,7 +14,12 @@ export function getBranches () {
 
 export function getBlocks (id, offset, limit) {
   if (id === 'STEM') {
-    return request.get(`${API_HOST}/blocks`);
+    if (offset) {
+      return request.get(`${API_HOST}/blocks?offset=${offset}`);
+    } else {
+      return request.get(`${API_HOST}/blocks`);
+    }
+
   }
   return new Promise(resolve => {
     resolve({data: require('./assets/sample/blocks')[id]})

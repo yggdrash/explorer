@@ -70,6 +70,12 @@ export default new Vuex.Store({
       }
     },
 
+    async [aTypes.LOAD_MORE_BLOCKS] ({ commit, state }, offset) {
+      const res = await request.getBlocks(state.currentBranch.id, offset, 30)
+      let payload = res.data
+      commit(mTypes.SET_BLOCKS, [...state.blocks, ...payload])
+    },
+
     async [aTypes.LOAD_BRANCHES] ({ commit }) {
       const res = await request.getBranches()
       let payload = res.data.map(d => {
