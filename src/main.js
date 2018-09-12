@@ -5,6 +5,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { shortHash } from './filters'
+import {
+  SET_CURRENT_BRANCHE
+} from './store/mutation-types'
 
 Vue.config.productionTip = false
 
@@ -20,9 +23,9 @@ router.beforeResolve((to, from, next) => {
 
     if ( binfo == null ) next('404')
 
-    store.dispatch('changeBranch', binfo)
+    store.commit(SET_CURRENT_BRANCHE, binfo)
   } else if(to.path === '/stem') {
-    store.dispatch('changeBranch', { name: 'STEM', id: 'STEM' })
+    store.commit(SET_CURRENT_BRANCHE, { name: 'STEM', id: 'STEM' })
   }
   next()
 })

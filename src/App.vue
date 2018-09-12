@@ -17,6 +17,14 @@ import NavigationDrawer from './components/layout/NavigationDrawer'
 import Footer from './components/layout/Footer'
 import SockJS from 'sockjs-client'
 import Stomp from 'webstomp-client'
+import {
+  LOAD_BLOCKS,
+  LOAD_BRANCHES,
+} from './store/action-types'
+import {
+  ADD_BLOCK,
+  SET_LATEST_BLOCK,
+} from './store/mutation-types'
 
 export default {
   name: 'App',
@@ -41,7 +49,8 @@ export default {
         frame => {
           this.connected = true;
           this.stompClient.subscribe("/topic/blocks", tick => {
-            this.$store.commit('addBlock', JSON.parse(tick.body))
+            this.$store.commit(ADD_BLOCK, JSON.parse(tick.body))
+            this.$store.commit(SET_LATEST_BLOCK, JSON.parse(tick.body))
           })
         }
         )
@@ -49,9 +58,8 @@ export default {
   },
 
   mounted () {
-    this.$store.dispatch('getLatestBlock')
-    this.$store.dispatch('getBlocks')
-    this.$store.dispatch('getBranches')
+    this.$store.dispatch(LOAD_BLOCKS)
+    this.$store.dispatch(LOAD_BRANCHES)
     this.connect()
   }
 }

@@ -68,13 +68,6 @@
       }
     },
 
-    methods: {
-      goStem() {
-        this.$store.dispatch('changeBranch', {name: "STEM", id:"STEM"})
-        this.$router.push('/stem')
-      }
-    },
-
     computed: {
       ...mapState([
         'branches'

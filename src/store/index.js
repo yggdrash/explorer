@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import * as request from '../request'
+import * as mTypes from './mutation-types'
+import * as aTypes from './action-types'
 
 Vue.use(Vuex)
 
@@ -10,65 +12,64 @@ export default new Vuex.Store({
     txs: [],
     blocks: [],
     latestBlock: {},
-    branches: {},
+    branches: [],
     currentBranch: { name: 'STEM', id: 'STEM'}
   },
+
   mutations: {
-    setBlocks (state, payload) {
+    [mTypes.SET_BLOCKS] (state, payload) {
       state.blocks = payload
     },
-    setBranches (state, payload) {
+
+    [mTypes.SET_BRANCHES] (state, payload) {
       state.branches = payload
     },
 
-    setCurrentBranch(state, payload) {
+    [mTypes.SET_CURRENT_BRANCHE] (state, payload) {
       state.currentBranch = payload
     },
 
-    setLatestBlock(state, payload) {
+    [mTypes.SET_LATEST_BLOCK] (state, payload) {
       state.latestBlock = payload
     },
 
-    setTxs(state, payload) {
+    [mTypes.SET_TXS] (state, payload) {
       state.txs = payload;
     },
 
-    addBlock(state, payload) {
+    [mTypes.ADD_BLOCK] (state, payload) {
       state.blocks.unshift(payload)
     }
   },
+
   actions: {
-    async getTxs ({ commit }) {
-      const res = await request.getTxs(this.state.currentBranch.id)
+    async [aTypes.LOAD_TXS] ({ commit, state }) {
+      const res = await request.getTxs(state.currentBranch.id)
       let payload = res.data
-      commit('setTxs', payload)
+      commit(mTypes.SET_TXS, payload)
     },
 
-    async getBlocks ({ commit }) {
-      const res = await request.getBlocks(this.state.currentBranch.id)
+    async [aTypes.LOAD_BLOCKS] ({ commit, state }) {
+      const res = await request.getBlocks(state.currentBranch.id)
       let payload = res.data
-      if (!payload) payload = []
-      commit('setBlocks', payload)
+      if (payload) {
+        commit(mTypes.SET_BLOCKS, payload)
+        commit(mTypes.SET_LATEST_BLOCK, payload[0])
+      } else {
+        commit(mTypes.SET_BLOCKS, [])
+        commit(mTypes.SET_LATEST_BLOCK, {})
+      }
     },
 
-    async getLatestBlock ({ commit }) {
-      const res = await request.getLatestBlock()
-      let payload = res.data
-      commit('setLatestBlock', payload)
-    },
-
-    async getBranches ({ commit }) {
+    async [aTypes.LOAD_BRANCHES] ({ commit }) {
       const res = await request.getBranches()
       let payload = res.data.map(d => {
         return JSON.parse(d)
       })
-      commit('setBranches', payload)
+      commit(mTypes.SET_BRANCHES, payload)
     },
-
-    changeBranch ({ commit }, item) {
-      commit('setCurrentBranch', item)
-    }
   },
+
   getters: {
     isStem(state) {
       return state.currentBranch.name === 'STEM'
