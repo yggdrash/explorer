@@ -5,6 +5,9 @@ import * as request from '../request'
 import * as mTypes from './mutation-types'
 import * as aTypes from './action-types'
 
+import createWsPlugin from './plugin/createWebSocketPlugin'
+const wsPlugin = createWsPlugin("/api/yggdrash-websocket")
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -13,7 +16,7 @@ export default new Vuex.Store({
     blocks: [],
     latestBlock: {},
     branches: [],
-    currentBranch: { name: 'STEM', id: 'STEM'}
+    currentBranch: { name: 'STEM', id: 'STEM'},
   },
 
   mutations: {
@@ -39,6 +42,7 @@ export default new Vuex.Store({
 
     [mTypes.ADD_BLOCK] (state, payload) {
       state.blocks.unshift(payload)
+      state.latestBlock = payload
     }
   },
 
@@ -76,11 +80,12 @@ export default new Vuex.Store({
     },
 
     linkBase(state, getters) {
-      return getters.isStem ? '/stem' : `/branches/${state.currentBranch.id}`
+      return getters.isStem ? '/stem' : `/branches/${state.currentBranch.izd}`
     },
 
     countOfBranches(state) {
       return Object.keys(state.branches).length
     }
-  }
+  },
+  plugins: [wsPlugin]
 })
