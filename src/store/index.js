@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import * as request from './request'
+import * as request from '../request'
 
 Vue.use(Vuex)
 
@@ -32,6 +32,10 @@ export default new Vuex.Store({
     setTxs(state, payload) {
       state.txs = payload;
     },
+
+    addBlock(state, payload) {
+      state.blocks.unshift(payload)
+    }
   },
   actions: {
     async getTxs ({ commit }) {
