@@ -17,6 +17,7 @@ export default new Vuex.Store({
     latestBlock: {},
     branches: [],
     currentBranch: { name: 'STEM', id: 'STEM'},
+    isConnected: false,
   },
 
   mutations: {
@@ -43,6 +44,10 @@ export default new Vuex.Store({
     [mTypes.ADD_BLOCK] (state, payload) {
       state.blocks.unshift(payload)
       state.latestBlock = payload
+    },
+
+    [mTypes.SET_IS_CONNECTED] (state, payload) {
+      state.isConnected = payload
     }
   },
 

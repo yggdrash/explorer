@@ -33,13 +33,20 @@
         <v-icon>apps</v-icon>
       </v-btn>
       <v-btn icon>
-        <v-icon>notifications</v-icon>
+        <v-icon>{{ isConnected ? 'wifi' : 'wifi_off'}}</v-icon>
       </v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
 <script>
+  import { mapState } from 'vuex'
 export default {
+    computed: {
+      ...mapState([
+        'isConnected'
+      ])
+    },
+
   methods: {
     goHome() {
       this.$router.push("/")
