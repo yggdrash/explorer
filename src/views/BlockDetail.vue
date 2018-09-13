@@ -1,57 +1,82 @@
 <template>
-<v-container>
-  <v-layout row justify-center>
-    <v-flex xs2 class="text-xs-center">
-      <v-btn fab small color="secondary"
+  <div>
+    <h2 class="font-weight-black display-1 py-2 mb-4">BLOCK {{ block.index }}</h2>
+    <div class="block-detail">
+      <v-layout row v-for="(value, props) in block" :key="props" class="py-2">
+        <v-flex xs2 class="font-weight-bold">{{ props }}</v-flex>
+        <v-flex xs10 class="value">{{ value }}</v-flex>
+      </v-layout>
+    </div>
+    <div class="text-xs-center mt-3">
+      <v-btn flat color="primary"
              :to="`${linkBase}/blocks/${block.index - 1}`"
              v-if="block.index !== 0"
       >
-        <v-icon>keyboard_arrow_left</v-icon>
+        <v-icon>arrow_back</v-icon>
       </v-btn>
-    </v-flex>
-    <v-flex xs4 class="text-xs-center">
-      <h2 class="font-weight-black display-1 py-1">Block {{ block.index }}</h2>
-    </v-flex>
-    <v-flex xs2 class="text-xs-center">
-      <v-btn fab small color="secondary"
+      <span class="pipe">&nbsp;</span>
+      <v-btn flat color="primary"
              :to="`${linkBase}/blocks/${block.index + 1}`"
              v-if="blocks.length !== block.index + 1"
       >
-        <v-icon>keyboard_arrow_right</v-icon>
+        <v-icon>arrow_forward</v-icon>
       </v-btn>
-    </v-flex>
-  </v-layout>
-  <div class="block-detail mt-5">
-    <v-layout row v-for="(value, props) in block" :key="props" class="py-2">
-      <v-flex xs2>{{ props }}</v-flex>
-      <v-flex xs10>{{ value }}</v-flex>
-    </v-layout>
+    </div>
   </div>
-</v-container>
 </template>
 <script>
-import {mapState, mapGetters} from 'vuex'
-export default {
-  computed: {
-    ...mapState([
-      'blocks'
-    ]),
+  import { mapGetters, mapState } from 'vuex'
 
-    ...mapGetters([
-      'linkBase'
-    ]),
+  export default {
+    computed: {
+      ...mapState([
+        'blocks'
+      ]),
 
-    block () {
-      if(this.$route.params.hash) {
-        return this.blocks.filter(b => {
-          if (isNaN(this.$route.params.hash)) {
-            return b.hash === this.$route.params.hash
-          }
-          return String(b.index) === this.$route.params.hash
-        })[0]
+      ...mapGetters([
+        'linkBase'
+      ]),
+
+      block () {
+        if (this.$route.params.hash) {
+          return this.blocks.filter(b => {
+            if (isNaN(this.$route.params.hash)) {
+              return b.hash === this.$route.params.hash
+            }
+            return String(b.index) === this.$route.params.hash
+          })[ 0 ]
+        }
+        return this.blocks
       }
-      return this.blocks
     }
   }
-}
 </script>
+<style lang="scss" scoped>
+  .block-detail {
+    .row {
+      &:nth-child(odd) {
+        border-left: 3px solid #E0E0E0;
+        background-color: white;
+      }
+      &:nth-child(even) {
+        border-left: 3px solid #06b67b;
+      }
+
+      .flex {
+        padding: 4px 1.5em;
+
+        &.value {
+          word-break: break-all;
+          font-family: 'Roboto Mono', monospace;
+        }
+      }
+    }
+  }
+
+  .pipe {
+    display: inline-block;
+    margin: 15px 0;
+    width: 2px;
+    background-color: #06b67b;
+  }
+</style>
