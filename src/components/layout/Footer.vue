@@ -10,6 +10,7 @@
             flat
             tile
     >
+      <!--
       <v-card-title class="grey darken-3">
         <strong class="subheading">Get connected with us on social networks!</strong>
 
@@ -25,6 +26,7 @@
           <v-icon size="24px">{{ icon }}</v-icon>
         </v-btn>
       </v-card-title>
+      -->
 
       <v-card-actions class="primary justify-center">
         &copy;2018 — <strong>AKASHIC FOUNDATION</strong>
