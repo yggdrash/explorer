@@ -9,7 +9,7 @@
           <h2 class="headline font-weight-medium mb-2">Recently Updated Branches</h2>
           <BranchCardList :branches="branches" max="3"/>
           <div class="text-xs-center mt-3">
-            <v-btn flat large to="/branches">See all branches</v-btn>
+            <v-btn large dark to="/branches">See all branches</v-btn>
           </div>
         </v-flex>
         <v-flex mb-5>

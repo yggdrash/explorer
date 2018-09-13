@@ -13,7 +13,7 @@
                   <RecentBlockWidget :blocks="blocks" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
-                  <v-btn flat :to="`${linkBase}/blocks`">See all blocks</v-btn>
+                  <v-btn dark :to="`${linkBase}/blocks`">See all blocks</v-btn>
                 </div>
               </v-flex>
               <v-flex mb-4>
@@ -22,7 +22,7 @@
                   <RecentTxWidget :txs="txs" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
-                  <v-btn flat :to="`${linkBase}/txs`">See all transactions</v-btn>
+                  <v-btn dark :to="`${linkBase}/txs`">See all transactions</v-btn>
                 </div>
               </v-flex>
             </v-flex>
@@ -94,7 +94,7 @@ export default {
         let branchCount = {
           title:'branch created',
           count: this.branches.length,
-          link: `${this.linkBase}/branches`
+          link: `/branches`
         }
         return [...defaultItems, branchCount]
       } else {

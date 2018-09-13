@@ -7,7 +7,7 @@
       </v-layout>
     </v-card-title>
     <v-card-actions>
-      <v-btn flat :to="`/branches/${branchInfo.id}`">
+      <v-btn flat small :to="`/branches/${branchInfo.id}`">
         EXPLORE
       </v-btn>
     </v-card-actions>
