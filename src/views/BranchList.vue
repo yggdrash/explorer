@@ -1,6 +1,5 @@
 <template>
-  <v-container fluid
-               grid-list-md>
+  <v-container fluid>
     <div class="font-weight-black display-2 mb-2">YGGDRASH Branches</div>
     <BranchCardList :branches="branches"/>
   </v-container>

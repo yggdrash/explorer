@@ -5,38 +5,11 @@
         <v-flex mb-4>
           <span class="font-weight-black display-2 mr-2">Welcome to YGGDRASH Explorer</span>
         </v-flex>
-        <!--
-        <v-flex mb-4>
-          <v-layout mb-4>
-            <v-flex sm4>
-              <CountCard
-                      title="Total Transactions"
-                      count="21563"
-                      link="/tx"
-                      color="blue-grey darken-2"/>
-            </v-flex>
-            <v-flex sm4>
-              <CountCard
-                      title="Last block"
-                      count="1181"
-                      link="/blocks"
-                      color="secondary"/>
-            </v-flex>
-            <v-flex sm4>
-              <CountCard
-                      title="BranchChain created"
-                      count="3"
-                      link="/branches"
-                      color="blue-grey darken-2"/>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-        -->
         <v-flex class="mb-4">
-          <h2 class="headline font-weight-medium mb-2">Recently updated branches</h2>
-          <BranchCardList :branches="branches"/>
+          <h2 class="headline font-weight-medium mb-2">Recently Updated Branches</h2>
+          <BranchCardList :branches="branches" max="3"/>
           <div class="text-xs-center mt-3">
-            <v-btn to="/branches" color="secondary">See all branches</v-btn>
+            <v-btn flat large to="/branches">See all branches</v-btn>
           </div>
         </v-flex>
         <v-flex mb-5>

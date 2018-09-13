@@ -1,12 +1,13 @@
 <template>
-  <v-card :color="color" class="white--text">
+  <v-card :color="color">
     <v-card-title primary-title>
-      <div class="headline">{{ branchInfo.name }}</div>
-      <div style="word-break: break-word">{{ branchInfo.id }}</div>
+      <v-layout column>
+        <v-flex class="headline font-weight-bold">{{ branchInfo.name }}</v-flex>
+        <v-flex class="desc">{{ branchInfo.description }}</v-flex>
+      </v-layout>
     </v-card-title>
     <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn flat dark :to="`/branches/${branchInfo.id}`">
+      <v-btn flat :to="`/branches/${branchInfo.id}`">
         EXPLORE
       </v-btn>
     </v-card-actions>
@@ -19,3 +20,27 @@
     ]
   }
 </script>
+<style lang="scss" scoped>
+  .v-card.grey {
+    .v-card__title {
+      border-top: solid 3px #06b67b;
+    }
+  }
+
+  .v-card.white {
+    .v-card__title {
+      border-top: solid 3px #ff6049;
+    }
+  }
+
+  .v-card__title {
+    padding-left: 24px;
+    padding-right: 24px;
+    min-height: 138px;
+    align-items: flex-start;
+
+    .desc {
+      color: gray;
+    }
+  }
+</style>

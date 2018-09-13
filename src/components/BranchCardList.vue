@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap>
-    <v-flex xs4 v-for="(b, index) in branches" :key="b.id">
+    <v-flex sm4 xs12 v-for="(b, index) in listingBranches" :key="b.id">
       <BranchCard :branch-info="b" :color="colors[index % colors.length]" />
     </v-flex>
   </v-layout>
@@ -10,14 +10,21 @@
 
   export default {
     props: [
-      'branches'
+      'branches', 'max'
     ],
     components: {
       BranchCard,
     },
-
     data: () => ({
-      colors: [ 'purple', 'blue-grey darken-2', 'secondary', 'cyan darken-2']
+      colors: [ 'grey lighten-4', 'white']
     }),
+    computed: {
+      listingBranches() {
+        if(this.max) {
+          return this.branches.slice(0, Number(this.max))
+        }
+        return this.branches
+      }
+    }
   }
 </script>
