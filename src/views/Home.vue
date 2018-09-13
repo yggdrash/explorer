@@ -7,7 +7,7 @@
         </v-flex>
         <v-flex class="mb-4">
           <h2 class="headline font-weight-medium mb-2">Recently Updated Branches</h2>
-          <BranchCardList :branches="branches" max="3"/>
+          <BranchCardList :branches="branchesExcludeStem" max="3"/>
           <div class="text-xs-center mt-3">
             <v-btn flat large to="/branches" style="text-decoration: underline">See all branches</v-btn>
           </div>
@@ -25,7 +25,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <script>
-  import { mapState } from 'vuex'
+  import { mapState, mapGetters } from 'vuex'
   import CountCard from '../components/CountCard'
   import BranchCardList from '../components/BranchCardList'
   import IntegratedBlockWidget from '../components/IntegratedBlockWidget'
@@ -58,6 +58,10 @@
       ...mapState([
         'blocks', 'branches'
       ]),
+
+      ...mapGetters([
+        'branchesExcludeStem'
+      ])
     }
   }
 </script>

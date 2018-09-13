@@ -96,6 +96,12 @@ export default new Vuex.Store({
 
     countOfBranches(state) {
       return Object.keys(state.branches).length
+    },
+
+    branchesExcludeStem(state) {
+      return state.branches.filter(b => {
+        return b.name !== "STEM"
+      })
     }
   },
   plugins: [wsPlugin]

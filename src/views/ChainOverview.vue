@@ -75,7 +75,7 @@ export default {
     ]),
 
     ...mapGetters([
-      'linkBase', 'isStem', 'countOfBranches'
+      'linkBase', 'isStem', 'countOfBranches', 'branchesExcludeStem'
     ]),
 
     countItems() {
@@ -95,7 +95,7 @@ export default {
       if(this.isStem) {
         let branchCount = {
           title:'branch created',
-          count: this.branches.length,
+          count: this.branchesExcludeStem.length,
           link: `/branches`
         }
         return [...defaultItems, branchCount]

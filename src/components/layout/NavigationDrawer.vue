@@ -30,7 +30,7 @@
         <v-list-tile-title>STEM</v-list-tile-title>
       </v-list-tile>
       <v-subheader class="mt-3 grey--text text--darken-1">BRANCHES</v-subheader>
-      <v-list-tile v-for="item in branches" :key="item.id" avatar
+      <v-list-tile v-for="item in branchesExcludeStem" :key="item.id" avatar
                    :to="`/branches/${item.id}`">
         <v-list-tile-avatar>
           <img src="@/assets/images/dart.png" alt="">
@@ -55,22 +55,12 @@
   </v-navigation-drawer>
 </template>
 <script>
-  import { mapState } from 'vuex'
+  import { mapGetters } from 'vuex'
 
   export default {
-    data () {
-      return {
-        items2: [
-          { picture: 'yeed', text: 'YEED' },
-          { picture: 'ethereum', text: 'YEEDtoETH' },
-          { picture: 'dart', text: 'DART' }
-        ]
-      }
-    },
-
     computed: {
-      ...mapState([
-        'branches'
+      ...mapGetters([
+        'branchesExcludeStem'
       ])
     }
   }

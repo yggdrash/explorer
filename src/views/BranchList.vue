@@ -1,11 +1,11 @@
 <template>
   <v-container fluid>
     <div class="font-weight-black display-2 mb-2">YGGDRASH Branches</div>
-    <BranchCardList :branches="branches"/>
+    <BranchCardList :branches="branchesExcludeStem"/>
   </v-container>
 </template>
 <script>
-  import { mapState } from 'vuex'
+  import { mapGetters } from 'vuex'
   import BranchCardList from '../components/BranchCardList'
 
   export default {
@@ -14,8 +14,8 @@
     },
 
     computed: {
-      ...mapState([
-        'branches'
+      ...mapGetters([
+        'branchesExcludeStem'
       ])
     }
   }
