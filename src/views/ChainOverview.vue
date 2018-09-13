@@ -1,39 +1,8 @@
 <template>
     <v-slide-y-transition mode="out-in">
       <v-layout column>
-        <v-flex mb-3>
-          <v-layout mb-4>
-            <v-flex sm4>
-              <CountCard
-                      title="Total Transactions"
-                      :count="txs.length"
-                      :link="`${linkBase}/txs`"
-                      color="blue-grey darken-2" />
-            </v-flex>
-            <v-flex sm4>
-              <CountCard
-                      title="Last block"
-                      :count="latestBlock.index"
-                      :link="`${linkBase}/blocks`"
-                      color="secondary" />
-            </v-flex>
-            <v-flex sm4>
-              <template v-if="isStem">
-                  <CountCard
-                          title="BranchChain created"
-                          :count="countOfBranches"
-                          link="/branches"
-                          color="blue-grey darken-2"/>
-              </template>
-              <template v-else>
-                <CountCard
-                        title="Account created"
-                        :count="parseInt(blocks.length / 10) + 1"
-                        link="/account"
-                        color="blue-grey darken-2" />
-              </template>
-            </v-flex>
-          </v-layout>
+        <v-flex mb-4>
+          <CountCardList :items="countItems"></CountCardList>
         </v-flex>
         <v-flex>
           <v-layout>
@@ -44,7 +13,7 @@
                   <RecentBlockWidget :blocks="blocks" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
-                  <v-btn :to="`${linkBase}/blocks`" color="secondary">See all blocks</v-btn>
+                  <v-btn flat :to="`${linkBase}/blocks`">See all blocks</v-btn>
                 </div>
               </v-flex>
               <v-flex mb-4>
@@ -53,7 +22,7 @@
                   <RecentTxWidget :txs="txs" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
-                  <v-btn :to="`${linkBase}/txs`" color="secondary">See all transactions</v-btn>
+                  <v-btn flat :to="`${linkBase}/txs`">See all transactions</v-btn>
                 </div>
               </v-flex>
             </v-flex>
@@ -82,7 +51,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <script>
 import { mapState, mapGetters } from 'vuex'
-import CountCard from '../components/CountCard'
+import CountCardList from '../components/CountCardList'
 import RecentBlockWidget from '../components/RecentBlockWidget'
 import RecentTxWidget from '../components/RecentTxWidget'
 import BranchSidebar from '../components/BranchSidebar'
@@ -93,7 +62,7 @@ import {
 
 export default {
   components: {
-    CountCard,
+    CountCardList,
     RecentBlockWidget,
     RecentTxWidget,
     BranchSidebar,
@@ -106,6 +75,37 @@ export default {
     ...mapGetters([
       'linkBase', 'isStem', 'countOfBranches'
     ]),
+
+    countItems() {
+      let defaultItems = [
+          {
+            title:'total transaction',
+            count: this.txs.length,
+            link: `${this.linkBase}/txs`
+          },
+          {
+            title:'last block',
+            count: this.latestBlock.index,
+            link: `${this.linkBase}/blocks`
+          },
+        ]
+
+      if(this.isStem) {
+        let branchCount = {
+          title:'branch created',
+          count: this.branches.length,
+          link: `${this.linkBase}/branches`
+        }
+        return [...defaultItems, branchCount]
+      } else {
+        let accountCount = {
+          title:'account created',
+          count: 0,
+          link: `${this.linkBase}/account`
+        }
+        return [...defaultItems, accountCount]
+      }
+    }
   },
 
   mounted () {
