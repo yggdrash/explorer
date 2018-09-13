@@ -4,6 +4,8 @@
     <span class="title ml-3 mr-5" @click="goHome" style="cursor: pointer">
       YGGDRASH&nbsp;<span class="font-weight-light">Explorer</span>
     </span>
+    <!--TODO 검색기능 추가-->
+    <!--
     <v-text-field
             solo-inverted
             flat
@@ -11,6 +13,7 @@
             label="Block Height, Hash, Address or Transaction Id"
             prepend-inner-icon="search"
     ></v-text-field>
+    -->
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-menu offset-y>

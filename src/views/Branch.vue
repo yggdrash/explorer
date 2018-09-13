@@ -3,30 +3,35 @@
     <v-slide-y-transition mode="out-in">
       <v-layout column>
         <v-flex mb-4>
-          <span class="font-weight-black display-2 mr-2">{{ currentBranch.name }}</span>
-          <span class="font-italic grey--text">
-            <strong>{{ currentBranch.id.slice(0, 16) }}</strong>{{ currentBranch.id.slice(16) }}
-          </span>
-          <div>
-            <v-chip color="green" text-color="white" small v-if="currentBranch.name === 'STEM'">
-              <v-avatar>
-                <v-icon>cloud_done</v-icon>
-              </v-avatar>
-              Active
-            </v-chip>
-            <v-chip color="orange" text-color="white" small v-else>
-              <v-avatar>
-                <v-icon>wb_incandescent</v-icon>
-              </v-avatar>
-              Concept
-            </v-chip>
-            <v-chip color="indigo" text-color="white" small v-if="currentBranch.name === 'YEED'">
-              <v-avatar>
-                <v-icon>flash_on</v-icon>
-              </v-avatar>
-              Developing
-            </v-chip>
-          </div>
+          <v-layout align-end>
+            <v-flex class="branch-name">
+              <span class="font-weight-black display-2 mr-2">
+                {{ currentBranch.name }}</span>
+            </v-flex>
+            <v-flex>
+              <v-layout wrap>
+                <v-flex xs12>
+                  <div>
+                    <v-chip color="green" text-color="white" small v-if="isStem">
+                      ACTIVE
+                    </v-chip>
+                    <v-chip color="indigo" text-color="white" small v-else-if="isYeed">
+                      DEVELOPING
+                    </v-chip>
+                    <v-chip color="orange" text-color="white" small v-else>
+                      CONCEPT
+                    </v-chip>
+                  </div>
+                </v-flex>
+                <v-flex xs12>
+                  <span class="font-italic grey--text">
+                    <strong>{{ currentBranch.id.slice(0, 16) }}</strong>{{
+                    currentBranch.id.slice(16) }}
+                  </span>
+                </v-flex>
+              </v-layout>
+            </v-flex>
+          </v-layout>
         </v-flex>
         <router-view></router-view>
       </v-layout>
@@ -34,13 +39,30 @@
   </v-container>
 </template>
 <script>
-  import { mapState } from 'vuex'
+  import { mapState, mapGetters } from 'vuex'
 
   export default {
     computed: {
       ...mapState([
         'currentBranch'
-      ])
-    }
+      ]),
+
+      ...mapGetters([
+        'isStem'
+      ]),
+
+      isYeed() {
+        return this.currentBranch.name === 'YEED'
+      }
+    },
   }
 </script>
+<style lang="scss" scoped>
+  .branch-name {
+    flex-grow: 0;
+  }
+
+  .v-chip--small {
+    height: 18px;
+  }
+</style>
