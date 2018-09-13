@@ -37,7 +37,7 @@
                     <template v-else>
                       <kbd> > ygg plant {{ currentBranch.id | shortHash(16)}}</kbd>
                     </template>
-                    <BranchSidebar :info="require('@/assets/sample/view')"/>
+                    <BranchSidebar :info="currentBranchInfo"/>
                   </div>
                 </div>
               </v-container>
@@ -105,6 +105,20 @@ export default {
         }
         return [...defaultItems, accountCount]
       }
+    },
+
+    currentBranchInfo() {
+      let foundBranch
+      if(this.isStem) {
+        foundBranch = this.branches.find(b => {
+          return b.symbol === "STEM"
+        })
+      } else {
+        foundBranch = this.branches.find(b => {
+          return b.id === this.currentBranch.id
+        })
+      }
+      return foundBranch
     }
   },
 
