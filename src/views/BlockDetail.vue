@@ -10,14 +10,14 @@
     <div class="text-xs-center mt-3">
       <v-btn flat color="primary"
              :to="`${linkBase}/blocks/${block.index - 1}`"
-             v-if="block.index !== 0"
+             :disabled="isLast"
       >
         <v-icon>arrow_back</v-icon>
       </v-btn>
       <span class="pipe">&nbsp;</span>
       <v-btn flat color="primary"
              :to="`${linkBase}/blocks/${block.index + 1}`"
-             v-if="blocks.length !== block.index + 1"
+             :disabled="isFirst"
       >
         <v-icon>arrow_forward</v-icon>
       </v-btn>
@@ -26,27 +26,40 @@
 </template>
 <script>
   import { mapGetters, mapState } from 'vuex'
+  import {
+    LOAD_BLOCK
+  } from '../store/action-types'
 
   export default {
     computed: {
       ...mapState([
-        'blocks'
+        'latestBlock', 'selectedBlock'
       ]),
+      ...mapState({
+        block: 'selectedBlock'
+      }),
 
       ...mapGetters([
         'linkBase'
       ]),
 
-      block () {
-        if (this.$route.params.hash) {
-          return this.blocks.filter(b => {
-            if (isNaN(this.$route.params.hash)) {
-              return b.hash === this.$route.params.hash
-            }
-            return String(b.index) === this.$route.params.hash
-          })[ 0 ]
-        }
-        return this.blocks
+      isFirst() {
+        return this.latestBlock.index === this.block.index
+      },
+
+      isLast() {
+        return this.block.index === 1
+      }
+    },
+
+    mounted() {
+      let hash = this.$route.params.hash
+      this.$store.dispatch(LOAD_BLOCK, hash)
+    },
+
+    watch: {
+      '$route' (to) {
+        this.$store.dispatch(LOAD_BLOCK, to.params.hash)
       }
     }
   }

@@ -1,5 +1,10 @@
 import request from 'axios'
 const API_HOST = '/api'
+
+export function getBlock (branchId, blockId) {
+  return request.get(`${API_HOST}/blocks/${blockId}`)
+}
+
 export function getTxs (id) {
   return request.get(`${API_HOST}/txs`)
 }

@@ -13,6 +13,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     txs: [],
+    selectedBlock: {},
     blocks: [],
     latestBlock: {},
     branches: [],
@@ -48,6 +49,10 @@ export default new Vuex.Store({
 
     [mTypes.SET_IS_CONNECTED] (state, payload) {
       state.isConnected = payload
+    },
+
+    [mTypes.SELECT_BLOCK] (state, payload) {
+      state.selectedBlock = payload
     }
   },
 
@@ -83,6 +88,24 @@ export default new Vuex.Store({
       })
       commit(mTypes.SET_BRANCHES, payload)
     },
+
+    async [aTypes.LOAD_BLOCK] ({ commit, state }, id) {
+      let foundBlock
+      if(state.blocks) {
+        foundBlock = await state.blocks.find(b => {
+          return Number(id) === b.index || id === b.hash
+        })
+      }
+
+      if(foundBlock) {
+        commit(mTypes.SELECT_BLOCK, foundBlock)
+        return;
+      }
+
+      const res = await request.getBlock(state.currentBranch.id, id)
+      foundBlock = res.data
+      commit(mTypes.SELECT_BLOCK, foundBlock)
+    }
   },
 
   getters: {
