@@ -12,6 +12,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    selectedTx: {},
     txs: [],
     selectedBlock: {},
     blocks: [],
@@ -53,6 +54,10 @@ export default new Vuex.Store({
 
     [mTypes.SELECT_BLOCK] (state, payload) {
       state.selectedBlock = payload
+    },
+
+    [mTypes.SELECT_TX] (state, payload) {
+      state.selectedTx = payload
     }
   },
 
@@ -105,7 +110,25 @@ export default new Vuex.Store({
       const res = await request.getBlock(state.currentBranch.id, id)
       foundBlock = res.data
       commit(mTypes.SELECT_BLOCK, foundBlock)
-    }
+    },
+
+    async [aTypes.LOAD_TX] ({ commit, state}, id) {
+      let foundTx
+      if(state.txs) {
+        foundTx = await state.txs.find(tx => {
+          return id === tx.txHash
+        })
+      }
+
+      if(foundTx) {
+        commit(mTypes.SELECT_TX, foundTx)
+        return
+      }
+
+      const res = await request.getTx(state.currentBranch.id, id)
+      foundTx = res.data
+      commit(mTypes.SELECT_TX, foundTx)
+    },
   },
 
   getters: {

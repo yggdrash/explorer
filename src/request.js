@@ -1,5 +1,8 @@
 import request from 'axios'
-const API_HOST = '/api'
+
+export function getTx (branchId, txHash) {
+  return request.get(`${API_HOST}/txs/${txHash}`)
+}
 
 export function getBlock (branchId, blockId) {
   return request.get(`${API_HOST}/blocks/${blockId}`)
@@ -30,3 +33,5 @@ export function getBlocks (id, offset, limit) {
     resolve({data: require('./assets/sample/blocks')[id]})
   })
 }
+
+const API_HOST = '/api'
