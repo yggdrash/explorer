@@ -17,7 +17,9 @@ export function getLatestBlock () {
 }
 
 export function getBranches () {
-  return request.get(`${API_HOST}/branches`)
+  // return request.get(`${API_HOST}/branches`)
+  const stemId = 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'
+  return request.get(`${API_HOST}/branches/${stemId}/states`)
 }
 
 export function getBlocks (id, offset, limit) {

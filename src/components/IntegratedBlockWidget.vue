@@ -13,8 +13,8 @@
             <v-flex><img src="@/assets/images/yeed.png"
                          style="height: 30px; display: inline-block"></v-flex>
             <v-flex style="padding-top: 7px; padding-left: 3px">
-              <strong>STEM</strong>
-              <!--<span class="grey&#45;&#45;text">(a32e3fd3)</span>-->
+              <strong>{{ branchName(props.item.chain) }}</strong>
+              <span class="grey--text">({{ props.item.chain | shortHash(8)}})</span>
             </v-flex>
           </v-layout>
         </router-link>
@@ -38,6 +38,8 @@
   </v-data-table>
 </template>
 <script>
+  import { mapState } from 'vuex'
+
   export default {
     props: [ 'blocks', 'linkBase' ],
     data: () => ({
@@ -53,6 +55,18 @@
         rowsPerPage: 5
       }
     }),
+
+    computed: {
+      ...mapState([
+        'branchesObject'
+      ]),
+    },
+
+    methods: {
+      branchName(id) {
+        return this.branchesObject[id].name
+      }
+    }
   }
 </script>
 <style lang="scss" scoped>

@@ -15,10 +15,6 @@
 import Toolbar from './components/layout/ToolBar'
 import NavigationDrawer from './components/layout/NavigationDrawer'
 import Footer from './components/layout/Footer'
-import {
-  LOAD_BLOCKS,
-  LOAD_BRANCHES,
-} from './store/action-types'
 
 export default {
   name: 'App',
@@ -34,11 +30,6 @@ export default {
       drawer: true,
       miniVariant: false,
     }
-  },
-
-  mounted () {
-    this.$store.dispatch(LOAD_BLOCKS)
-    this.$store.dispatch(LOAD_BRANCHES)
   },
 }
 </script>

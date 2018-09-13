@@ -29,29 +29,16 @@
   import CountCard from '../components/CountCard'
   import BranchCardList from '../components/BranchCardList'
   import IntegratedBlockWidget from '../components/IntegratedBlockWidget'
+  import {
+    LOAD_BRANCHES,
+  } from '../store/action-types'
+
 
   export default {
     components: {
       CountCard,
       BranchCardList,
       IntegratedBlockWidget,
-    },
-
-    data () {
-      return {
-        headers: [
-          { text: 'Branch', sortable: false },
-          { text: 'Block #', sortable: false },
-          { text: 'Block Hash', sortable: false },
-          { text: 'Size', sortable: false },
-          { text: 'Date', sortable: false },
-          { text: 'Block # of TXs', sortable: false }
-        ],
-
-        pagination: {
-          rowsPerPage: 7
-        }
-      }
     },
 
     computed: {
@@ -62,6 +49,10 @@
       ...mapGetters([
         'branchesExcludeStem'
       ])
+    },
+
+    mounted () {
+      this.$store.dispatch(LOAD_BRANCHES)
     }
   }
 </script>
