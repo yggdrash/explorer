@@ -29,10 +29,6 @@
   import CountCard from '../components/CountCard'
   import BranchCardList from '../components/BranchCardList'
   import IntegratedBlockWidget from '../components/IntegratedBlockWidget'
-  import {
-    LOAD_BRANCHES,
-  } from '../store/action-types'
-
 
   export default {
     components: {
@@ -50,10 +46,6 @@
         'branchesExcludeStem'
       ])
     },
-
-    mounted () {
-      this.$store.dispatch(LOAD_BRANCHES)
-    }
   }
 </script>
 <style lang="scss" scoped>

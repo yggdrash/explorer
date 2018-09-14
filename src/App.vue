@@ -15,6 +15,9 @@
 import Toolbar from './components/layout/ToolBar'
 import NavigationDrawer from './components/layout/NavigationDrawer'
 import Footer from './components/layout/Footer'
+import {
+  LOAD_BRANCHES,
+} from './store/action-types'
 
 export default {
   name: 'App',
@@ -31,6 +34,10 @@ export default {
       miniVariant: false,
     }
   },
+
+  mounted () {
+    this.$store.dispatch(LOAD_BRANCHES)
+  }
 }
 </script>
 <style scoped>

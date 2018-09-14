@@ -143,7 +143,7 @@ export default new Vuex.Store({
     },
 
     linkBase(state, getters) {
-      return getters.isStem ? '/stem' : `/branches/${state.currentBranch.izd}`
+      return getters.isStem ? '/stem' : `/branches/${state.currentBranch.id}`
     },
 
     countOfBranches(state) {
