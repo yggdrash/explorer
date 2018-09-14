@@ -1,39 +1,27 @@
 import request from 'axios'
 
 export function getTx (branchId, txHash) {
-  return request.get(`${API_HOST}/txs/${txHash}`)
+  return request.get(`${API_HOST}/branches/${branchId}/txs/${txHash}`)
 }
 
 export function getBlock (branchId, blockId) {
-  return request.get(`${API_HOST}/blocks/${blockId}`)
+  return request.get(`${API_HOST}/branches/${branchId}/blocks/${blockId}`)
 }
 
-export function getTxs (id) {
-  return request.get(`${API_HOST}/txs`)
-}
-
-export function getLatestBlock () {
-  return request.get(`${API_HOST}/blocks/latest`)
+export function getTxs (branchId) {
+  return request.get(`${API_HOST}/branches/${branchId}/txs`)
 }
 
 export function getBranches () {
-  // return request.get(`${API_HOST}/branches`)
-  const stemId = 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'
-  return request.get(`${API_HOST}/branches/${stemId}/states`)
+  return request.get(`${API_HOST}/stem/branches`)
 }
 
-export function getBlocks (id, offset, limit) {
-  if (id === 'STEM') {
-    if (offset) {
-      return request.get(`${API_HOST}/blocks?offset=${offset}`);
-    } else {
-      return request.get(`${API_HOST}/blocks`);
-    }
-
+export function getBlocks (branchId, offset, limit) {
+  if (offset) {
+    return request.get(`${API_HOST}/branches/${branchId}/blocks?offset=${offset}`);
+  } else {
+    return request.get(`${API_HOST}/branches/${branchId}/blocks`);
   }
-  return new Promise(resolve => {
-    resolve({data: require('./assets/sample/blocks')[id]})
-  })
 }
 
 const API_HOST = '/api'
