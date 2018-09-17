@@ -33,7 +33,7 @@
       <v-list-tile v-for="item in branches" :key="item.id" avatar
                    :to="`/branches/${item.id}`">
         <v-list-tile-avatar>
-          <img src="@/assets/images/dart.png" alt="">
+          <img :src="require(`@/assets/images/symbols/${item.symbol}.png`)" alt="">
         </v-list-tile-avatar>
         <v-list-tile-title v-text="item.name"></v-list-tile-title>
       </v-list-tile>
