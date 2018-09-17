@@ -6,7 +6,7 @@ import * as mTypes from './mutation-types'
 import * as aTypes from './action-types'
 
 import createWsPlugin from './plugin/createWebSocketPlugin'
-const wsPlugin = createWsPlugin("/api/yggdrash-websocket")
+const wsPlugin = createWsPlugin("/ws/yggdrash-websocket")
 
 Vue.use(Vuex)
 
