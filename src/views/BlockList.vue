@@ -19,10 +19,10 @@
             </td>
             <td>
               <router-link :to="'blocks/' + props.item.hash">
-                {{ props.item.hash | shortHash(16)}}...
+                {{ props.item.hash | shortHash(32)}}...
               </router-link>
             </td>
-            <td>{{ props.item.author}}</td>
+            <td>{{ props.item.signature | shortHash(20)}}...</td>
             <td>{{ props.item.bodyLength }}</td>
             <td>{{ props.item.timestamp | moment('from')}}</td>
             <td>{{ props.item.body.length }}</td>
@@ -49,7 +49,7 @@
         headers: [
           { text: 'Block #', sortable: false },
           { text: 'Block Hash', sortable: false },
-          { text: 'Author', sortable: false },
+          { text: 'Signature', sortable: false },
           { text: 'Size', sortable: false },
           { text: 'Date', sortable: false },
           { text: 'Block # of TXs', sortable: false }

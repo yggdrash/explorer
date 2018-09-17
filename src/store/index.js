@@ -75,9 +75,7 @@ export default new Vuex.Store({
   actions: {
     async [aTypes.LOAD_STATES] ({ commit, state }) {
       const res = await request.getStates(state.currentBranch.id)
-      let payload = res.data.map(d => {
-        return JSON.parse(d)
-      })
+      let payload = res.data
       commit(mTypes.SET_STATES, payload)
     },
 
@@ -107,9 +105,7 @@ export default new Vuex.Store({
 
     async [aTypes.LOAD_BRANCHES] ({ commit }) {
       const res = await request.getBranches()
-      let array = res.data.map(d => {
-        return JSON.parse(d)
-      })
+      let array = res.data
       let obj = {}
       array.forEach(item => {
         obj[item.id] = item
