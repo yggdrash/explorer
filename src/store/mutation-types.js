@@ -1,3 +1,4 @@
+export const SET_STATES = 'SET_STATES'
 export const ADD_TX = 'ADD_TX'
 export const SELECT_TX = 'SELECT_TX'
 export const SELECT_BLOCK = 'SELECT_BLOCK'

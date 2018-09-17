@@ -1,5 +1,9 @@
 import request from 'axios'
 
+export function getStates (branchId) {
+  return request.get(`${API_HOST}/branches/${branchId}/states`)
+}
+
 export function getTx (branchId, txHash) {
   return request.get(`${API_HOST}/branches/${branchId}/txs/${txHash}`)
 }

@@ -12,6 +12,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    branchStates: [],
     selectedTx: {},
     txs: [],
     selectedBlock: {},
@@ -24,6 +25,10 @@ export default new Vuex.Store({
   },
 
   mutations: {
+    [mTypes.SET_STATES] (state, payload) {
+      state.branchStates = payload
+    },
+
     [mTypes.SET_BLOCKS] (state, payload) {
       state.blocks = payload
     },
@@ -68,6 +73,14 @@ export default new Vuex.Store({
   },
 
   actions: {
+    async [aTypes.LOAD_STATES] ({ commit, state }) {
+      const res = await request.getStates(state.currentBranch.id)
+      let payload = res.data.map(d => {
+        return JSON.parse(d)
+      })
+      commit(mTypes.SET_STATES, payload)
+    },
+
     async [aTypes.LOAD_TXS] ({ commit, state }) {
       const res = await request.getTxs(state.currentBranch.id)
       let payload = res.data

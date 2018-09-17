@@ -60,6 +60,7 @@ import BranchSidebar from '../components/BranchSidebar'
 import {
   LOAD_BLOCKS,
   LOAD_TXS,
+  LOAD_STATES,
 } from '../store/action-types'
 
 export default {
@@ -71,7 +72,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'blocks', 'currentBranch', 'branches', 'latestBlock', 'txs'
+      'blocks', 'currentBranch', 'branches', 'latestBlock', 'txs', 'branchStates'
     ]),
 
     ...mapGetters([
@@ -102,7 +103,7 @@ export default {
       } else {
         let accountCount = {
           title:'account created',
-          count: 0,
+          count: this.branchStates.length,
           link: `${this.linkBase}/account`
         }
         return [...defaultItems, accountCount]
@@ -127,12 +128,14 @@ export default {
   mounted () {
     this.$store.dispatch(LOAD_BLOCKS)
     this.$store.dispatch(LOAD_TXS)
+    this.$store.dispatch(LOAD_STATES)
   },
 
   watch: {
     currentBranch: function() {
       this.$store.dispatch(LOAD_BLOCKS)
       this.$store.dispatch(LOAD_TXS)
+      this.$store.dispatch(LOAD_STATES)
     },
   },
 }
