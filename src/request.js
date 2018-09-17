@@ -24,7 +24,7 @@ export function getTxs (branchId) {
 }
 
 export function getBranches () {
-  return request.get(`${API_HOST}/stem/states`)
+  return request.get(`${API_HOST}/branches/${STEM_ID}/states`)
 }
 
 export function getBlocks (branchId, offset, limit) {
