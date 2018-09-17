@@ -22,8 +22,6 @@ router.beforeResolve((to, from, next) => {
 
     if ( binfo == null ) next('404')
     store.commit(SET_CURRENT_BRANCHE, binfo)
-  } else if(to.path === '/stem') {
-    store.commit(SET_CURRENT_BRANCHE, { name: 'STEM', id: 'STEM' })
   }
   next()
 })
