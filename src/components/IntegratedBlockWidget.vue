@@ -8,7 +8,7 @@
     <template slot="items" slot-scope="props">
       <td>
         <router-link
-                to="stem">
+                :to="`/branches/${props.item.chain}`">
           <v-layout>
             <v-flex><img src="@/assets/images/yeed.png"
                          style="height: 30px; display: inline-block"></v-flex>
@@ -21,13 +21,13 @@
       </td>
       <td>
         <router-link
-                :to="`${linkBase}/stem/blocks/${props.item.index}`">
+                :to="`branches/${props.item.chain}/blocks/${props.item.index}`">
           {{ props.item.index }}
         </router-link>
       </td>
       <td>
         <router-link
-                :to="`${linkBase}/blocks/${props.item.hash}`">
+                :to="`branches/${props.item.chain}/blocks/${props.item.hash}`">
           {{ props.item.hash | shortHash(16) }}...
         </router-link>
       </td>
