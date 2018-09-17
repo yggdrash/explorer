@@ -29,6 +29,12 @@
   import CountCard from '../components/CountCard'
   import BranchCardList from '../components/BranchCardList'
   import IntegratedBlockWidget from '../components/IntegratedBlockWidget'
+  import {
+    SET_CURRENT_BRANCHE
+  } from '../store/mutation-types'
+  import {
+    LOAD_MERGED_BLOCKS
+  } from '../store/action-types'
 
   export default {
     components: {
@@ -46,6 +52,11 @@
         'branchesExcludeStem'
       ])
     },
+
+    mounted() {
+      this.$store.commit(SET_CURRENT_BRANCHE, {id: '', name: 'HOME'})
+      this.$store.dispatch(LOAD_MERGED_BLOCKS)
+    }
   }
 </script>
 <style lang="scss" scoped>

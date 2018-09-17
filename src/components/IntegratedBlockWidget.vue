@@ -52,7 +52,7 @@
         { text: '# of TXs', sortable: false }
       ],
       pagination: {
-        rowsPerPage: 5
+        rowsPerPage: 10
       }
     }),
 

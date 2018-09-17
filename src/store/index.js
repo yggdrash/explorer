@@ -152,6 +152,21 @@ export default new Vuex.Store({
       foundTx = res.data
       commit(mTypes.SELECT_TX, foundTx)
     },
+
+    async [aTypes.LOAD_MERGED_BLOCKS] ({ commit, state }) {
+      const STEM_ID = 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'
+      const YEED_ID = 'a08ee962cd8b2bd0edbfee989c1a9f7884d26532'
+      const resOfStem = await request.getBlocks(STEM_ID);
+      const resOfYeed = await request.getBlocks(YEED_ID);
+      let mergedBlocks = [
+        ...resOfStem.data, ...resOfYeed.data
+      ]
+      mergedBlocks.sort((a, b) => {
+        return a.timestamp < b.timestamp ? 1 : a.timestamp > b.timestamp ? -1 : 0;
+      })
+
+      commit(mTypes.SET_BLOCKS, mergedBlocks)
+    }
   },
 
   getters: {
