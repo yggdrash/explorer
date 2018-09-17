@@ -16,6 +16,9 @@ import Toolbar from './components/layout/ToolBar'
 import NavigationDrawer from './components/layout/NavigationDrawer'
 import Footer from './components/layout/Footer'
 import {
+  SET_CURRENT_BRANCHE
+} from './store/mutation-types'
+import {
   LOAD_BRANCHES,
 } from './store/action-types'
 
@@ -37,6 +40,14 @@ export default {
 
   mounted () {
     this.$store.dispatch(LOAD_BRANCHES)
+  },
+
+  watch: {
+    '$route' (to) {
+      if(to.params.id != null) {
+        this.$store.commit(SET_CURRENT_BRANCHE, {id: to.params.id})
+      }
+    }
   }
 }
 </script>

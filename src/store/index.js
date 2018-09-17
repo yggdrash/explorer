@@ -98,7 +98,8 @@ export default new Vuex.Store({
     },
 
     async [aTypes.LOAD_MORE_BLOCKS] ({ commit, state }, offset) {
-      const res = await request.getBlocks(state.currentBranch.id, offset, 30)
+      if (offset === 0) return
+      const res = await request.getBlocks(state.currentBranch.id, offset, 5)
       let payload = res.data
       commit(mTypes.SET_BLOCKS, [...state.blocks, ...payload])
     },
@@ -167,11 +168,11 @@ export default new Vuex.Store({
 
   getters: {
     isStem(state) {
-      return state.currentBranch.name === 'STEM'
+      return state.currentBranch.id === 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'
     },
 
-    linkBase(state, getters) {
-      return getters.isStem ? '/stem' : `/branches/${state.currentBranch.id}`
+    linkBase(state) {
+      return `/branches/${state.currentBranch.id}`
     },
 
     countOfBranches(state) {
@@ -182,7 +183,7 @@ export default new Vuex.Store({
       return state.branches.filter(b => {
         return b.name !== "STEM"
       })
-    }
+    },
   },
   plugins: [wsPlugin]
 })

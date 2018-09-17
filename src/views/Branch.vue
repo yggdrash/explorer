@@ -6,7 +6,7 @@
           <v-layout align-end>
             <v-flex class="branch-name">
               <span class="font-weight-black display-2 mr-2">
-                {{ currentBranch.name }}</span>
+                {{ branchName.name }}</span>
             </v-flex>
             <v-flex>
               <v-layout wrap>
@@ -44,15 +44,29 @@
   export default {
     computed: {
       ...mapState([
-        'currentBranch'
+        'currentBranch', 'branchesObject'
       ]),
 
       ...mapGetters([
-        'isStem'
+        'isStem',
       ]),
 
       isYeed() {
         return this.currentBranch.name === 'YEED'
+      },
+
+      branchName() {
+        // if(this.branchesObject !== null && this.currentBranch !== null) {
+        //   return this.branchesObject[this.currentBranch.id]
+        // } else {
+        //   return ''
+        // }
+
+        if(this.branchesObject[this.currentBranch.id] !== null) {
+          return this.branchesObject[this.currentBranch.id]
+        } else {
+          return {name: ''}
+        }
       }
     },
   }
