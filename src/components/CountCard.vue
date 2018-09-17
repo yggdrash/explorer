@@ -4,7 +4,7 @@
       <v-layout column>
         <v-flex class="title text-xs-center">{{ item.title.toUpperCase() }}</v-flex>
         <v-flex class="font-weight-bold display-3 text-xs-center mt-2">
-          {{ Number(item.count).toLocaleString() }}
+          {{ showCount(item.count) }}
         </v-flex>
       </v-layout>
     </v-card-title>
@@ -15,7 +15,15 @@
 </template>
 <script>
 export default {
-  props: ['item', 'color']
+  props: ['item', 'color'],
+
+  methods: {
+    showCount(count) {
+      if(count === 0 || isNaN(count)) return "N/A"
+
+      return Number(count).toLocaleString()
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

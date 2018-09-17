@@ -8,6 +8,9 @@ import * as aTypes from './action-types'
 import createWsPlugin from './plugin/createWebSocketPlugin'
 const wsPlugin = createWsPlugin("/ws/yggdrash-websocket")
 
+const STEM_ID = 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'
+const YEED_ID = 'a08ee962cd8b2bd0edbfee989c1a9f7884d26532'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -74,18 +77,32 @@ export default new Vuex.Store({
 
   actions: {
     async [aTypes.LOAD_STATES] ({ commit, state }) {
+      if(!isActive(state.currentBranch.id)) {
+        commit(mTypes.SET_STATES, [])
+        return
+      }
       const res = await request.getStates(state.currentBranch.id)
       let payload = res.data
       commit(mTypes.SET_STATES, payload)
     },
 
     async [aTypes.LOAD_TXS] ({ commit, state }) {
+      if(!isActive(state.currentBranch.id)) {
+        commit(mTypes.SET_TXS, [])
+        return
+      }
       const res = await request.getTxs(state.currentBranch.id)
       let payload = res.data
       commit(mTypes.SET_TXS, payload)
     },
 
     async [aTypes.LOAD_BLOCKS] ({ commit, state }) {
+      if(!isActive(state.currentBranch.id)) {
+        commit(mTypes.SET_BLOCKS, [])
+        commit(mTypes.SET_LATEST_BLOCK, {})
+        return
+      }
+
       const res = await request.getBlocks(state.currentBranch.id)
       let payload = res.data
       if (payload) {
@@ -168,7 +185,7 @@ export default new Vuex.Store({
 
   getters: {
     isStem(state) {
-      return state.currentBranch.id === 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'
+      return state.currentBranch.id === STEM_ID
     },
 
     linkBase(state) {
@@ -187,3 +204,7 @@ export default new Vuex.Store({
   },
   plugins: [wsPlugin]
 })
+
+function isActive (id) {
+  return id === STEM_ID || id === YEED_ID
+}
