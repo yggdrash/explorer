@@ -2,6 +2,7 @@ import SockJS from 'sockjs-client'
 import Stomp from 'webstomp-client'
 import {
   ADD_BLOCK,
+  ADD_TX,
   SET_IS_CONNECTED,
 } from '../mutation-types'
 import {
@@ -25,7 +26,13 @@ export default function createWebSocketPlugin (url) {
         stompClient.subscribe("/topic/blocks", tick => {
           let parsedTick = JSON.parse(tick.body)
           if (selectedBranchId === '' || selectedBranchId === parsedTick.chain) {
-            store.commit(ADD_BLOCK, JSON.parse(tick.body))
+            store.commit(ADD_BLOCK, parsedTick)
+          }
+        })
+        stompClient.subscribe("/topic/txs", tick => {
+          let parsedTick = JSON.parse(tick.body)
+          if (selectedBranchId === '' || selectedBranchId === parsedTick.chain) {
+            store.commit(ADD_TX, parsedTick)
           }
         })
       },

@@ -1,3 +1,4 @@
+export const ADD_TX = 'ADD_TX'
 export const SELECT_TX = 'SELECT_TX'
 export const SELECT_BLOCK = 'SELECT_BLOCK'
 export const SET_IS_CONNECTED = 'SET_IS_CONNECTED'

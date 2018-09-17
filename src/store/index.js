@@ -45,6 +45,10 @@ export default new Vuex.Store({
       state.txs = payload;
     },
 
+    [mTypes.ADD_TX] (state, payload) {
+      state.txs.unshift(payload)
+    },
+
     [mTypes.ADD_BLOCK] (state, payload) {
       state.blocks.unshift(payload)
       state.latestBlock = payload
