@@ -23,6 +23,9 @@
 </template>
 <script>
   import { mapState } from 'vuex'
+  import {
+    LOAD_TXS
+  } from '../store/action-types'
 
   export default {
     data () {
@@ -43,7 +46,11 @@
       ...mapState([
         'txs'
       ]),
-    }
+    },
+
+    mounted() {
+      this.$store.dispatch(LOAD_TXS)
+    },
   }
 </script>
 <style lang="scss">

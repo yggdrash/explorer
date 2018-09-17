@@ -35,13 +35,14 @@
 <script>
   import { mapState } from 'vuex'
   import {
-    LOAD_MORE_BLOCKS
+    LOAD_MORE_BLOCKS,
+    LOAD_BLOCKS,
   } from '../store/action-types'
 
   export default {
     data () {
       return {
-        loading: true,
+        loading: false,
         pagination: {
           rowsPerPage: 15,
         },
@@ -60,11 +61,12 @@
       pagination: {
         async handler () {
           const { page, rowsPerPage } = this.pagination
-          if((page + 1) * rowsPerPage > this.blocks.length) {
+          if(this.blocks.length < 2) {
+            this.$store.dispatch(LOAD_BLOCKS)
+          } else if((page + 1) * rowsPerPage > this.blocks.length) {
             let offset = this.blocks[this.blocks.length - 1].index
             this.$store.dispatch(LOAD_MORE_BLOCKS, offset)
           }
-          this.loading = false
         },
         deep: true
       },
