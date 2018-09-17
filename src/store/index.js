@@ -12,7 +12,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    branchStates: [],
+    statesOfBranch: [],
     selectedTx: {},
     txs: [],
     selectedBlock: {},
@@ -26,7 +26,7 @@ export default new Vuex.Store({
 
   mutations: {
     [mTypes.SET_STATES] (state, payload) {
-      state.branchStates = payload
+      state.statesOfBranch = payload
     },
 
     [mTypes.SET_BLOCKS] (state, payload) {

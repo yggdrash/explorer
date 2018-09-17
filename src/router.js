@@ -32,6 +32,7 @@ export default new Router({
         { path: 'blocks/:hash', component: () => import('./views/BlockDetail') },
         { path: 'txs', component: () => import('./views/TxList')},
         { path: 'txs/:hash', component: () => import('./views/TxDetail')},
+        { path: 'states', component:() => import('./views/StateList')},
       ]
     },
     {

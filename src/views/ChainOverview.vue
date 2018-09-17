@@ -72,7 +72,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'blocks', 'currentBranch', 'branches', 'latestBlock', 'txs', 'branchStates'
+      'blocks', 'currentBranch', 'branches', 'latestBlock', 'txs', 'statesOfBranch'
     ]),
 
     ...mapGetters([
@@ -102,9 +102,9 @@ export default {
         return [...defaultItems, branchCount]
       } else {
         let accountCount = {
-          title:'account created',
-          count: this.branchStates.length,
-          link: `${this.linkBase}/account`
+          title:'states created',
+          count: this.statesOfBranch.length,
+          link: `${this.linkBase}/states`
         }
         return [...defaultItems, accountCount]
       }
