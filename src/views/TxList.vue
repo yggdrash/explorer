@@ -6,11 +6,12 @@
               :headers="headers"
               :items="txs"
               :pagination.sync="pagination"
+              :rows-per-page-items="[15]"
       >
         <template slot="items" slot-scope="props">
           <td>
-            <router-link :to="'txs/' + props.item.txHash">
-              {{ props.item.txHash }}
+            <router-link :to="'txs/' + props.item.hash">
+              {{ props.item.hash }}
             </router-link>
           </td>
           <td>{{ props.item.author | shortHash(32)}}...</td>
@@ -33,7 +34,7 @@
         ],
 
         pagination: {
-          rowsPerPage: 25
+          rowsPerPage: 15
         }
       }
     },
