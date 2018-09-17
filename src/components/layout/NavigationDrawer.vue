@@ -22,15 +22,23 @@
     </v-layout>
     -->
     <v-list dense>
-      <!--<v-divider class="my-3"></v-divider>-->
-      <!--<v-list-tile avatar to="/stem">-->
-        <!--<v-list-tile-avatar>-->
-          <!--<img src="@/assets/images/yeed.png" alt="">-->
-        <!--</v-list-tile-avatar>-->
-        <!--<v-list-tile-title>STEM</v-list-tile-title>-->
-      <!--</v-list-tile>-->
-      <v-subheader class="mt-3 grey--text text--darken-1">BRANCHES</v-subheader>
-      <v-list-tile v-for="item in branches" :key="item.id" avatar
+      <v-list-tile avatar :to="`/branches/${stem.id}`" class="mt-3">
+        <v-list-tile-avatar>
+          <img :src="require(`@/assets/images/symbols/${stem.symbol}.png`)" alt="">
+        </v-list-tile-avatar>
+        <v-list-tile-title v-text="stem.name"></v-list-tile-title>
+      </v-list-tile>
+      <v-divider class="my-3"></v-divider>
+      <v-subheader class="mt-3 grey--text text--darken-1">ACTIVATED BRANCHES</v-subheader>
+      <v-list-tile avatar :to="`/branches/${yeed.id}`">
+        <v-list-tile-avatar>
+          <img :src="require(`@/assets/images/symbols/${yeed.symbol}.png`)" alt="">
+        </v-list-tile-avatar>
+        <v-list-tile-title v-text="yeed.name"></v-list-tile-title>
+      </v-list-tile>
+
+      <v-subheader class="mt-3 grey--text text--darken-1">NON-ACTIVATED BRANCHES</v-subheader>
+      <v-list-tile v-for="item in nonActivated" :key="item.id" avatar
                    :to="`/branches/${item.id}`">
         <v-list-tile-avatar>
           <img :src="require(`@/assets/images/symbols/${item.symbol}.png`)" alt="">
@@ -60,12 +68,25 @@
   export default {
     computed: {
       ...mapState([
-        'branches'
+        'branches', 'branchesObject'
       ]),
 
       ...mapGetters([
         'branchesExcludeStem',
-      ])
+      ]),
+
+      stem() {
+        return this.branchesObject['fe7b7c93dd23f78e12ad42650595bc0f874c88f7']
+      },
+      yeed() {
+        return this.branchesObject['a08ee962cd8b2bd0edbfee989c1a9f7884d26532']
+      },
+
+      nonActivated() {
+        return this.branches.filter(b => {
+          return b.name !== 'STEM' && b.name !== 'YEED'
+        })
+      }
     }
   }
 </script>
