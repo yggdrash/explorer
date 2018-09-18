@@ -29,7 +29,7 @@
         <v-list-tile-title v-text="stem.name"></v-list-tile-title>
       </v-list-tile>
       <v-divider class="my-3"></v-divider>
-      <v-subheader class="mt-3 grey--text text--darken-1">ACTIVATED BRANCHES</v-subheader>
+      <v-subheader class="mt-3 grey--text text--darken-1">ACTIVE BRANCHES</v-subheader>
       <v-list-tile avatar :to="`/branches/${yeed.id}`">
         <v-list-tile-avatar>
           <img :src="require(`@/assets/images/symbols/${yeed.symbol}.png`)" alt="">
@@ -37,7 +37,7 @@
         <v-list-tile-title v-text="yeed.name"></v-list-tile-title>
       </v-list-tile>
 
-      <v-subheader class="mt-3 grey--text text--darken-1">NON-ACTIVATED BRANCHES</v-subheader>
+      <v-subheader class="mt-3 grey--text text--darken-1">INACTIVE BRANCHES</v-subheader>
       <v-list-tile v-for="item in nonActivated" :key="item.id" avatar
                    :to="`/branches/${item.id}`">
         <v-list-tile-avatar>
