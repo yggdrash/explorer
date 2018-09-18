@@ -1,12 +1,19 @@
 <template>
   <v-app>
     <Toolbar></Toolbar>
-    <NavigationDrawer></NavigationDrawer>
-    <v-content>
-      <v-container fluid>
-        <router-view/>
+    <template v-if="loading">
+      <v-container fill-height grid-list-xs class="text-xs-center">
+        <img src="@/assets/images/loading.svg" style="margin: 0 auto">
       </v-container>
-    </v-content>
+    </template>
+    <template v-else>
+      <NavigationDrawer></NavigationDrawer>
+      <v-content>
+        <v-container fluid>
+          <router-view/>
+        </v-container>
+      </v-content>
+    </template>
     <Footer></Footer>
   </v-app>
 </template>
@@ -15,6 +22,7 @@
 import Toolbar from './components/layout/ToolBar'
 import NavigationDrawer from './components/layout/NavigationDrawer'
 import Footer from './components/layout/Footer'
+import { mapGetters } from 'vuex'
 import {
   SET_CURRENT_BRANCHE
 } from './store/mutation-types'
@@ -38,7 +46,13 @@ export default {
     }
   },
 
-  mounted () {
+  computed: {
+    ...mapGetters([
+      'loading'
+    ])
+  },
+
+  created () {
     this.$store.dispatch(LOAD_BRANCHES)
   },
 

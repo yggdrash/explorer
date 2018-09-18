@@ -15,6 +15,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    loadingStack: [],
     statesOfBranch: [],
     selectedTx: {},
     txs: [],
@@ -72,7 +73,11 @@ export default new Vuex.Store({
 
     [mTypes.SELECT_TX] (state, payload) {
       state.selectedTx = payload
-    }
+    },
+
+    [mTypes.LOADING] (state, payload) {
+      payload ? state.loadingStack.push(true) : state.loadingStack.pop()
+    },
   },
 
   actions: {
@@ -122,6 +127,7 @@ export default new Vuex.Store({
     },
 
     async [aTypes.LOAD_BRANCHES] ({ commit }) {
+      commit(mTypes.LOADING, true)
       const res = await request.getBranches()
       let array = res.data
       let obj = {}
@@ -129,6 +135,7 @@ export default new Vuex.Store({
         obj[item.id] = item
       })
       commit(mTypes.SET_BRANCHES, { array, obj })
+      commit(mTypes.LOADING, false)
     },
 
     async [aTypes.LOAD_BLOCK] ({ commit, state }, id) {
@@ -167,7 +174,7 @@ export default new Vuex.Store({
       commit(mTypes.SELECT_TX, foundTx)
     },
 
-    async [aTypes.LOAD_MERGED_BLOCKS] ({ commit, state }) {
+    async [aTypes.LOAD_MERGED_BLOCKS] ({ commit }) {
       const STEM_ID = 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'
       const YEED_ID = 'a08ee962cd8b2bd0edbfee989c1a9f7884d26532'
       const resOfStem = await request.getBlocks(STEM_ID);
@@ -184,6 +191,10 @@ export default new Vuex.Store({
   },
 
   getters: {
+    loading(state) {
+      return state.loadingStack.length !== 0
+    },
+
     isStem(state) {
       return state.currentBranch.id === STEM_ID
     },
