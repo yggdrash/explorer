@@ -48,7 +48,7 @@
       },
 
       isLast() {
-        return this.block.index === 1
+        return this.block.index === 0
       }
     },
 
