@@ -62,7 +62,7 @@
           if(this.blocks.length < 2) {
             this.$store.dispatch(LOAD_BLOCKS)
           } else if((page + 1) * rowsPerPage > this.blocks.length) {
-            let offset = this.blocks[this.blocks.length - 1].index
+            let offset = this.blocks[this.blocks.length - 1].index - 1
             this.$store.dispatch(LOAD_MORE_BLOCKS, offset)
           }
         },
