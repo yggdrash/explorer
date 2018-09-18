@@ -132,6 +132,7 @@ export default new Vuex.Store({
       let array = res.data
       let obj = {}
       array.forEach(item => {
+        item[ 'active' ] = item.symbol === 'STEM' || item.symbol === 'STEM';
         obj[item.id] = item
       })
       commit(mTypes.SET_BRANCHES, { array, obj })

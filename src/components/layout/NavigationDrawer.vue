@@ -39,7 +39,7 @@
 
       <v-subheader class="mt-3 grey--text text--darken-1">INACTIVE BRANCHES</v-subheader>
       <v-list-tile v-for="item in nonActivated" :key="item.id" avatar
-                   :to="`/branches/${item.id}`">
+                   :to="`/branches/${item.id}`" class="inactive">
         <v-list-tile-avatar>
           <img :src="require(`@/assets/images/symbols/${item.symbol}.png`)" alt="">
         </v-list-tile-avatar>
@@ -90,3 +90,10 @@
     }
   }
 </script>
+<style lang="scss" scoped>
+  .inactive {
+    img {
+      filter: grayscale(100%);
+    }
+  }
+</style>
