@@ -37,7 +37,6 @@
           {{ props.item.hash | shortHash(16) }}...
         </router-link>
       </td>
-      <td>{{ props.item.bodyLength }}</td>
       <td>{{ props.item.timestamp | moment('from') }}</td>
       <td>{{ props.item.body.length }}</td>
     </template>
@@ -53,7 +52,6 @@
         { text: 'Branch', sortable: false },
         { text: 'Block #', sortable: false },
         { text: 'Block Hash', sortable: false },
-        { text: 'Size', sortable: false },
         { text: 'Date', sortable: false },
         { text: '# of TXs', sortable: false }
       ],

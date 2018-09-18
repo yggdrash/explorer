@@ -22,8 +22,7 @@
                 {{ props.item.hash | shortHash(32)}}...
               </router-link>
             </td>
-            <td>{{ props.item.signature | shortHash(20)}}...</td>
-            <td>{{ props.item.bodyLength }}</td>
+            <td>{{ props.item.signature | shortHash(24)}}...</td>
             <td>{{ props.item.timestamp | moment('from')}}</td>
             <td>{{ props.item.body.length }}</td>
           </template>
@@ -50,7 +49,6 @@
           { text: 'Block #', sortable: false },
           { text: 'Block Hash', sortable: false },
           { text: 'Signature', sortable: false },
-          { text: 'Size', sortable: false },
           { text: 'Date', sortable: false },
           { text: 'Block # of TXs', sortable: false }
         ],
