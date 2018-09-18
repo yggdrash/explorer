@@ -15,8 +15,8 @@
                     <v-chip color="green" text-color="white" small v-if="isStem || isYeed">
                       ACTIVE
                     </v-chip>
-                    <v-chip color="indigo" text-color="white" small v-else>
-                      TEST
+                    <v-chip color="grey darken-1" text-color="white" small v-else>
+                      INACTIVE
                     </v-chip>
                   </div>
                 </v-flex>
