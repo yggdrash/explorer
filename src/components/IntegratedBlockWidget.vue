@@ -10,8 +10,14 @@
         <router-link
                 :to="`/branches/${props.item.chain}`">
           <v-layout>
-            <v-flex><img src="@/assets/images/yeed.png"
-                         style="height: 30px; display: inline-block"></v-flex>
+            <v-flex>
+              <img src="@/assets/images/symbols/STEM.png"
+                   v-if="props.item.chain === 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'"
+                   style="height: 30px; display: inline-block">
+              <img src="@/assets/images/symbols/YEED.png"
+                         style="height: 30px; display: inline-block"
+                   v-if="props.item.chain === 'a08ee962cd8b2bd0edbfee989c1a9f7884d26532'">
+            </v-flex>
             <v-flex style="padding-top: 7px; padding-left: 3px">
               <strong>{{ branchName(props.item.chain) }}</strong>
               <span class="grey--text">({{ props.item.chain | shortHash(8)}})</span>
