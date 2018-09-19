@@ -12,7 +12,7 @@
               <v-layout wrap>
                 <v-flex xs12>
                   <div>
-                    <v-chip color="green" text-color="white" small v-if="isStem || isYeed">
+                    <v-chip color="green" text-color="white" small v-if="currentBranch.active">
                       ACTIVE
                     </v-chip>
                     <v-chip color="grey darken-1" text-color="white" small v-else>
@@ -48,17 +48,7 @@
         'isStem',
       ]),
 
-      isYeed() {
-        return this.currentBranch.id === 'a08ee962cd8b2bd0edbfee989c1a9f7884d26532'
-      },
-
       branchName() {
-        // if(this.branchesObject !== null && this.currentBranch !== null) {
-        //   return this.branchesObject[this.currentBranch.id]
-        // } else {
-        //   return ''
-        // }
-
         if(this.branchesObject[this.currentBranch.id] !== null) {
           return this.branchesObject[this.currentBranch.id]
         } else {
