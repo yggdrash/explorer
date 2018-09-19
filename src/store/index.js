@@ -8,9 +8,6 @@ import * as aTypes from './action-types'
 import createWsPlugin from './plugin/createWebSocketPlugin'
 const wsPlugin = createWsPlugin("/ws/yggdrash-websocket")
 
-const STEM_ID = 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'
-const YEED_ID = 'a08ee962cd8b2bd0edbfee989c1a9f7884d26532'
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -24,7 +21,7 @@ export default new Vuex.Store({
     latestBlock: {},
     branches: [],
     branchesObject: {},
-    currentBranch: { name: 'STEM', id: 'STEM'},
+    currentBranch: { name: '', id: ''},
     isConnected: false,
   },
 
@@ -82,7 +79,7 @@ export default new Vuex.Store({
 
   actions: {
     async [aTypes.LOAD_STATES] ({ commit, state }) {
-      if(!isActive(state.currentBranch.id)) {
+      if(!state.currentBranch.active) {
         commit(mTypes.SET_STATES, [])
         return
       }
@@ -92,7 +89,7 @@ export default new Vuex.Store({
     },
 
     async [aTypes.LOAD_TXS] ({ commit, state }) {
-      if(!isActive(state.currentBranch.id)) {
+      if(!state.currentBranch.active) {
         commit(mTypes.SET_TXS, [])
         return
       }
@@ -102,7 +99,7 @@ export default new Vuex.Store({
     },
 
     async [aTypes.LOAD_BLOCKS] ({ commit, state }) {
-      if(!isActive(state.currentBranch.id)) {
+      if(!state.currentBranch.active) {
         commit(mTypes.SET_BLOCKS, [])
         commit(mTypes.SET_LATEST_BLOCK, {})
         return
@@ -132,7 +129,7 @@ export default new Vuex.Store({
       let array = res.data
       let obj = {}
       array.forEach(item => {
-        item[ 'active' ] = item.symbol === 'STEM' || item.symbol === 'STEM';
+        item[ 'active' ] = item.symbol === 'STEM' || item.symbol === 'YEED';
         obj[item.id] = item
       })
       commit(mTypes.SET_BRANCHES, { array, obj })
@@ -211,7 +208,7 @@ export default new Vuex.Store({
     },
 
     isStem(state) {
-      return state.currentBranch.id === STEM_ID
+      return state.currentBranch.name === 'STEM'
     },
 
     linkBase(state) {
@@ -230,7 +227,3 @@ export default new Vuex.Store({
   },
   plugins: [wsPlugin]
 })
-
-function isActive (id) {
-  return id === STEM_ID || id === YEED_ID
-}

@@ -59,7 +59,8 @@ export default {
   watch: {
     '$route' (to) {
       if(to.params.id != null) {
-        this.$store.commit(SET_CURRENT_BRANCHE, {id: to.params.id})
+        let currentBranch = this.$store.state.branchesObject[to.params.id]
+        this.$store.commit(SET_CURRENT_BRANCHE, currentBranch)
       }
     }
   }
