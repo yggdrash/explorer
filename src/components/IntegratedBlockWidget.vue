@@ -16,7 +16,7 @@
                    style="height: 30px; display: inline-block">
               <img src="@/assets/images/symbols/YEED.png"
                          style="height: 30px; display: inline-block"
-                   v-if="props.item.chain === 'd9d801c2eebfcb4ccdf2fdacc32b1884b09cb86c'">
+                   v-if="props.item.chain !== 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'">
             </v-flex>
             <v-flex style="padding-top: 7px; padding-left: 3px">
               <strong>{{ branchName(props.item.chain) }}</strong>
