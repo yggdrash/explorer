@@ -30,15 +30,15 @@
       </v-list-tile>
       <v-divider class="my-3"></v-divider>
       <v-subheader class="mt-3 grey--text text--darken-1">ACTIVE BRANCHES</v-subheader>
-      <v-list-tile avatar :to="`/branches/${yeed.id}`">
+      <v-list-tile v-for="item in activeBranches" :key="item.id" avatar
+                   :to="`/branches/${item.id}`">
         <v-list-tile-avatar>
-          <img :src="require(`@/assets/images/symbols/${yeed.symbol}.png`)" alt="">
+          <img :src="require(`@/assets/images/symbols/${item.symbol}.png`)" alt="">
         </v-list-tile-avatar>
-        <v-list-tile-title v-text="yeed.name"></v-list-tile-title>
+        <v-list-tile-title v-text="item.name"></v-list-tile-title>
       </v-list-tile>
-
       <v-subheader class="mt-3 grey--text text--darken-1">INACTIVE BRANCHES</v-subheader>
-      <v-list-tile v-for="item in nonActivated" :key="item.id" avatar
+      <v-list-tile v-for="item in inactiveBranches" :key="item.id" avatar
                    :to="`/branches/${item.id}`" class="inactive">
         <v-list-tile-avatar>
           <img :src="require(`@/assets/images/symbols/${item.symbol}.png`)" alt="">
@@ -46,20 +46,6 @@
         <v-list-tile-title v-text="item.name"></v-list-tile-title>
       </v-list-tile>
     </v-list>
-    <!--
-    <v-list-tile class="mt-3" @click="">
-      <v-list-tile-action>
-        <v-icon color="grey darken-1">add_circle_outline</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-title class="grey--text text--darken-1">Browse Branches</v-list-tile-title>
-    </v-list-tile>
-    <v-list-tile @click="">
-      <v-list-tile-action>
-        <v-icon color="grey darken-1">settings</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-title class="grey--text text--darken-1">Manage Branches</v-list-tile-title>
-    </v-list-tile>
-    -->
   </v-navigation-drawer>
 </template>
 <script>
@@ -76,15 +62,19 @@
       ]),
 
       stem() {
-        return this.branchesObject['fe7b7c93dd23f78e12ad42650595bc0f874c88f7']
+        return this.branches.find(b => {
+          return b.symbol === 'STEM'
+        })
       },
-      yeed() {
-        return this.branchesObject['a08ee962cd8b2bd0edbfee989c1a9f7884d26532']
+      activeBranches() {
+        return this.branches.filter(b => {
+          return b.symbol !== 'STEM' && b.active
+        })
       },
 
-      nonActivated() {
+      inactiveBranches() {
         return this.branches.filter(b => {
-          return b.name !== 'STEM' && b.name !== 'YEED'
+          return b.name !== 'STEM' && !(b.active)
         })
       }
     }
