@@ -24,7 +24,6 @@ export default function createWebSocketPlugin (url) {
       () => {
         store.commit(SET_IS_CONNECTED, true)
         stompClient.subscribe("/topic/blocks", tick => {
-          console.log(tick.body)
           let parsedTick = JSON.parse(tick.body)
           if (selectedBranchId === '' || selectedBranchId === parsedTick.chain) {
             store.commit(ADD_BLOCK, parsedTick)
