@@ -60,6 +60,9 @@ export default {
     '$route' (to) {
       if(to.params.id != null) {
         if(!this.$store.state.branchesObject || !this.$store.state.branchesObject[to.params.id]) {
+          console.log(this.$store.state.branchesObject)
+          console.log(this.$store.state.branchesObject[to.params.id])
+          console.log('Go Home page...')
           this.$router.push('/')
         }
 

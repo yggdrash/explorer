@@ -78,7 +78,7 @@ export default new Vuex.Store({
       } else {
         setInterval(() => {
           state.loading = payload
-        }, 800)
+        }, 1000)
       }
     },
   },
