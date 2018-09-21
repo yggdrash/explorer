@@ -6,7 +6,7 @@
           <v-layout align-end>
             <v-flex class="branch-name">
               <span class="font-weight-black display-2 mr-2">
-                {{ branchName.name }}</span>
+                {{ currentBranch.name }}</span>
             </v-flex>
             <v-flex>
               <v-layout wrap>
@@ -36,25 +36,13 @@
   </v-container>
 </template>
 <script>
-  import { mapState, mapGetters } from 'vuex'
+  import { mapState } from 'vuex'
 
   export default {
     computed: {
       ...mapState([
         'currentBranch', 'branchesObject'
       ]),
-
-      ...mapGetters([
-        'isStem',
-      ]),
-
-      branchName() {
-        if(this.branchesObject[this.currentBranch.id] !== null) {
-          return this.branchesObject[this.currentBranch.id]
-        } else {
-          return {name: ''}
-        }
-      }
     },
   }
 </script>
