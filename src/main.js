@@ -15,7 +15,9 @@ Vue.filter('shortHash', shortHash)
 router.beforeResolve((to, from, next) => {
   let branchId = to.params.id
   if(branchId && !store.state.branchesObject[branchId]) {
-    next('/404')
+    console.log(branchId)
+    console.log(store.state.branchesObject[branchId])
+    next()
   }
   next()
 })
