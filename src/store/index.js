@@ -12,7 +12,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    loadingStack: [],
+    loading: true,
     statesOfBranch: [],
     selectedTx: {},
     txs: [],
@@ -73,7 +73,7 @@ export default new Vuex.Store({
     },
 
     [mTypes.LOADING] (state, payload) {
-      payload ? state.loadingStack.push(true) : state.loadingStack.pop()
+      state.loading = payload
     },
   },
 
@@ -127,9 +127,17 @@ export default new Vuex.Store({
       commit(mTypes.LOADING, true)
       const res = await request.getBranches()
       let array = res.data
-
+      let obj = {}
       //TODO MUST Refactoring....
-      arrayToObject(array).then(obj => {
+      let promise = new Promise(resolve => {
+        array.forEach(item => {
+          item[ 'active' ] = item.symbol === 'STEM' || item.symbol === 'YEED';
+          obj[item.id] = item
+        })
+        return resolve()
+      })
+
+      promise.then(() => {
         commit(mTypes.SET_BRANCHES, { array, obj })
         commit(mTypes.LOADING, false)
       })
@@ -203,7 +211,7 @@ export default new Vuex.Store({
 
   getters: {
     loading(state) {
-      return state.loadingStack.length !== 0
+      return state.loading
     },
 
     isStem(state) {
@@ -226,14 +234,3 @@ export default new Vuex.Store({
   },
   plugins: [wsPlugin]
 })
-
-function arrayToObject (array) {
-  return new Promise(resolve => {
-    let obj = {}
-    array.forEach(item => {
-      item[ 'active' ] = item.symbol === 'STEM' || item.symbol === 'YEED';
-      obj[item.id] = item
-    })
-    return resolve(obj)
-  })
-}
