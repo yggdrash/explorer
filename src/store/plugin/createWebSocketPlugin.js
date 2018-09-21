@@ -4,10 +4,9 @@ import {
   ADD_BLOCK,
   ADD_TX,
   SET_IS_CONNECTED,
+  SET_CURRENT_BRANCHE,
 } from '../mutation-types'
-import {
-  SET_CURRENT_BRANCHE
-} from '../mutation-types'
+
 export default function createWebSocketPlugin (url) {
   const socket = new SockJS(url)
   const stompClient = Stomp.over(socket, { debug: false })
