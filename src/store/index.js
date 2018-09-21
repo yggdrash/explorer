@@ -127,13 +127,12 @@ export default new Vuex.Store({
       commit(mTypes.LOADING, true)
       const res = await request.getBranches()
       let array = res.data
-      let obj = {}
-      array.forEach(item => {
-        item[ 'active' ] = item.symbol === 'STEM' || item.symbol === 'YEED';
-        obj[item.id] = item
+
+      //TODO MUST Refactoring....
+      arrayToObject(array).then(obj => {
+        commit(mTypes.SET_BRANCHES, { array, obj })
+        commit(mTypes.LOADING, false)
       })
-      commit(mTypes.SET_BRANCHES, { array, obj })
-      commit(mTypes.LOADING, false)
     },
 
     async [aTypes.LOAD_BLOCK] ({ commit, state }, id) {
@@ -227,3 +226,14 @@ export default new Vuex.Store({
   },
   plugins: [wsPlugin]
 })
+
+function arrayToObject (array) {
+  return new Promise(resolve => {
+    let obj = {}
+    array.forEach(item => {
+      item[ 'active' ] = item.symbol === 'STEM' || item.symbol === 'YEED';
+      obj[item.id] = item
+    })
+    return resolve(obj)
+  })
+}
