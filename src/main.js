@@ -12,6 +12,14 @@ Vue.use(require('vue-moment'))
 
 Vue.filter('shortHash', shortHash)
 
+router.beforeResolve((to, from, next) => {
+  let branchId = to.params.id
+  if(branchId && !store.state.branchesObject[branchId]) {
+    next('/404')
+  }
+  next()
+})
+
 new Vue({
   router,
   store,
