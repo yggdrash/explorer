@@ -1,4 +1,5 @@
 module.exports = {
+  baseUrl: process.env.NODE_ENV === 'staging' ? '/explorer/' : '/',
   devServer: {
     proxy: {
       '/api': {

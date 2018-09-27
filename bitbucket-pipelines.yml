@@ -9,6 +9,16 @@ pipelines:
           - npm install
           - npm test
   branches:
+    master:
+      - step:
+          name: Build And Deploy
+          deployment: production
+          script:
+            - apt-get update -y && apt-get -qq install rsync
+            - npm install
+            - npm test
+            - npm run build
+            - rsync -zrSlh --stats --exclude-from=deployment-exclude-list.txt dist/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     staging:
       - step:
           name: Build And Deploy
@@ -17,5 +27,6 @@ pipelines:
             - apt-get update -y && apt-get -qq install rsync
             - npm install
             - npm test
-            - npm run build --mode=staging
-            - rsync -zrSlh --stats --exclude-from=deployment-exclude-list.txt dist/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+            - npm run build:staging
+            - rsync -zrSlh --stats --exclude-from=deployment-exclude-list.txt dist/
+            $DEPLOY_USER@$STAGING_DEPLOY_HOST:$STAGING_DEPLOY_PATH
