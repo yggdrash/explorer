@@ -58,15 +58,23 @@ export default {
 
   watch: {
     '$route' (to) {
-      if(to.params.id != null) {
-        if(!this.$store.state.branchesObject || !this.$store.state.branchesObject[to.params.id]) {
-          console.log(this.$store.state.branchesObject)
-          console.log(this.$store.state.branchesObject[to.params.id])
-          console.log('Go Home page...')
+      if(to.params.id) {
+        if(!this.$store.state.branches) {
+          console.warn('Fail Loading branches')
           this.$router.push('/')
+          return
         }
 
-        let currentBranch = this.$store.state.branchesObject[to.params.id]
+        let currentBranch = this.$store.state.branches.find(b => {
+          return b.id === to.params.id
+        })
+
+        if(!currentBranch) {
+          console.warn('Not Found BranchId')
+          this.$router.push('/')
+          return
+        }
+
         this.$store.commit(SET_CURRENT_BRANCHE, currentBranch)
       }
     }

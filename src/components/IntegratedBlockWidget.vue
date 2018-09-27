@@ -62,13 +62,17 @@
 
     computed: {
       ...mapState([
-        'branchesObject'
+        'branches'
       ]),
     },
 
     methods: {
       branchName(id) {
-        return this.branchesObject[id].name
+        if(!this.branches) return ''
+
+        return this.branches.find(b => {
+          return b.id === id
+        }).name
       }
     }
   }

@@ -20,7 +20,6 @@ export default new Vuex.Store({
     blocks: [],
     latestBlock: {},
     branches: [],
-    branchesObject: {},
     currentBranch: { name: '', id: ''},
     isConnected: false,
   },
@@ -35,8 +34,7 @@ export default new Vuex.Store({
     },
 
     [mTypes.SET_BRANCHES] (state, payload) {
-      state.branches = payload.array
-      state.branchesObject = payload.obj
+      state.branches = payload
     },
 
     [mTypes.SET_CURRENT_BRANCHE] (state, payload) {
@@ -132,21 +130,14 @@ export default new Vuex.Store({
     async [aTypes.LOAD_BRANCHES] ({ commit }) {
       commit(mTypes.LOADING, true)
       const res = await request.getBranches()
-      let array = res.data
-      let obj = {}
-      //TODO MUST Refactoring....
-      let promise = new Promise(resolve => {
-        array.forEach(item => {
-          item[ 'active' ] = item.symbol === 'STEM' || item.symbol === 'YEED';
-          obj[item.id] = item
-        })
-        return resolve()
+      let payload = res.data.map(item => {
+        if(item.symbol === 'STEM' || item.symbol === 'YEED') {
+          item['active'] = true
+        }
+        return item
       })
-
-      promise.then(() => {
-        commit(mTypes.SET_BRANCHES, { array, obj })
-        commit(mTypes.LOADING, false)
-      })
+      commit(mTypes.SET_BRANCHES, payload)
+      commit(mTypes.LOADING, false)
     },
 
     async [aTypes.LOAD_BLOCK] ({ commit, state }, id) {
