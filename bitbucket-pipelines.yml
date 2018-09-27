@@ -2,31 +2,30 @@ image: node:10.4.1
 
 pipelines:
   default:
-    - step:
-        caches:
-          - node
-        script:
-          - npm install
-          - npm test
+  - step:
+      caches:
+      - node
+      script:
+      - npm install
+      - npm test
   branches:
     master:
-      - step:
-          name: Build And Deploy
-          deployment: production
-          script:
-            - apt-get update -y && apt-get -qq install rsync
-            - npm install
-            - npm test
-            - npm run build
-            - rsync -zrSlh --stats --exclude-from=deployment-exclude-list.txt dist/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+    - step:
+        name: Build And Deploy
+        deployment: production
+        script:
+        - apt-get update -y && apt-get -qq install rsync
+        - npm install
+        - npm test
+        - npm run build
+        - rsync -zrSlh --stats --exclude-from=deployment-exclude-list.txt dist/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
     staging:
-      - step:
-          name: Build And Deploy
-          deployment: staging
-          script:
-            - apt-get update -y && apt-get -qq install rsync
-            - npm install
-            - npm test
-            - npm run build:staging
-            - rsync -zrSlh --stats --exclude-from=deployment-exclude-list.txt dist/
-            $DEPLOY_USER@$STAGING_DEPLOY_HOST:$STAGING_DEPLOY_PATH
+    - step:
+        name: Build And Deploy
+        deployment: staging
+        script:
+        - apt-get update -y && apt-get -qq install rsync
+        - npm install
+        - npm test
+        - npm run build:staging
+        - rsync -zrSlh --stats --exclude-from=deployment-exclude-list.txt dist/ $DEPLOY_USER@$STAGING_DEPLOY_HOST:$STAGING_DEPLOY_PATH
