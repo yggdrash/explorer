@@ -2,9 +2,9 @@
   <div>
     <h2 class="font-weight-black display-1 py-2 mb-4">BLOCK {{ block.index }}</h2>
     <div class="block-detail">
-      <v-layout row v-for="(value, props) in block" :key="props" class="py-2">
-        <v-flex xs2 class="font-weight-bold">{{ props }}</v-flex>
-        <v-flex xs10 class="value">{{ value }}</v-flex>
+      <v-layout row wrap v-for="(value, props) in block" :key="props" class="py-2">
+        <v-flex xs12 sm2 class="font-weight-bold">{{ props }}</v-flex>
+        <v-flex xs12 sm10 class="value">{{ value }}</v-flex>
       </v-layout>
     </div>
     <div class="text-xs-center mt-3">
