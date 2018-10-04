@@ -21,7 +21,7 @@
                   </div>
                 </v-flex>
                 <v-flex xs12>
-                  <span class="font-italic grey--text">
+                  <span class="font-italic grey--text branch-id">
                     <strong>{{ currentBranch.id.slice(0, 16) }}</strong>{{
                     currentBranch.id.slice(16) }}
                   </span>
@@ -49,6 +49,10 @@
 <style lang="scss" scoped>
   .branch-name {
     flex-grow: 0;
+  }
+
+  .branch-id {
+    word-break: break-all;
   }
 
   .v-chip--small {

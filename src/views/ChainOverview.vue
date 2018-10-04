@@ -5,8 +5,8 @@
           <CountCardList :items="countItems"></CountCardList>
         </v-flex>
         <v-flex>
-          <v-layout>
-            <v-flex xs8>
+          <v-layout row wrap>
+            <v-flex sm8 xs12 order-xs2 order-sm-1>
               <v-flex mb-4>
                 <h2 class="headline font-weight-medium mb-2">Last 5 Blocks</h2>
                 <v-card>
@@ -28,8 +28,8 @@
                 </div>
               </v-flex>
             </v-flex>
-            <v-flex xs4>
-              <v-container>
+            <v-flex sm4 xs12 order-xs1 order-sm2>
+              <v-container class="branch-sidebar-wrap">
                 <div>
                   <div style="">
                     <h3>install</h3>
@@ -143,5 +143,20 @@ export default {
 <style lang="scss" scoped>
   td {
     font-family: 'Roboto Mono', monospace;
+  }
+
+  kbd {
+    padding: 5px;
+    width: 100%;
+  }
+
+  .branch-sidebar-wrap {
+    padding: 16px 0 0 16px;
+  }
+
+  @media only screen and (max-width: 959px) {
+    .branch-sidebar-wrap {
+      padding: 16px 0 26px 0;
+    }
   }
 </style>
