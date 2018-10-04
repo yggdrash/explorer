@@ -13,6 +13,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     loading: true,
+    drawer: null,
     statesOfBranch: [],
     selectedTx: {},
     txs: [],
@@ -25,6 +26,10 @@ export default new Vuex.Store({
   },
 
   mutations: {
+    [mTypes.TOGGLE_DRAWER] (state) {
+      state.drawer = !state.drawer
+    },
+
     [mTypes.SET_STATES] (state, payload) {
       state.statesOfBranch = payload
     },

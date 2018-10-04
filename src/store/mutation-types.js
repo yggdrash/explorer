@@ -1,3 +1,4 @@
+export const TOGGLE_DRAWER = 'TOGGLE_DRAWER'
 export const LOADING = 'LOADING'
 export const SET_STATES = 'SET_STATES'
 export const ADD_TX = 'ADD_TX'

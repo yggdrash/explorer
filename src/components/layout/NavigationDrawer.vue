@@ -5,6 +5,8 @@
           class="grey lighten-4"
           app
           width="270"
+          :value="drawer"
+          @input="listenInput"
   >
     <!--
     <v-layout>
@@ -50,11 +52,12 @@
 </template>
 <script>
   import { mapGetters, mapState } from 'vuex'
+  import { TOGGLE_DRAWER } from '../../store/mutation-types'
 
   export default {
     computed: {
       ...mapState([
-        'branches', 'branchesObject'
+        'branches', 'branchesObject', 'drawer'
       ]),
 
       ...mapGetters([
@@ -76,6 +79,23 @@
         return this.branches.filter(b => {
           return b.name !== 'STEM' && !(b.active)
         })
+      },
+
+      /*
+      https://github.com/vuetifyjs/vuetify/blob/dev/src/components/VNavigationDrawer/VNavigationDrawer.js
+      122 line
+       */
+      isMobile() {
+        let mobileBreakPoint = 1264
+        return this.$vuetify.breakpoint.width < mobileBreakPoint
+      }
+    },
+
+    methods: {
+      listenInput(e) {
+        if(this.isMobile && !e) {
+          this.$store.commit(TOGGLE_DRAWER)
+        }
       }
     }
   }
