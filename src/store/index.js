@@ -17,6 +17,7 @@ export default new Vuex.Store({
     statesOfBranch: [],
     selectedTx: {},
     txs: [],
+    countOfTxs: 0,
     selectedBlock: {},
     blocks: [],
     latestBlock: {},
@@ -51,7 +52,8 @@ export default new Vuex.Store({
     },
 
     [mTypes.SET_TXS] (state, payload) {
-      state.txs = payload;
+      state.txs = payload.txs;
+      state.countOfTxs = payload.countOfTxs
     },
 
     [mTypes.ADD_TX] (state, payload) {
