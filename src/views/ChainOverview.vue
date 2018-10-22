@@ -72,7 +72,13 @@ export default {
   },
   computed: {
     ...mapState([
-      'blocks', 'currentBranch', 'branches', 'latestBlock', 'txs', 'statesOfBranch'
+      'blocks',
+      'currentBranch',
+      'branches',
+      'latestBlock',
+      'txs',
+      'countOfTxs',
+      'statesOfBranch',
     ]),
 
     ...mapGetters([
@@ -83,7 +89,7 @@ export default {
       let defaultItems = [
           {
             title:'total transaction',
-            count: this.txs.length,
+            count: this.countOfTxs,
             link: `${this.linkBase}/txs`
           },
           {

@@ -53,7 +53,12 @@ export default new Vuex.Store({
 
     [mTypes.SET_TXS] (state, payload) {
       state.txs = payload.txs;
-      state.countOfTxs = payload.countOfTxs
+      state.countOfTxs = payload.countOfTotal;
+    },
+
+    [mTypes.ADD_TXS] (state, payload) {
+      state.txs = payload.concat(state.txs)
+      state.countOfTxs += payload.length
     },
 
     [mTypes.ADD_TX] (state, payload) {
