@@ -12,11 +12,11 @@
           <v-layout>
             <v-flex>
               <img src="@/assets/images/symbols/STEM.png"
-                   v-if="props.item.chain === 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'"
+                   v-if="branchName(props.item.chain) === 'STEM'"
                    style="height: 30px; display: inline-block">
               <img src="@/assets/images/symbols/YEED.png"
-                         style="height: 30px; display: inline-block"
-                   v-if="props.item.chain !== 'fe7b7c93dd23f78e12ad42650595bc0f874c88f7'">
+                   v-if="branchName(props.item.chain) === 'YEED'"
+                   style="height: 30px; display: inline-block">
             </v-flex>
             <v-flex style="padding-top: 7px; padding-left: 3px">
               <strong>{{ branchName(props.item.chain) }}</strong>
