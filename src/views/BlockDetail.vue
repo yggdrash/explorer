@@ -53,13 +53,13 @@
     },
 
     mounted() {
-      let hash = this.$route.params.hash
-      this.$store.dispatch(LOAD_BLOCK, hash)
+      let blockId = this.$route.params.blockId
+      this.$store.dispatch(LOAD_BLOCK, blockId)
     },
 
     watch: {
       '$route' (to) {
-        this.$store.dispatch(LOAD_BLOCK, to.params.hash)
+        this.$store.dispatch(LOAD_BLOCK, to.params.blockId)
       }
     }
   }

@@ -18,8 +18,8 @@
               </router-link>
             </td>
             <td>
-              <router-link :to="'blocks/' + props.item.hash">
-                {{ props.item.hash | shortHash(32)}}...
+              <router-link :to="'blocks/' + props.item.blockId">
+                {{ props.item.blockId | shortHash(32)}}...
               </router-link>
             </td>
             <td>{{ props.item.signature | shortHash(24)}}...</td>
