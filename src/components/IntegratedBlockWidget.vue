@@ -8,33 +8,33 @@
     <template slot="items" slot-scope="props">
       <td>
         <router-link
-                :to="`/branches/${props.item.chain}`">
+                :to="`/branches/${props.item.branchId}`">
           <v-layout>
             <v-flex>
               <img src="@/assets/images/symbols/STEM.png"
-                   v-if="branchName(props.item.chain) === 'STEM'"
+                   v-if="branchName(props.item.branchId) === 'STEM'"
                    style="height: 30px; display: inline-block">
               <img src="@/assets/images/symbols/YEED.png"
-                   v-if="branchName(props.item.chain) === 'YEED'"
+                   v-if="branchName(props.item.branchId) === 'YEED'"
                    style="height: 30px; display: inline-block">
             </v-flex>
             <v-flex style="padding-top: 7px; padding-left: 3px">
-              <strong>{{ branchName(props.item.chain) }}</strong>
-              <span class="grey--text">({{ props.item.chain | shortHash(8)}})</span>
+              <strong>{{ branchName(props.item.branchId) }}</strong>
+              <span class="grey--text">({{ props.item.branchId | shortHash(8)}})</span>
             </v-flex>
           </v-layout>
         </router-link>
       </td>
       <td>
         <router-link
-                :to="`branches/${props.item.chain}/blocks/${props.item.index}`">
+                :to="`branches/${props.item.branchId}/blocks/${props.item.index}`">
           {{ props.item.index }}
         </router-link>
       </td>
       <td>
         <router-link
-                :to="`branches/${props.item.chain}/blocks/${props.item.hash}`">
-          {{ props.item.hash | shortHash(16) }}...
+                :to="`branches/${props.item.branchId}/blocks/${props.item.blockId}`">
+          {{ props.item.blockId | shortHash(16) }}...
         </router-link>
       </td>
       <td>{{ props.item.timestamp | moment('from') }}</td>

@@ -14,8 +14,8 @@
       </td>
       <td>
         <router-link
-                :to="`${linkBase}/blocks/${props.item.hash}`">
-          {{ props.item.hash | shortHash(16) }}...
+                :to="`${linkBase}/blocks/${props.item.blockId}`">
+          {{ props.item.blockId | shortHash(16) }}...
         </router-link>
       </td>
       <td>{{ props.item.timestamp | moment('from') }}</td>

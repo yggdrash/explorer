@@ -8,8 +8,8 @@
     <template slot="items" slot-scope="props">
       <td>
         <router-link
-                :to="`${linkBase}/txs/${props.item.hash}`">
-          {{ props.item.hash | shortHash(48) }}...
+                :to="`${linkBase}/txs/${props.item.txId}`">
+          {{ props.item.txId | shortHash(48) }}...
         </router-link>
       </td>
       <td>{{ props.item.timestamp | moment('from') }}</td>

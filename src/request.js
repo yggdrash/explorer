@@ -4,8 +4,8 @@ export function getStates (branchId) {
   return request.get(`${API_HOST}/branches/${branchId}/states`)
 }
 
-export function getTx (branchId, txHash) {
-  return request.get(`${API_HOST}/branches/${branchId}/txs/${txHash}`)
+export function getTx (branchId, txId) {
+  return request.get(`${API_HOST}/branches/${branchId}/txs/${txId}`)
 }
 
 export function getBlock (branchId, blockId) {
