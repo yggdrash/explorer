@@ -8,8 +8,8 @@
     <template slot="items" slot-scope="props">
       <td>
         <router-link
-                :to="`${linkBase}/blocks/${props.item.index}`">
-          {{ props.item.index }}
+                :to="`${linkBase}/blocks/${props.item.header.index}`">
+          {{ props.item.header.index }}
         </router-link>
       </td>
       <td>
@@ -18,8 +18,8 @@
           {{ props.item.blockId | shortHash(16) }}...
         </router-link>
       </td>
-      <td>{{ props.item.timestamp | moment('from') }}</td>
-      <td>{{ props.item.body.length }}</td>
+      <td>{{ props.item.header.timestamp | moment('from') }}</td>
+      <td>{{ props.item.header.bodyLength }}</td>
     </template>
   </v-data-table>
 </template>

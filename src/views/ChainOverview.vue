@@ -91,13 +91,17 @@ export default {
             title:'total transaction',
             count: this.countOfTxs,
             link: `${this.linkBase}/txs`
-          },
-          {
-            title:'last block',
-            count: this.latestBlock.index,
-            link: `${this.linkBase}/blocks`
-          },
+          }
         ]
+
+      if(this.latestBlock.header) {
+        let blockCount = {
+            title:'last block',
+            count: this.latestBlock.header.index,
+            link: `${this.linkBase}/blocks`
+          }
+          defaultItems = [...defaultItems, blockCount]
+      }
 
       if(this.isStem) {
         let branchCount = {

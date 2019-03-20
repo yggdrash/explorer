@@ -2,11 +2,12 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import * as request from '../request'
+import * as requestEs from '../requestToHub'
 import * as mTypes from './mutation-types'
 import * as aTypes from './action-types'
 
-import createWsPlugin from './plugin/createWebSocketPlugin'
-const wsPlugin = createWsPlugin("/ws/yggdrash-websocket")
+// import createWsPlugin from './plugin/createWebSocketPlugin'
+// const wsPlugin = createWsPlugin("/ws/yggdrash-websocket")
 
 Vue.use(Vuex)
 
@@ -115,13 +116,13 @@ export default new Vuex.Store({
     },
 
     async [aTypes.LOAD_BLOCKS] ({ commit, state }) {
-      if(!state.currentBranch.active) {
-        commit(mTypes.SET_BLOCKS, [])
-        commit(mTypes.SET_LATEST_BLOCK, {})
-        return
-      }
+      // if(!state.currentBranch.active) {
+      //   commit(mTypes.SET_BLOCKS, [])
+      //   commit(mTypes.SET_LATEST_BLOCK, {})
+      //   return
+      // }
 
-      const res = await request.getBlocks(state.currentBranch.id)
+      const res = await requestEs.getBlocks(state.currentBranch.id)
       let payload = res.data
       if (payload) {
         commit(mTypes.SET_BLOCKS, payload)
@@ -220,7 +221,8 @@ export default new Vuex.Store({
 
   getters: {
     loading(state) {
-      return state.loading
+      // return state.loading
+      return false
     },
 
     isStem(state) {
@@ -241,5 +243,5 @@ export default new Vuex.Store({
       })
     },
   },
-  plugins: [wsPlugin]
+  // plugins: [wsPlugin]
 })
