@@ -12,9 +12,9 @@ import request from 'axios'
 //   return request.get(`${API_HOST}/branches/${branchId}/blocks/${blockId}`)
 // }
 
-// export function getTxs (branchId) {
-//   return request.get(`${API_HOST}/branches/${branchId}/txs`)
-// }
+export function getTxs (branchId) {
+  return request.get(`${API_HOST}/txs`)
+}
 
 // export function getBranches () {
 //   return request.get(`${API_HOST}/stem/states`)

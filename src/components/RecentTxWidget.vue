@@ -12,7 +12,7 @@
           {{ props.item.txId | shortHash(48) }}...
         </router-link>
       </td>
-      <td>{{ props.item.timestamp | moment('from') }}</td>
+      <td>{{ props.item.header.timestamp | moment('from') }}</td>
     </template>
   </v-data-table>
 </template>

@@ -7,7 +7,7 @@
       </v-container>
     </template>
     <template v-else>
-      <NavigationDrawer></NavigationDrawer>
+      <!--<NavigationDrawer></NavigationDrawer>-->
       <v-content>
         <v-container fluid>
           <router-view/>

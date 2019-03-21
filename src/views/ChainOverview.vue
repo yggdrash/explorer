@@ -39,7 +39,7 @@
                     <template v-else>
                       <kbd> > ygg plant {{ currentBranch.id | shortHash(16)}}</kbd>
                     </template>
-                    <BranchSidebar :info="currentBranchInfo"/>
+                    <!--<BranchSidebar :info="currentBranchInfo"/>-->
                   </div>
                 </div>
               </v-container>

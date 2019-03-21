@@ -53,8 +53,8 @@ export default new Vuex.Store({
     },
 
     [mTypes.SET_TXS] (state, payload) {
-      state.txs = payload.txs;
-      state.countOfTxs = payload.countOfTotal;
+      state.txs = payload;
+      state.countOfTxs = payload.length;
     },
 
     [mTypes.ADD_TXS] (state, payload) {
@@ -106,11 +106,12 @@ export default new Vuex.Store({
     },
 
     async [aTypes.LOAD_TXS] ({ commit, state }) {
-      if(!state.currentBranch.active) {
-        commit(mTypes.SET_TXS, [])
-        return
-      }
-      const res = await request.getTxs(state.currentBranch.id)
+      // if(!state.currentBranch.active) {
+      //   commit(mTypes.SET_TXS, [])
+      //   return
+      // }
+
+      const res = await requestEs.getTxs(state.currentBranch.id)
       let payload = res.data
       commit(mTypes.SET_TXS, payload)
     },
