@@ -11,7 +11,7 @@ export default new Router({
       path: '/', component: Home
     },
     {
-      path: '/stem', component: () => import('./views/Branch'),
+      path: '/yggdrash', component: () => import('./views/Branch'),
       children: [
         { path: '', component: () => import('./views/ChainOverview') },
         { path: 'blocks', component: () => import('./views/BlockList')},

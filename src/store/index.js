@@ -167,8 +167,7 @@ export default new Vuex.Store({
         return;
       }
 
-      const res = await request.getBlock(state.currentBranch.id, id)
-      foundBlock = res.data
+      foundBlock = await requestEs.getBlock(state.currentBranch.id, id)
       commit(mTypes.SELECT_BLOCK, foundBlock)
     },
 
@@ -231,7 +230,7 @@ export default new Vuex.Store({
     },
 
     linkBase(state) {
-      return `/branches/${state.currentBranch.id}`
+      return `/yggdrash`
     },
 
     countOfBranches(state) {

@@ -22,8 +22,10 @@
                 </v-flex>
                 <v-flex xs12>
                   <span class="font-italic grey--text branch-id">
+                  <!--
                     <strong>{{ currentBranch.id.slice(0, 16) }}</strong>{{
                     currentBranch.id.slice(16) }}
+                    -->
                   </span>
                 </v-flex>
               </v-layout>
@@ -39,10 +41,16 @@
   import { mapState } from 'vuex'
 
   export default {
+    data: () => ({
+      currentBranch: {
+        name: 'YGGDRASH',
+        active: true
+      }
+    }),
     computed: {
-      ...mapState([
-        'currentBranch', 'branchesObject'
-      ]),
+      // ...mapState([
+      //   'currentBranch', 'branchesObject'
+      // ]),
     },
   }
 </script>

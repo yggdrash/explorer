@@ -8,9 +8,23 @@ import request from 'axios'
 //   return request.get(`${API_HOST}/branches/${branchId}/txs/${txId}`)
 // }
 
-// export function getBlock (branchId, blockId) {
-//   return request.get(`${API_HOST}/branches/${branchId}/blocks/${blockId}`)
-// }
+export async function getBlock (branchId, blockId) {
+  let res = await request.get(`${API_HOST}/blocks/${blockId}`)
+  // let txRes = await request.get(`${API_HOST}/blocks/${blockId}`)
+  console.log(res)
+  let data = res.data
+  return {
+    blockId: data.blockId,
+    signature: data.signature,
+    chain: data.header.chain,
+    index: data.header.index,
+    merkleRoot: data.header.merkleRoot,
+    prevBlockHash: data.header.prevBlockHash,
+    timestamp: data.header.timestamp,
+    type: data.header.type,
+    version: data.header.version
+  }
+}
 
 export function getTxs (branchId) {
   return request.get(`${API_HOST}/txs`)
