@@ -53,7 +53,7 @@ export default {
   },
 
   created () {
-    this.$store.dispatch(LOAD_BRANCHES)
+    // this.$store.dispatch(LOAD_BRANCHES)
   },
 
   watch: {

@@ -43,7 +43,7 @@
     },
 
     mounted() {
-      this.$store.dispatch(LOAD_STATES)
+      // this.$store.dispatch(LOAD_STATES)
     }
   }
 </script>

@@ -138,14 +138,14 @@ export default {
   mounted () {
     this.$store.dispatch(LOAD_BLOCKS)
     this.$store.dispatch(LOAD_TXS)
-    this.$store.dispatch(LOAD_STATES)
+    // this.$store.dispatch(LOAD_STATES)
   },
 
   watch: {
     currentBranch: function() {
       this.$store.dispatch(LOAD_BLOCKS)
       this.$store.dispatch(LOAD_TXS)
-      this.$store.dispatch(LOAD_STATES)
+      // this.$store.dispatch(LOAD_STATES)
     },
   },
 }
