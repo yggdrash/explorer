@@ -23,7 +23,13 @@ export default new Vuex.Store({
     selectedBlock: {},
     blocks: [],
     latestBlock: {},
-    branches: [],
+    branches: [
+      {
+        name: 'YGGDRASH',
+        description: 'TRUST-based Multi-dimensional Blockchains',
+        link: 'yggdrash'
+      }
+    ],
     currentBranch: { name: '', id: ''},
     isConnected: false,
   },

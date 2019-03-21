@@ -23,7 +23,29 @@
       </v-btn>
     </div>
     <div>
-      {{ txsInBlock }}
+      <h2>Transactions</h2>
+        A total of {{ txsInBlock.length }} transactions found
+        <v-layout row wrap>
+          <v-flex xs12>
+            <v-layout>
+              <v-flex>TxHash</v-flex>
+              <v-flex>From</v-flex>
+              <v-flex>To</v-flex>
+              <v-flex>Value</v-flex>
+            </v-layout>
+          </v-flex>
+          <v-flex xs12 v-for="tx in txsInBlock" :key="tx.txId">
+            <v-layout wrap>
+              <v-flex xs12>{{tx.txId}}</v-flex>
+              <v-flex xs12>{{tx.body}}</v-flex>
+            </v-layout>
+          </v-flex>
+        </v-layout>
+
+        <v-layout row wrap v-for="(value, props) in txsInBlock[0]" :key="txsInBlock[0].txId+props" class="py-2">
+          <v-flex xs12 sm2 class="font-weight-bold">{{ props }}</v-flex>
+          <v-flex xs12 sm10 class="value">{{ value }}</v-flex>
+        </v-layout>
     </div>
   </div>
 </template>

@@ -28,6 +28,7 @@
                 </div>
               </v-flex>
             </v-flex>
+            <!--
             <v-flex sm4 xs12 order-xs1 order-sm2>
               <v-container class="branch-sidebar-wrap">
                 <div>
@@ -39,11 +40,12 @@
                     <template v-else>
                       <kbd> > ygg plant {{ currentBranch.id | shortHash(16)}}</kbd>
                     </template>
-                    <!--<BranchSidebar :info="currentBranchInfo"/>-->
+                    <BranchSidebar :info="currentBranchInfo"/>
                   </div>
                 </div>
               </v-container>
             </v-flex>
+            -->
           </v-layout>
         </v-flex>
       </v-layout>
