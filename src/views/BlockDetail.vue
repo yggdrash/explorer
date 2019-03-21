@@ -22,6 +22,9 @@
         <v-icon>arrow_forward</v-icon>
       </v-btn>
     </div>
+    <div>
+      {{ txsInBlock }}
+    </div>
   </div>
 </template>
 <script>
@@ -33,7 +36,7 @@
   export default {
     computed: {
       ...mapState([
-        'latestBlock', 'selectedBlock'
+        'latestBlock', 'selectedBlock', 'txsInBlock'
       ]),
       ...mapState({
         block: 'selectedBlock'

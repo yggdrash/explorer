@@ -19,6 +19,7 @@ export default new Vuex.Store({
     selectedTx: {},
     txs: [],
     countOfTxs: 0,
+    txsInBlock: [],
     selectedBlock: {},
     blocks: [],
     latestBlock: {},
@@ -55,6 +56,10 @@ export default new Vuex.Store({
     [mTypes.SET_TXS] (state, payload) {
       state.txs = payload;
       state.countOfTxs = payload.length;
+    },
+
+    [mTypes.SET_TXS_IN_BLOCK] (state, payload) {
+      state.txsInBlock = payload
     },
 
     [mTypes.ADD_TXS] (state, payload) {
@@ -162,13 +167,13 @@ export default new Vuex.Store({
         })
       }
 
-      if(foundBlock) {
-        commit(mTypes.SELECT_BLOCK, foundBlock)
-        return;
+      if(!foundBlock) {
+        foundBlock = await requestEs.getBlock(state.currentBranch.id, id)
       }
 
-      foundBlock = await requestEs.getBlock(state.currentBranch.id, id)
+      let foundTxs = await requestEs.getTxsByBlockId(foundBlock.blockId)
       commit(mTypes.SELECT_BLOCK, foundBlock)
+      commit(mTypes.SET_TXS_IN_BLOCK, foundTxs)
     },
 
     async [aTypes.LOAD_TX] ({ commit, state}, id) {

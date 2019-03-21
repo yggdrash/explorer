@@ -10,8 +10,6 @@ import request from 'axios'
 
 export async function getBlock (branchId, blockId) {
   let res = await request.get(`${API_HOST}/blocks/${blockId}`)
-  // let txRes = await request.get(`${API_HOST}/blocks/${blockId}`)
-  console.log(res)
   let data = res.data
   return {
     blockId: data.blockId,
@@ -22,12 +20,34 @@ export async function getBlock (branchId, blockId) {
     prevBlockHash: data.header.prevBlockHash,
     timestamp: data.header.timestamp,
     type: data.header.type,
-    version: data.header.version
+    version: data.header.version,
+    bodyLength: data.header.bodyLength,
   }
 }
 
 export function getTxs (branchId) {
   return request.get(`${API_HOST}/txs`)
+}
+
+export async function getTxsByBlockId (blockId) {
+  let res = await request.get(`${API_HOST}/blocks/${blockId}/txs`)
+  let data = res.data
+  
+  let convertedData = data.map(d => {
+      return {
+        blockId: d.blockId,
+        signature: d.signature,
+        body: d.body,
+        txId: d.txId,
+        bodyHash: d.header.bodyHash,
+        bodyLength: d.header.bodyLength,
+        chain: d.header.chain,
+        timestamp: d.header.timestamp,
+        type: d.header.type,
+        version: d.header.version,
+      }
+  })
+  return convertedData
 }
 
 // export function getBranches () {
