@@ -14,14 +14,14 @@ export async function getBlock (branchId, blockId) {
   return {
     blockId: data.blockId,
     signature: data.signature,
-    chain: data.header.chain,
-    index: data.header.index,
-    merkleRoot: data.header.merkleRoot,
-    prevBlockHash: data.header.prevBlockHash,
-    timestamp: data.header.timestamp,
-    type: data.header.type,
-    version: data.header.version,
-    bodyLength: data.header.bodyLength,
+    chain: data.chain,
+    index: data.index,
+    merkleRoot: data.merkleRoot,
+    prevBlockHash: data.prevBlockHash,
+    timestamp: data.timestamp,
+    type: data.type,
+    version: data.version,
+    bodyLength: data.bodyLength,
   }
 }
 
@@ -39,12 +39,12 @@ export async function getTxsByBlockId (blockId) {
         signature: d.signature,
         body: d.body,
         txId: d.txId,
-        bodyHash: d.header.bodyHash,
-        bodyLength: d.header.bodyLength,
-        chain: d.header.chain,
-        timestamp: d.header.timestamp,
-        type: d.header.type,
-        version: d.header.version,
+        bodyHash: d.bodyHash,
+        bodyLength: d.bodyLength,
+        branchId: d.branchId,
+        timestamp: d.timestamp,
+        type: d.type,
+        version: d.version,
       }
   })
   return convertedData

@@ -49,11 +49,11 @@
     props: [ 'blocks', 'linkBase' ],
     data: () => ({
       headers: [
-        { text: 'Branch', sortable: false },
-        { text: 'Block #', sortable: false },
+        { text: 'BRANCH', sortable: false },
+        { text: 'BLOCK #', sortable: false },
         { text: 'Block Hash', sortable: false },
-        { text: 'Date', sortable: false },
-        { text: '# of TXs', sortable: false }
+        { text: 'TIME', sortable: false },
+        { text: 'TOTAL TXS', sortable: false }
       ],
       pagination: {
         rowsPerPage: 10

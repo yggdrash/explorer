@@ -1,7 +1,6 @@
 <template>
   <v-footer
           fixed
-          dark
           height="auto"
           app
   >
@@ -28,8 +27,8 @@
       </v-card-title>
       -->
 
-      <v-card-actions class="primary justify-center">
-        &copy;2018 — <strong>AKASHIC FOUNDATION</strong>
+      <v-card-actions class="justify-center">
+        &copy;2019 — <strong>AKASHIC FOUNDATION</strong>
       </v-card-actions>
     </v-card>
   </v-footer>

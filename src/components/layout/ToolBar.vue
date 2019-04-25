@@ -1,23 +1,17 @@
 <template>
-  <v-toolbar flat dark color="primary" app fixed clipped-left>
+  <v-toolbar
+          dark
+          flat
+          app
+          fixed
+          clipped-left
+  >
     <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
-    <span class="title ml-3 mr-5" @click="goHome" style="cursor: pointer">
-      YGGDRASH&nbsp;<span class="font-weight-light">Explorer</span>
-    </span>
-    <!--TODO 검색기능 추가-->
-    <!--
-    <v-text-field
-            solo-inverted
-            flat
-            hide-details
-            label="Block Height, Hash, Address or Transaction Id"
-            prepend-inner-icon="search"
-    ></v-text-field>
-    -->
+
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-menu offset-y>
-        <v-btn slot="activator" flat>
+        <v-btn slot="activator" flat >
           TESTNET
           <v-icon>
             arrow_drop_down
@@ -27,17 +21,8 @@
           <v-list-tile>
             <v-list-tile-title>TESTNET</v-list-tile-title>
           </v-list-tile>
-          <v-list-tile>
-            <v-list-tile-title>MAINNET</v-list-tile-title>
-          </v-list-tile>
         </v-list>
       </v-menu>
-      <v-btn icon>
-        <v-icon>apps</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>{{ isConnected ? 'wifi' : 'wifi_off'}}</v-icon>
-      </v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -49,18 +34,21 @@
 export default {
     computed: {
       ...mapState([
-        'isConnected'
+        ''
       ])
     },
 
   methods: {
-    goHome() {
-      this.$router.push("/")
-    },
-
     toggleDrawer() {
       this.$store.commit(TOGGLE_DRAWER)
     }
   }
 }
 </script>
+
+<style scoped>
+  .v-toolbar {
+    height: 60px;
+    opacity: 0.8;
+  }
+</style>

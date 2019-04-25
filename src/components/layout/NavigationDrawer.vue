@@ -1,60 +1,49 @@
 <template>
   <v-navigation-drawer
+          app
           fiexd
           clipped
-          class="grey lighten-4"
-          app
-          width="270"
+          absolute
+          temporary
           :value="drawer"
           @input="listenInput"
   >
-    <!--
-    <v-layout>
-      <v-flex>
-        <v-card flat>
-          <v-card-media src="http://cfile227.uf.daum.net/image/23030947533F72B714E409"
-                        height="135px" class="white--text">
-            <v-card-title>
-              <div class="font-weight-black display-2">Stem</div>
-              <div class="font-italic grey--text">d7ad8fd320fc117420fc117420fc1174</div>
-            </v-card-title>
-          </v-card-media>
-        </v-card>
-      </v-flex>
-    </v-layout>
-    -->
-    <v-list dense>
-      <v-list-tile avatar :to="`/branches/${stem.id}`" class="mt-3">
-        <v-list-tile-avatar>
-          <img :src="require(`@/assets/images/symbols/${stem.symbol}.png`)" alt="">
+    <v-list class="pa-3">
+      <v-list-tile avatar>
+        <v-list-tile-avatar >
         </v-list-tile-avatar>
-        <v-list-tile-title v-text="stem.name"></v-list-tile-title>
-      </v-list-tile>
-      <v-divider class="my-3"></v-divider>
-      <v-subheader class="mt-3 grey--text text--darken-1">ACTIVE BRANCHES</v-subheader>
-      <v-list-tile v-for="item in activeBranches" :key="item.id" avatar
-                   :to="`/branches/${item.id}`">
-        <v-list-tile-avatar>
-          <img :src="require(`@/assets/images/symbols/${item.symbol}.png`)" alt="">
-        </v-list-tile-avatar>
-        <v-list-tile-title v-text="item.name"></v-list-tile-title>
-      </v-list-tile>
-      <v-subheader class="mt-3 grey--text text--darken-1">INACTIVE BRANCHES</v-subheader>
-      <v-list-tile v-for="item in inactiveBranches" :key="item.id" avatar
-                   :to="`/branches/${item.id}`" class="inactive">
-        <v-list-tile-avatar>
-          <img :src="require(`@/assets/images/symbols/${item.symbol}.png`)" alt="">
-        </v-list-tile-avatar>
-        <v-list-tile-title v-text="item.name"></v-list-tile-title>
       </v-list-tile>
     </v-list>
+
+    <v-list class="pt-0" two-line subheader>
+      <v-divider></v-divider>
+      <v-list-tile class="pt-3"
+              v-for="item in items"
+              :key="item.title"
+              @click="goHome"
+              link
+      >
+        <v-list-tile-avatar>
+          <v-icon :class="[item.iconClass]">{{ item.icon }}</v-icon>
+        </v-list-tile-avatar>
+
+        <v-list-tile-content>
+          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </v-list>
+    <Footer></Footer>
   </v-navigation-drawer>
 </template>
 <script>
   import { mapGetters, mapState } from 'vuex'
   import { TOGGLE_DRAWER } from '../../store/mutation-types'
+  import Footer from './Footer'
 
   export default {
+    components: {
+        Footer,
+    },
     computed: {
       ...mapState([
         'branches', 'branchesObject', 'drawer'
@@ -91,12 +80,29 @@
       }
     },
 
-    methods: {
-      listenInput(e) {
-        if(this.isMobile && !e) {
-          this.$store.commit(TOGGLE_DRAWER)
+    data () {
+        return {
+            clipped: true,
+            items: [
+                { title: 'Home', icon: 'dashboard', path: '/', },
+                { title: 'Blocks', icon: 'question_answer', path: '/', },
+                { title: 'Transactions', icon: 'question_answer', path: '/', },
+                { title: 'Contracts', icon: 'question_answer', path: '/', },
+                { title: 'Validators', icon: 'question_answer', path: '/', }
+            ]
         }
-      }
+    },
+
+    methods: {
+        goHome() {
+            this.$router.push("/")
+        },
+
+        listenInput(e) {
+            if(this.isMobile && !e) {
+                this.$store.commit(TOGGLE_DRAWER)
+            }
+        },
     }
   }
 </script>

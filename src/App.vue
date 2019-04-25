@@ -7,35 +7,29 @@
       </v-container>
     </template>
     <template v-else>
-      <!--<NavigationDrawer></NavigationDrawer>-->
+      <NavigationDrawer></NavigationDrawer>
       <v-content>
         <v-container fluid>
           <router-view/>
         </v-container>
       </v-content>
     </template>
-    <Footer></Footer>
   </v-app>
 </template>
 
 <script>
 import Toolbar from './components/layout/ToolBar'
 import NavigationDrawer from './components/layout/NavigationDrawer'
-import Footer from './components/layout/Footer'
 import { mapGetters } from 'vuex'
 import {
   SET_CURRENT_BRANCHE
 } from './store/mutation-types'
-import {
-  LOAD_BRANCHES,
-} from './store/action-types'
 
 export default {
   name: 'App',
   components: {
     Toolbar,
     NavigationDrawer,
-    Footer,
   },
 
   data () {
@@ -84,5 +78,10 @@ export default {
 <style scoped>
   .container {
     max-width: 1200px;
+  }
+  .v-content {
+    background-color: black;
+    background-image: url("../src/assets/images/back.jpg");
+    background-size: cover;
   }
 </style>

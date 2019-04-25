@@ -16,7 +16,7 @@
       BranchCard,
     },
     data: () => ({
-      colors: [ 'grey lighten-4', 'white']
+      colors: [ 'grey lighten-5', 'white']
     }),
     computed: {
       listingBranches() {

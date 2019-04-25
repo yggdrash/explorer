@@ -13,7 +13,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    loading: true,
+    loading: false,
     drawer: null,
     statesOfBranch: [],
     selectedTx: {},
@@ -232,15 +232,14 @@ export default new Vuex.Store({
 
   getters: {
     loading(state) {
-      // return state.loading
-      return false
+      return state.loading
     },
 
     isStem(state) {
       return state.currentBranch.name === 'STEM'
     },
 
-    linkBase(state) {
+    linkBase() {
       return `/yggdrash`
     },
 

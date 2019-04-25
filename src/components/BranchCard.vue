@@ -21,18 +21,21 @@
   }
 </script>
 <style lang="scss" scoped>
-  .v-card.grey {
-    .v-card__title {
-      border-top: solid 3px #06b67b;
-    }
-  }
+  /*.v-card.grey {*/
+    /*.v-card__title {*/
+      /*border-top: solid 3px #06b67b;*/
+    /*}*/
+  /*}*/
 
-  .v-card.white {
-    .v-card__title {
-      border-top: solid 3px #ff6049;
-    }
-  }
+  /*.v-card.white {*/
+    /*.v-card__title {*/
+      /*border-top: solid 3px #ff6049;*/
+    /*}*/
+  /*}*/
 
+  .v-card {
+    opacity: 0.5;
+  }
   .v-card__title {
     padding-left: 24px;
     padding-right: 24px;
