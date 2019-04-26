@@ -140,19 +140,23 @@ export default {
   mounted () {
     this.$store.dispatch(LOAD_BLOCKS)
     this.$store.dispatch(LOAD_TXS)
-    // this.$store.dispatch(LOAD_STATES)
+    this.$store.dispatch(LOAD_STATES)
   },
 
   watch: {
     currentBranch: function() {
       this.$store.dispatch(LOAD_BLOCKS)
       this.$store.dispatch(LOAD_TXS)
-      // this.$store.dispatch(LOAD_STATES)
+      this.$store.dispatch(LOAD_STATES)
     },
   },
 }
 </script>
 <style lang="scss" scoped>
+  .v-card {
+    background-color: rgba( 0, 26, 51, 0.5 );
+  }
+
   td {
     font-family: 'Roboto Mono', monospace;
   }

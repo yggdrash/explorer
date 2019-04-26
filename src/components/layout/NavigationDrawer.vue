@@ -1,6 +1,7 @@
 <template>
   <v-navigation-drawer
           app
+          dark
           fiexd
           clipped
           absolute
@@ -15,7 +16,10 @@
       </v-list-tile>
     </v-list>
 
-    <v-list class="pt-0" two-line subheader>
+    <v-list class="pt-0"
+            two-line subheader
+    
+    >
       <v-divider></v-divider>
       <v-list-tile class="pt-3"
               v-for="item in items"
@@ -58,17 +62,6 @@
           return b.symbol === 'STEM'
         })
       },
-      activeBranches() {
-        return this.branches.filter(b => {
-          return b.symbol !== 'STEM' && b.active
-        })
-      },
-
-      inactiveBranches() {
-        return this.branches.filter(b => {
-          return b.name !== 'STEM' && !(b.active)
-        })
-      },
 
       /*
       https://github.com/vuetifyjs/vuetify/blob/dev/src/components/VNavigationDrawer/VNavigationDrawer.js
@@ -84,7 +77,7 @@
         return {
             clipped: true,
             items: [
-                { title: 'Home', icon: 'dashboard', path: '/', },
+                { title: 'Dashboard', icon: 'dashboard', path: '/', },
                 { title: 'Blocks', icon: 'question_answer', path: '/', },
                 { title: 'Transactions', icon: 'question_answer', path: '/', },
                 { title: 'Contracts', icon: 'question_answer', path: '/', },
@@ -107,9 +100,5 @@
   }
 </script>
 <style lang="scss" scoped>
-  .inactive {
-    img {
-      filter: grayscale(100%);
-    }
-  }
+
 </style>

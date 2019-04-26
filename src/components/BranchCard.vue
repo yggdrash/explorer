@@ -1,5 +1,5 @@
 <template>
-  <v-card :color="color">
+  <v-card flat small :to="`/${branchInfo.link}`">
     <v-card-title primary-title>
       <v-layout column>
         <v-flex class="headline font-weight-bold">{{ branchInfo.name }}</v-flex>
@@ -7,34 +7,25 @@
       </v-layout>
     </v-card-title>
     <v-card-actions>
-      <v-btn flat small :to="`/${branchInfo.link}`">
-        EXPLORE
-      </v-btn>
+
     </v-card-actions>
   </v-card>
 </template>
 <script>
   export default {
     props: [
-      'color', 'branchInfo'
+        'branchInfo'
     ]
   }
 </script>
 <style lang="scss" scoped>
-  /*.v-card.grey {*/
-    /*.v-card__title {*/
-      /*border-top: solid 3px #06b67b;*/
-    /*}*/
-  /*}*/
-
-  /*.v-card.white {*/
-    /*.v-card__title {*/
-      /*border-top: solid 3px #ff6049;*/
-    /*}*/
-  /*}*/
-
   .v-card {
-    opacity: 0.5;
+    background-color: rgba( 0, 26, 51, 0.5 );
+    margin: 15px;
+    border-radius: 7px;
+  }
+  .v-card:hover {
+    transform: scale(0.989);
   }
   .v-card__title {
     padding-left: 24px;
@@ -42,8 +33,11 @@
     min-height: 138px;
     align-items: flex-start;
 
+    .headline {
+      color: #e6e6e6;
+    }
     .desc {
-      color: gray;
+      color: #cccccc;
     }
   }
 </style>

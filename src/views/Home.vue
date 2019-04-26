@@ -3,7 +3,7 @@
     <v-slide-y-transition mode="out-in">
       <v-layout column>
         <v-flex mb-5 class="text-xs-center">
-          <span class="display-2 mr-2" style="color: #f2f2f2;">YGGDRASH Blockchain Explorer</span>
+          <span class="display-2 mr-2" style="color: #e6e6e6;">YGGDRASH Blockchain Explorer</span>
         </v-flex>
         <v-flex mb-5>
         <v-text-field
@@ -17,7 +17,10 @@
         ></v-text-field>
         </v-flex>
         <v-flex class="mb-5">
-          <BranchCardList :branches="branchesExcludeStem" max="3"/>
+          <BranchCardList :branches="branchesExcludeStem" max="4"/>
+        </v-flex>
+        <v-flex class="mb-5">
+          <BranchCardList :branches="branchesExcludeStem" max="4"/>
         </v-flex>
       </v-layout>
     </v-slide-y-transition>

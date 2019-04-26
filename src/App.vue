@@ -76,11 +76,7 @@ export default {
 }
 </script>
 <style scoped>
-  .container {
-    max-width: 1200px;
-  }
   .v-content {
-    background-color: black;
     background-image: url("../src/assets/images/back.jpg");
     background-size: cover;
   }
