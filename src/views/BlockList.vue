@@ -1,7 +1,10 @@
 <template>
   <div>
-    <h2 class="display-1 font-weight-bold mb-2">Blocks</h2>
-    <v-card>
+    <h2 class="display-1 font-weight-bold mb-2" style="color: #e6e6e6">Blocks</h2>
+    <v-card
+      dark
+      class="member__account flexcard"
+    >
       <template>
         <v-data-table
                 :headers="headers"
@@ -14,7 +17,7 @@
           <template slot="items" slot-scope="props">
             <td>
               <router-link :to="'blocks/' + props.item.index">
-                {{ props.item.header.index }}
+                {{ props.item.index }}
               </router-link>
             </td>
             <td>
@@ -22,9 +25,9 @@
                 {{ props.item.blockId | shortHash(32)}}...
               </router-link>
             </td>
-            <td>{{ props.item.signature | shortHash(24)}}...</td>
-            <td>{{ props.item.header.timestamp | moment('from')}}</td>
-            <td>{{ props.item.header.bodyLength }}</td>
+            <td>{{ props.item.author | shortHash(24)}}...</td>
+            <td>{{ props.item.timestamp | moment('from')}}</td>
+            <td>{{ props.item.txSize }}</td>
           </template>
         </v-data-table>
       </template>
@@ -48,9 +51,9 @@
         headers: [
           { text: 'Block #', sortable: false },
           { text: 'Block Hash', sortable: false },
-          { text: 'Signature', sortable: false },
+          { text: 'Block Proposer', sortable: false },
           { text: 'Date', sortable: false },
-          { text: 'Block # of TXs', sortable: false }
+          { text: '# of TXs', sortable: false }
         ],
       }
     },
@@ -87,6 +90,14 @@
   }
 </script>
 <style lang="scss">
+  .v-card {
+    /*background-color: white!important;*/
+    /*opacity: 0.3;*/
+    /*border-color: transparent!important;*/
+    /*background-color: rgba( 66, 66, 66, 0.3 );*/
+    border-radius: 7px;
+  }
+
   td {
     font-family: 'Roboto Mono', monospace;
     > a {

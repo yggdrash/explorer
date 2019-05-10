@@ -5,28 +5,20 @@
         <v-flex mb-4>
           <v-layout align-end>
             <v-flex class="branch-name">
-              <span class="font-weight-black display-2 mr-2">
+              <span class="font-weight-black display-2 mr-2" style="color: #e6e6e6;">
                 {{ currentBranch.name }}</span>
             </v-flex>
             <v-flex>
               <v-layout wrap>
                 <v-flex xs12>
                   <div>
-                    <v-chip color="green" text-color="white" small v-if="currentBranch.active">
+                    <v-chip color="#66BB6A" text-color="white" small v-if="currentBranch.active">
                       ACTIVE
                     </v-chip>
                     <v-chip color="grey darken-1" text-color="white" small v-else>
                       INACTIVE
                     </v-chip>
                   </div>
-                </v-flex>
-                <v-flex xs12>
-                  <span class="font-italic grey--text branch-id">
-                  <!--
-                    <strong>{{ currentBranch.id.slice(0, 16) }}</strong>{{
-                    currentBranch.id.slice(16) }}
-                    -->
-                  </span>
                 </v-flex>
               </v-layout>
             </v-flex>
@@ -38,8 +30,6 @@
   </v-container>
 </template>
 <script>
-  import { mapState } from 'vuex'
-
   export default {
     data: () => ({
       currentBranch: {
@@ -48,9 +38,6 @@
       }
     }),
     computed: {
-      // ...mapState([
-      //   'currentBranch', 'branchesObject'
-      // ]),
     },
   }
 </script>

@@ -6,7 +6,7 @@
 </template>
 <script>
   import { mapGetters } from 'vuex'
-  import BranchCardList from '../components/BranchCardList'
+  import BranchCardList from '../components/DashboardCardList'
 
   export default {
     components: {

@@ -1,15 +1,18 @@
 <template>
     <v-slide-y-transition mode="out-in">
       <v-layout column>
-        <v-flex mb-4>
-          <CountCardList :items="countItems"></CountCardList>
-        </v-flex>
+        <!--<v-flex mb-4>-->
+          <!--<CountCardList :items="countItems"></CountCardList>-->
+        <!--</v-flex>-->
         <v-flex>
           <v-layout row wrap>
-            <v-flex sm8 xs12 order-xs2 order-sm-1>
+            <v-flex sm12 xs12 order-xs2 order-sm-1>
               <v-flex mb-4>
-                <h2 class="headline font-weight-medium mb-2">Last 5 Blocks</h2>
-                <v-card>
+                <h2 class="headline font-weight-medium mb-2">Blocks</h2>
+                <v-card
+                    dark
+                    tile
+                >
                   <RecentBlockWidget :blocks="blocks" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
@@ -18,8 +21,10 @@
                 </div>
               </v-flex>
               <v-flex mb-4>
-                <h2 class="headline font-weight-medium mb-2">Last 5 Transactions</h2>
-                <v-card>
+                <h2 class="headline font-weight-medium mb-2">Transactions</h2>
+                <v-card
+                    dark
+                >
                   <RecentTxWidget :txs="txs" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
@@ -153,10 +158,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .v-card {
-    background-color: rgba( 0, 26, 51, 0.5 );
-  }
-
   td {
     font-family: 'Roboto Mono', monospace;
   }
@@ -168,6 +169,10 @@ export default {
 
   .branch-sidebar-wrap {
     padding: 16px 0 0 16px;
+  }
+
+  .test {
+    background-color: rgba( 191, 191, 191, 0.3 );
   }
 
   @media only screen and (max-width: 959px) {

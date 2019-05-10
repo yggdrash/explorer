@@ -25,14 +25,14 @@ export default new Vuex.Store({
     latestBlock: {},
     branches: [
       {
-        name: 'Block',
+        name: 'Blocks',
         description: '',
-        link: 'yggdrash'
+        link: 'yggdrash/blocks'
       },
       {
-          name: 'Transaction',
-          description: '',
-          link: 'yggdrash'
+        name: 'Transactions',
+        description: '',
+        link: 'yggdrash/txs'
       }
     ],
     currentBranch: { name: '', id: ''},

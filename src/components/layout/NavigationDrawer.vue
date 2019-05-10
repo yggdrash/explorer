@@ -18,7 +18,6 @@
 
     <v-list class="pt-0"
             two-line subheader
-    
     >
       <v-divider></v-divider>
       <v-list-tile class="pt-3"
@@ -89,6 +88,7 @@
     methods: {
         goHome() {
             this.$router.push("/")
+            this.$store.commit(TOGGLE_DRAWER)
         },
 
         listenInput(e) {

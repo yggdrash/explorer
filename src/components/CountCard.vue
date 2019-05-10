@@ -27,10 +27,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .v-card {
-    background-color: rgba( 0, 26, 51, 0.5 );
-  }
-
   .v-card__actions .v-btn {
     margin: 0 auto;
   }

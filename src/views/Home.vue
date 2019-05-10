@@ -17,10 +17,7 @@
         ></v-text-field>
         </v-flex>
         <v-flex class="mb-5">
-          <BranchCardList :branches="branchesExcludeStem" max="4"/>
-        </v-flex>
-        <v-flex class="mb-5">
-          <BranchCardList :branches="branchesExcludeStem" max="4"/>
+          <DashboardCardList :branches="branchesExcludeStem" max="2"/>
         </v-flex>
       </v-layout>
     </v-slide-y-transition>
@@ -30,7 +27,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <script>
   import { mapState, mapGetters } from 'vuex'
-  import BranchCardList from '../components/BranchCardList'
+  import DashboardCardList from '../components/DashboardCardList'
   import IntegratedBlockWidget from '../components/IntegratedBlockWidget'
   import {
     SET_CURRENT_BRANCHE
@@ -41,7 +38,7 @@
 
   export default {
     components: {
-      BranchCardList,
+      DashboardCardList,
       IntegratedBlockWidget,
     },
 

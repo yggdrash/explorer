@@ -80,4 +80,5 @@ export default {
     background-image: url("../src/assets/images/back.jpg");
     background-size: cover;
   }
+
 </style>

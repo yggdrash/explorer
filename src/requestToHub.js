@@ -26,6 +26,7 @@ export async function getBlock (branchId, blockId) {
 }
 
 export function getTxs (branchId) {
+  console.log(branchId)
   return request.get(`${API_HOST}/txs`)
 }
 
@@ -45,6 +46,7 @@ export async function getTxsByBlockId (blockId) {
         timestamp: d.timestamp,
         type: d.type,
         version: d.version,
+        issuer: d.author,
       }
   })
   return convertedData
