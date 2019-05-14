@@ -12,11 +12,8 @@
               <v-layout wrap>
                 <v-flex xs12>
                   <div>
-                    <v-chip color="#66BB6A" text-color="white" small v-if="currentBranch.active">
-                      ACTIVE
-                    </v-chip>
-                    <v-chip color="grey darken-1" text-color="white" small v-else>
-                      INACTIVE
+                    <v-chip color="#e6fff2" text-color="black" small>
+                        {{ currentBranch.id }}
                     </v-chip>
                   </div>
                 </v-flex>
@@ -34,7 +31,8 @@
     data: () => ({
       currentBranch: {
         name: 'YGGDRASH',
-        active: true
+        active: true,
+        id: '98790b39c9010759bf3a588eb2d5ea5467764b8e'
       }
     }),
     computed: {

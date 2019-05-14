@@ -77,7 +77,7 @@ export default {
 </script>
 <style scoped>
   .v-content {
-    background-image: url("../src/assets/images/back.jpg");
+    background-image: url("../src/assets/images/back2.jpg");
     background-size: cover;
   }
 

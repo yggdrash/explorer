@@ -1,51 +1,77 @@
 <template>
-  <div>
-    <h2 class="font-weight-black display-1 py-2 mb-4">BLOCK {{ block.index }}</h2>
-    <div class="block-detail">
-      <v-layout row wrap v-for="(value, props) in block" :key="props" class="py-2">
-        <v-flex xs12 sm2 class="font-weight-bold">{{ props }}</v-flex>
-        <v-flex xs12 sm10 class="value">{{ value }}</v-flex>
-      </v-layout>
-    </div>
+  <div style="color: #e6e6e6">
+    <h2 class="font-weight-black display-1 py-2 mb-4" >BLOCK</h2>
+    <span class="font-weight-black display-1 py-2 mb-4" style="color: #e6fff2" > #{{ block.index }}</span>
+    <v-layout row wrap>
+      <v-flex sm8 xs12 order-xs2 order-sm-1>
+        <v-container class="block-sidebar-wrap">
+          <h2>Overview</h2>
+        </v-container>
+        <div class="block-detail">
+          <v-layout row wrap v-for="(value, props) in block" :key="props" class="py-2">
+            <v-flex xs12 sm2 >{{ props }}</v-flex>
+            <v-flex xs12 sm10 class="font-weight-bold value">{{ lengthCheck(value) }}</v-flex>
+          </v-layout>
+        </div>
+      </v-flex>
+      <v-flex sm4 xs12 order-xs1 order-sm2>
+        <v-container class="validator-sidebar-wrap">
+            <h2>Validator</h2>
+            comming up
+        </v-container>
+      </v-flex>
+    </v-layout >
     <div class="text-xs-center mt-3">
       <v-btn flat color="primary"
              :to="`${linkBase}/blocks/${block.index - 1}`"
              :disabled="isLast"
       >
-        <v-icon>arrow_back</v-icon>
+        <v-icon color="#ffd6cc">arrow_back</v-icon>
       </v-btn>
       <span class="pipe">&nbsp;</span>
       <v-btn flat color="primary"
              :to="`${linkBase}/blocks/${block.index + 1}`"
              :disabled="isFirst"
       >
-        <v-icon>arrow_forward</v-icon>
+        <v-icon color="#ffd6cc">arrow_forward</v-icon>
       </v-btn>
     </div>
-    <div>
+    <div class="block-sidebar-wrap py-5">
       <h2>Transactions</h2>
-        A total of {{ txsInBlock.length }} transactions found
-        <v-layout row wrap>
-          <v-flex xs12>
-            <v-layout>
-              <v-flex>TxHash</v-flex>
-              <v-flex>From</v-flex>
-              <v-flex>To</v-flex>
-              <v-flex>Value</v-flex>
-            </v-layout>
-          </v-flex>
-          <v-flex xs12 v-for="tx in txsInBlock" :key="tx.txId">
-            <v-layout wrap>
-              <v-flex xs12>{{tx.txId}}</v-flex>
-              <v-flex xs12>{{tx.body}}</v-flex>
-            </v-layout>
-          </v-flex>
-        </v-layout>
-
-        <v-layout row wrap v-for="(value, props) in txsInBlock[0]" :key="txsInBlock[0].txId+props" class="py-2">
-          <v-flex xs12 sm2 class="font-weight-bold">{{ props }}</v-flex>
-          <v-flex xs12 sm10 class="value">{{ value }}</v-flex>
-        </v-layout>
+        <v-card dark>
+          <v-data-table
+                  :headers="transactions"
+                  :items="txsInBlock"
+          >
+            <template slot="items" slot-scope="props">
+              <td>
+                <router-link :to="`${linkBase}/txs/${props.item.txId}`">
+                  {{ props.item.txId | shortHash(7)}}...{{ props.item.txId.slice(-5) }}
+                </router-link>
+              </td>
+              <td>
+                <router-link :to="`${linkBase}/txs/${props.item.txId}`">
+                  {{ JSON.parse(props.item.body).contractVersion | shortHash(7) }}...
+                  {{ JSON.parse(props.item.body).contractVersion.slice(-5) }}
+                </router-link>
+              </td>
+              <td>
+                <router-link :to="`${linkBase}/txs/${props.item.txId}`">
+                  {{ props.item.issuer | shortHash(7)}}...{{ props.item.issuer.slice(-5) }}
+                </router-link>
+              </td>
+              <td>
+                <router-link :to="`${linkBase}/txs/${props.item.txId}`">
+                  {{ JSON.parse(props.item.body).params.to | shortHash(7)}}...
+                  {{ JSON.parse(props.item.body).params.to.slice(-5) }}
+                </router-link>
+              </td>
+              <td>
+                {{ JSON.parse(props.item.body).params.amount }}
+              </td>
+            </template>
+          </v-data-table>
+        </v-card>
     </div>
   </div>
 </template>
@@ -56,6 +82,17 @@
   } from '../store/action-types'
 
   export default {
+    data () {
+        return {
+            transactions: [
+                { text: 'TX ID', sortable: false },
+                { text: 'Contract Version', sortable: false },
+                { text: 'From', sortable: false },
+                { text: 'To', sortable: false },
+                { text: 'Value', sortable: false },
+            ]
+        }
+    },
     computed: {
       ...mapState([
         'latestBlock', 'selectedBlock', 'txsInBlock'
@@ -77,6 +114,15 @@
       }
     },
 
+    methods: {
+        lengthCheck(v) {
+            if(v.length > 40) {
+                return v.slice(0, 32) + "..." + v.slice(-16)
+            } else {
+                return v
+            }
+        }
+    },
     mounted() {
       let blockId = this.$route.params.blockId
       this.$store.dispatch(LOAD_BLOCK, blockId)
@@ -90,11 +136,13 @@
   }
 </script>
 <style lang="scss" scoped>
+  h2 {
+    display: inline-block;
+  }
   .block-detail {
     .row {
       &:nth-child(odd) {
         border-left: 3px solid #E0E0E0;
-        background-color: white;
       }
       &:nth-child(even) {
         border-left: 3px solid #06b67b;
@@ -115,6 +163,17 @@
     display: inline-block;
     margin: 15px 0;
     width: 2px;
-    background-color: #06b67b;
+    background-color: #e6e6e6;
+  }
+
+  td {
+    font-family: 'Roboto Mono', monospace;
+    > a {
+      text-decoration: none;
+      color: #e6e6e6;
+    }
+    > a:hover {
+      color: #66ff99;
+    }
   }
 </style>

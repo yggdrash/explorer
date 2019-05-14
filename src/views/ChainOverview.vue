@@ -6,8 +6,8 @@
         <!--</v-flex>-->
         <v-flex>
           <v-layout row wrap>
-            <v-flex sm12 xs12 order-xs2 order-sm-1>
-              <v-flex mb-4>
+            <v-flex sm7 xs12 order-xs2 order-sm-1 style="color: #e6e6e6">
+              <v-flex mb-4 >
                 <h2 class="headline font-weight-medium mb-2">Blocks</h2>
                 <v-card
                     dark
@@ -16,7 +16,7 @@
                   <RecentBlockWidget :blocks="blocks" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
-                  <v-btn flat :to="`${linkBase}/blocks`" style="text-decoration: underline">
+                  <v-btn flat :to="`${linkBase}/blocks`" style="text-decoration: underline; color: #e6e6e6">
                     See all blocks</v-btn>
                 </div>
               </v-flex>
@@ -28,29 +28,22 @@
                   <RecentTxWidget :txs="txs" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
-                  <v-btn flat :to="`${linkBase}/txs`" style="text-decoration: underline">
+                  <v-btn flat :to="`${linkBase}/txs`" style="text-decoration: underline; color: #e6e6e6">
                     See all transactions</v-btn>
                 </div>
               </v-flex>
             </v-flex>
-            <!--
-            <v-flex sm4 xs12 order-xs1 order-sm2>
-              <v-container class="branch-sidebar-wrap">
+
+            <v-flex sm5 xs12 order-xs1 order-sm2>
+              <v-flex mb-4>
+                <h2 class="headline font-weight-medium mb-2" style="color: #e6e6e6">Validators</h2>
+              </v-flex>
+              <v-container class="Validators-sidebar-wrap">
                 <div>
-                  <div style="">
-                    <h3>install</h3>
-                    <template v-if="isStem">
-                      <kbd>Stem is installed by default.</kbd>
-                    </template>
-                    <template v-else>
-                      <kbd> > ygg plant {{ currentBranch.id | shortHash(16)}}</kbd>
-                    </template>
-                    <BranchSidebar :info="currentBranchInfo"/>
-                  </div>
                 </div>
               </v-container>
             </v-flex>
-            -->
+
           </v-layout>
         </v-flex>
       </v-layout>
@@ -169,10 +162,6 @@ export default {
 
   .branch-sidebar-wrap {
     padding: 16px 0 0 16px;
-  }
-
-  .test {
-    background-color: rgba( 191, 191, 191, 0.3 );
   }
 
   @media only screen and (max-width: 959px) {

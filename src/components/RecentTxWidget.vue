@@ -9,10 +9,17 @@
       <td>
         <router-link
                 :to="`${linkBase}/txs/${props.item.txId}`">
-          {{ props.item.txId | shortHash(48) }}...
+          {{ props.item.txId | shortHash(7) }}...{{ props.item.txId.slice(-5) }}
         </router-link>
       </td>
-      <td>{{ props.item.header.timestamp | moment('from') }}</td>
+      <td>
+        <router-link
+                :to="`${linkBase}/txs/${props.item.txId}`">
+          {{ JSON.parse(props.item.body).contractVersion | shortHash(7) }}...
+          {{ JSON.parse(props.item.body).contractVersion.slice(-5) }}
+        </router-link>
+      </td>
+      <td>{{ props.item.timestamp | moment('from') }}</td>
     </template>
   </v-data-table>
 </template>
@@ -21,11 +28,12 @@
     props: [ 'txs', 'linkBase' ],
     data: () => ({
       headers: [
-        { text: 'Transaction Id', sortable: false },
+        { text: 'TX ID', sortable: false },
+        { text: 'Contract Version', sortable: false },
         { text: 'Date', sortable: false },
       ],
       pagination: {
-        rowsPerPage: 5
+        rowsPerPage: 7
       }
     }),
   }
@@ -35,6 +43,8 @@
     font-family: 'Roboto Mono', monospace;
     > a {
       text-decoration: none;
+      color: #e6e6e6;
     }
+    > a:hover { color: #66ff99; }
   }
 </style>

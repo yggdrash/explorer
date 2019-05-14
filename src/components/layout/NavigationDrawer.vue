@@ -23,7 +23,7 @@
       <v-list-tile class="pt-3"
               v-for="item in items"
               :key="item.title"
-              @click="goHome"
+              @click="goHome(item.path)"
               link
       >
         <v-list-tile-avatar>
@@ -77,8 +77,8 @@
             clipped: true,
             items: [
                 { title: 'Dashboard', icon: 'dashboard', path: '/', },
-                { title: 'Blocks', icon: 'question_answer', path: '/', },
-                { title: 'Transactions', icon: 'question_answer', path: '/', },
+                { title: 'Blocks', icon: 'question_answer', path: '/yggdrash/blocks', },
+                { title: 'Transactions', icon: 'question_answer', path: '/yggdrash/txs', },
                 { title: 'Contracts', icon: 'question_answer', path: '/', },
                 { title: 'Validators', icon: 'question_answer', path: '/', }
             ]
@@ -86,8 +86,8 @@
     },
 
     methods: {
-        goHome() {
-            this.$router.push("/")
+        goHome(path) {
+            this.$router.push(path)
             this.$store.commit(TOGGLE_DRAWER)
         },
 

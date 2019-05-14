@@ -3,11 +3,19 @@
           dark
           flat
           app
-          fixed
-          clipped-left
   >
     <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
-
+    <v-btn icon flat to="/">
+      <v-icon>
+        home
+      </v-icon>
+    </v-btn >
+    <v-btn icon flat>
+      <v-icon>
+        arrow_back
+      </v-icon>
+    </v-btn>
+    <v-spacer></v-spacer>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-menu offset-y>

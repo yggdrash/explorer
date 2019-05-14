@@ -1,13 +1,44 @@
 <template>
-  <div>
+  <div style="color: #e6e6e6">
     <h2 class="font-weight-black display-1 py-2 mb-4">TRANSACTION</h2>
-    <span class="title grey--text"> {{ selectedTx.txHash }}</span>
+    <v-chip color="#e6fff2" text-color="black" small>
+      {{ selectedTx.txId }}
+    </v-chip>
+    <v-container class="block-sidebar-wrap">
+      <h2>Overview</h2>
+      <v-chip color="#e6fff2" text-color="black" small>
+        TYPE - Coin
+      </v-chip>
+    </v-container>
     <div class="tx-detail">
-      <v-layout row wrap v-for="(value, props) in selectedTx" :key="props" class="py-2">
-        <v-flex xs12 sm2 class="font-weight-bold">{{ props }}</v-flex>
-        <v-flex xs12 sm10 class="value">{{ value }}</v-flex>
+      <v-layout row
+                wrap
+                v-for="(value, props) in selectedTx" :key="props"
+                class="py-2"
+                v-show="props != 'body' & props != 'type' & props != 'version'">
+        <v-flex xs12 sm2>
+          {{ props }}
+        </v-flex>
+        <v-flex xs12 sm10 class="font-weight-bold value">
+          {{ lengthCheck(value) }}
+        </v-flex>
       </v-layout>
     </div>
+    <v-container class="block-sidebar-wrap py-5">
+      <h2>Receipt</h2>
+        <v-chip color="#e6fff2" text-color="black" small>
+            SUCCESS
+        </v-chip>
+    </v-container>
+    <v-card dark>
+      <v-data-table
+            :headers="receipt"
+            hide-actions
+      >
+        <template slot="items" slot-scope="props">
+        </template>
+      </v-data-table>
+    </v-card>
   </div>
 </template>
 <script>
@@ -17,6 +48,17 @@
   } from '../store/action-types'
 
   export default {
+    data () {
+        return {
+            receipt: [
+                { text: 'ContractVersion', sortable: false },
+                { text: 'From', sortable: false },
+                { text: 'To', sortable: false },
+                { text: 'Value', sortable: false },
+            ],
+            body:[]
+        }
+    },
     computed: {
       ...mapState([
         'selectedTx'
@@ -26,12 +68,20 @@
         'linkBase'
       ]),
     },
-
     mounted() {
       let hash = this.$route.params.hash
       this.$store.dispatch(LOAD_TX, hash)
     },
+    methods: {
+        lengthCheck(v) {
+            if(v.length > 40) {
+                return v.slice(0, 32) + "..." + v.slice(-16)
+            } else {
+                return v
+            }
+        },
 
+    },
     watch: {
       '$route' (to) {
         this.$store.dispatch(LOAD_TX, to.params.hash)
@@ -47,7 +97,6 @@
     .row {
       &:nth-child(odd) {
         border-left: 3px solid #E0E0E0;
-        background-color: white;
       }
       &:nth-child(even) {
         border-left: 3px solid #06b67b;
@@ -62,5 +111,9 @@
         }
       }
     }
+  }
+
+  .v-chip--small {
+    height: 18px;
   }
 </style>

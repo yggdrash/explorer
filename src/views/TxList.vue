@@ -8,15 +8,33 @@
               :headers="headers"
               :items="txs"
               :pagination.sync="pagination"
-              :rows-per-page-items="[20]"
+              :rows-per-page-items="[15]"
       >
         <template slot="items" slot-scope="props">
+          <td>{{ props.item.blockIndex }}</td>
           <td>
             <router-link :to="'txs/' + props.item.txId">
-              {{ props.item.txId }}
+              {{ props.item.txId | shortHash(5) }}...{{ props.item.txId.slice(-4) }}
             </router-link>
           </td>
-          <td>{{ props.item.author | shortHash(32)}}...</td>
+          <td>
+            <router-link :to="'txs/' + props.item.txId">
+              {{ JSON.parse(props.item.body).contractVersion | shortHash(5) }}...
+              {{ JSON.parse(props.item.body).contractVersion.slice(-4) }}
+            </router-link>
+          </td>
+          <td>
+            <router-link :to="'txs/' + props.item.txId">
+              {{ props.item.author | shortHash(5)}}...
+              {{ props.item.author.slice(-4)}}
+            </router-link>
+          </td>
+          <td>
+            <router-link :to="'txs/' + props.item.txId">
+              {{ JSON.parse(props.item.body).params.to | shortHash(5)}}...
+              {{ JSON.parse(props.item.body).params.to.slice(-4)}}
+            </router-link>
+          </td>
           <td>{{ props.item.timestamp | moment('from')}}</td>
         </template>
       </v-data-table>
@@ -33,11 +51,13 @@
     data () {
       return {
         headers: [
-          { text: 'Transaction Id', sortable: false },
-          { text: 'Author', sortable: false },
+          { text: 'Block #', sortable: false },
+          { text: 'TX ID', sortable: false },
+          { text: 'Contract Version', sortable: false },
+          { text: 'From', sortable: false },
+          { text: 'To', sortable: false },
           { text: 'Date', sortable: false },
         ],
-
         pagination: {
           rowsPerPage: 15
         }
@@ -55,17 +75,21 @@
     },
   }
 </script>
-<style lang="scss">
-  .transparent {
-    background-color: white!important;
-    opacity: 0.65;
-    border-color: transparent!important;
-  }
-
+<style lang="scss" scoped>
   .block-detail {
     .row {
       font-family: 'Roboto Mono', monospace;
       border-bottom: #CCC 1px solid;
+    }
+  }
+  td {
+    font-family: 'Roboto Mono', monospace;
+    > a {
+      text-decoration: none;
+      color: #e6e6e6;
+    }
+    > a:hover {
+      color: #66ff99;
     }
   }
 </style>

@@ -3,7 +3,6 @@
     <v-card-title primary-title>
       <v-layout column>
         <v-flex class="headline font-weight-bold">{{ branchInfo.name }}</v-flex>
-        <v-flex class="desc">{{ branchInfo.description }}</v-flex>
       </v-layout>
     </v-card-title>
     <v-card-actions>
@@ -12,6 +11,7 @@
   </v-card>
 </template>
 <script>
+
   export default {
     props: [
         'branchInfo'
@@ -20,7 +20,7 @@
 </script>
 <style lang="scss" scoped>
   .v-card {
-    background-color: rgba( 66, 66, 66, 0.5 );
+    background-color: rgba( 66, 66, 66, 0.7 );
     margin: 15px;
     border-radius: 7px;
   }

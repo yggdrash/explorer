@@ -14,11 +14,10 @@
       </td>
       <td>
         <router-link
-                :to="`${linkBase}/blocks/${props.item.blockId}`">
-          {{ props.item.blockId | shortHash(16) }}...
+                :to="`${linkBase}/blocks/${props.item.index}`">
+          {{ props.item.author | shortHash(7) }}...{{ props.item.author.slice(-5) }}
         </router-link>
       </td>
-      <td>{{ props.item.author | shortHash(16) }}</td>
       <td>{{ props.item.timestamp | moment('from') }}</td>
       <td>{{ props.item.txSize }}</td>
     </template>
@@ -30,13 +29,12 @@
     data: () => ({
       headers: [
         { text: 'Block #', sortable: false },
-        { text: 'Block Hash', sortable: false },
         { text: 'Block Proposer', sortable: false },
         { text: 'Date', sortable: false },
         { text: '# of TXs', sortable: false }
       ],
       pagination: {
-        rowsPerPage: 20
+        rowsPerPage: 7
       }
     }),
   }
@@ -47,6 +45,8 @@
     /*color: white;*/
     > a {
       text-decoration: none;
+      color: #e6e6e6;
     }
+    > a:hover { color: #66ff99; }
   }
 </style>

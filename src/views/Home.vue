@@ -17,7 +17,8 @@
         ></v-text-field>
         </v-flex>
         <v-flex class="mb-5">
-          <DashboardCardList :branches="branchesExcludeStem" max="2"/>
+          <!--<DashboardCardList :branches="branchesExcludeStem" max="2"/>-->
+          <ChainOverview/>
         </v-flex>
       </v-layout>
     </v-slide-y-transition>
@@ -28,7 +29,7 @@
 <script>
   import { mapState, mapGetters } from 'vuex'
   import DashboardCardList from '../components/DashboardCardList'
-  import IntegratedBlockWidget from '../components/IntegratedBlockWidget'
+  import ChainOverview from './ChainOverview'
   import {
     SET_CURRENT_BRANCHE
   } from '../store/mutation-types'
@@ -39,7 +40,7 @@
   export default {
     components: {
       DashboardCardList,
-      IntegratedBlockWidget,
+      ChainOverview,
     },
 
     computed: {
