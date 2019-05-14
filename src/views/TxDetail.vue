@@ -19,7 +19,14 @@
         <v-flex xs12 sm2>
           {{ props }}
         </v-flex>
-        <v-flex xs12 sm10 class="font-weight-bold value">
+        <v-flex xs12 sm10 class="font-weight-bold value"
+                v-if="props == 'timestamp'"
+        >
+          {{ lengthCheck(value) | moment('from') }}
+        </v-flex>
+        <v-flex xs12 sm10 class="font-weight-bold value"
+                v-else
+        >
           {{ lengthCheck(value) }}
         </v-flex>
       </v-layout>
@@ -34,6 +41,7 @@
       <v-data-table
             :headers="receipt"
             hide-actions
+            :items="test(selectedTx)"
       >
         <template slot="items" slot-scope="props">
         </template>
@@ -56,7 +64,7 @@
                 { text: 'To', sortable: false },
                 { text: 'Value', sortable: false },
             ],
-            body:[]
+            body: []
         }
     },
     computed: {
@@ -80,7 +88,13 @@
                 return v
             }
         },
-
+        test(tx) {
+            console.log(tx)
+            // console.log(JSON.parse(tx.body).contractVersion)
+            // this.body.push(JSON.parse(tx.body).contractVersion)
+            // this.body.push(tx)
+            // console.log(this.body)
+        }
     },
     watch: {
       '$route' (to) {

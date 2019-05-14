@@ -11,7 +11,11 @@
               :rows-per-page-items="[15]"
       >
         <template slot="items" slot-scope="props">
-          <td>{{ props.item.blockIndex }}</td>
+          <td>
+            <router-link :to="'blocks/' + props.item.blockIndex">
+              {{ props.item.blockIndex }}
+            </router-link>
+          </td>
           <td>
             <router-link :to="'txs/' + props.item.txId">
               {{ props.item.txId | shortHash(5) }}...{{ props.item.txId.slice(-4) }}
@@ -35,7 +39,7 @@
               {{ JSON.parse(props.item.body).params.to.slice(-4)}}
             </router-link>
           </td>
-          <td>{{ props.item.timestamp | moment('from')}}</td>
+          <td>{{ props.item.timestamp | moment('from') }}</td>
         </template>
       </v-data-table>
     </v-card>

@@ -24,6 +24,9 @@ import { mapGetters } from 'vuex'
 import {
   SET_CURRENT_BRANCHE
 } from './store/mutation-types'
+import {
+    LOAD_BRANCHES
+} from './store/action-types'
 
 export default {
   name: 'App',
@@ -47,7 +50,7 @@ export default {
   },
 
   created () {
-    // this.$store.dispatch(LOAD_BRANCHES)
+    this.$store.dispatch(LOAD_BRANCHES)
   },
 
   watch: {

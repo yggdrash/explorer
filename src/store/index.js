@@ -13,7 +13,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    loading: false,
+    loading: true,
     drawer: null,
     statesOfBranch: [],
     selectedTx: {},
@@ -157,9 +157,9 @@ export default new Vuex.Store({
       commit(mTypes.SET_BLOCKS, [...state.blocks, ...payload])
     },
 
-    async [aTypes.LOAD_BRANCHES] ({ commit }) {
+    async [aTypes.LOAD_BRANCHES] ({ commit, state }) {
       commit(mTypes.LOADING, true)
-      const res = await request.getBranches()
+      const res = await requestEs.getBlocks(state.currentBranch.id)
       let payload = res.data.map(item => {
         if(item.symbol === 'STEM' || item.symbol === 'YEED') {
           item['active'] = true
