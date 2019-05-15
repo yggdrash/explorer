@@ -18,7 +18,9 @@ export default new Router({
         { path: 'blocks/:blockId', component: () => import('./views/BlockDetail') },
         { path: 'txs', component: () => import('./views/TxList')},
         { path: 'txs/:txId', component: () => import('./views/TxDetail')},
-        { path: 'contract', component: () => import('./views/Contract') }
+        { path: 'contract', component: () => import('./views/Contract') },
+        { path: 'validator/:account', component: () => import('./views/ValidatorDetail')},
+        { path: 'account/:account', component: () => import('./views/AccountDetail')},
       ]
     },
     {

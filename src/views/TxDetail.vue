@@ -31,13 +31,16 @@
         </v-flex>
       </v-layout>
     </div>
-    <v-container class="block-sidebar-wrap py-5">
+    <v-container class="block-sidebar-wrap py-4">
       <h2>Receipt</h2>
         <v-chip color="#e6fff2" text-color="black" small>
             SUCCESS
         </v-chip>
     </v-container>
-    <v-card dark>
+    <v-card
+            dark
+            class="py-2"
+    >
       <v-data-table
             :headers="receipt"
             hide-actions

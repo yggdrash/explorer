@@ -28,13 +28,13 @@
             </router-link>
           </td>
           <td>
-            <router-link :to="'txs/' + props.item.txId">
+            <router-link :to="'account/' + props.item.author">
               {{ props.item.author | shortHash(5)}}...
               {{ props.item.author.slice(-4)}}
             </router-link>
           </td>
           <td>
-            <router-link :to="'txs/' + props.item.txId">
+            <router-link :to="'account/' + JSON.parse(props.item.body).params.to">
               {{ JSON.parse(props.item.body).params.to | shortHash(5)}}...
               {{ JSON.parse(props.item.body).params.to.slice(-4)}}
             </router-link>

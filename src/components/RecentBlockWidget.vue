@@ -14,7 +14,7 @@
       </td>
       <td>
         <router-link
-                :to="`${linkBase}/blocks/${props.item.index}`">
+                :to="`${linkBase}/validator/${props.item.author}`">
           {{ props.item.author | shortHash(7) }}...{{ props.item.author.slice(-5) }}
         </router-link>
       </td>

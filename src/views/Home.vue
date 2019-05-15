@@ -17,7 +17,6 @@
         ></v-text-field>
         </v-flex>
         <v-flex class="mb-5">
-          <!--<DashboardCardList :branches="branchesExcludeStem" max="2"/>-->
           <ChainOverview/>
         </v-flex>
       </v-layout>
@@ -28,7 +27,6 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <script>
   import { mapState, mapGetters } from 'vuex'
-  import DashboardCardList from '../components/DashboardCardList'
   import ChainOverview from './ChainOverview'
   import {
     SET_CURRENT_BRANCHE
@@ -39,7 +37,6 @@
 
   export default {
     components: {
-      DashboardCardList,
       ChainOverview,
     },
 

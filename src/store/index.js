@@ -212,7 +212,7 @@ export default new Vuex.Store({
       let secondRes = []
       let mergedBlocks = []
       if(activeBrancheIds.length > 0) {
-        firstRes = await request.getBlocks(activeBrancheIds[0]);
+        firstRes = await requestEs.getBlocks(activeBrancheIds[0]);
         mergedBlocks = [
           ...mergedBlocks,
           ...firstRes.data,
@@ -220,7 +220,7 @@ export default new Vuex.Store({
       }
 
       if(activeBrancheIds.length > 1) {
-        secondRes = await request.getBlocks(activeBrancheIds[1]);
+        secondRes = await requestEs.getBlocks(activeBrancheIds[1]);
         mergedBlocks = [
           ...mergedBlocks,
           ...secondRes.data,

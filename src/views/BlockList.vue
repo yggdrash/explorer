@@ -26,7 +26,7 @@
               </router-link>
             </td>
             <td>
-              <router-link :to="'blocks/' + props.item.index">
+              <router-link :to="'validator/' + props.item.author">
                 {{ props.item.author | shortHash(5)}}...{{ props.item.author.slice(-4)}}
               </router-link>
             </td>
