@@ -18,8 +18,8 @@
           {{ props.item.author | shortHash(7) }}...{{ props.item.author.slice(-5) }}
         </router-link>
       </td>
-      <td>{{ props.item.timestamp | moment('from') }}</td>
       <td>{{ props.item.txSize }}</td>
+      <td>{{ props.item.timestamp | moment('from') }}</td>
     </template>
   </v-data-table>
 </template>
@@ -30,8 +30,8 @@
       headers: [
         { text: 'Block #', sortable: false },
         { text: 'Block Proposer', sortable: false },
+        { text: '# of TXs', sortable: false },
         { text: 'Date', sortable: false },
-        { text: '# of TXs', sortable: false }
       ],
       pagination: {
         rowsPerPage: 7

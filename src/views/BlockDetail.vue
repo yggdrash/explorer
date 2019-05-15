@@ -77,6 +77,11 @@
                   {{ props.item.issuer | shortHash(7)}}...{{ props.item.issuer.slice(-5) }}
                 </router-link>
               </td>
+                <td>
+                    <v-icon>
+                        trending_flat
+                    </v-icon>
+                </td>
               <td>
                 <router-link :to="`${linkBase}/txs/${props.item.txId}`">
                   {{ JSON.parse(props.item.body).params.to | shortHash(7)}}...
@@ -105,6 +110,7 @@
                 { text: 'TX ID', sortable: false },
                 { text: 'Contract Version', sortable: false },
                 { text: 'From', sortable: false },
+                { text: '', sortable: false },
                 { text: 'To', sortable: false },
                 { text: 'Value', sortable: false },
             ]

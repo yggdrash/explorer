@@ -44,9 +44,34 @@
       <v-data-table
             :headers="receipt"
             hide-actions
-            :items="test(selectedTx)"
+            :items="[selectedTx]"
       >
         <template slot="items" slot-scope="props">
+          <td>
+            {{ JSON.parse(props.item.body).contractVersion | shortHash(7)}}...
+            {{ JSON.parse(props.item.body).contractVersion.slice(-5)}}
+          </td>
+          <td>
+            <router-link
+                    :to="`${linkBase}/account/${props.item.author}`">
+              {{ props.item.author | shortHash(7)}}...{{ props.item.author.slice(-5)}}
+            </router-link>
+          </td>
+          <td>
+            <v-icon>
+              trending_flat
+            </v-icon>
+          </td>
+          <td>
+            <router-link
+                    :to="`${linkBase}/account/${props.item.author}`">
+              {{ JSON.parse(props.item.body).params.to | shortHash(7)}}...
+              {{ JSON.parse(props.item.body).params.to.slice(-5) }}
+            </router-link>
+          </td>
+          <td>
+            {{ JSON.parse(props.item.body).params.amount }}
+          </td>
         </template>
       </v-data-table>
     </v-card>
@@ -64,6 +89,7 @@
             receipt: [
                 { text: 'ContractVersion', sortable: false },
                 { text: 'From', sortable: false },
+                { text: '', sortable: false },
                 { text: 'To', sortable: false },
                 { text: 'Value', sortable: false },
             ],
@@ -92,7 +118,6 @@
             }
         },
         test(tx) {
-            console.log(tx)
             // console.log(JSON.parse(tx.body).contractVersion)
             // this.body.push(JSON.parse(tx.body).contractVersion)
             // this.body.push(tx)
@@ -132,5 +157,14 @@
 
   .v-chip--small {
     height: 18px;
+  }
+
+  td {
+    font-family: 'Roboto Mono', monospace;
+    > a {
+      text-decoration: none;
+      color: #e6e6e6;
+    }
+    > a:hover { color: #66ff99; }
   }
 </style>

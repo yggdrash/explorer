@@ -5,8 +5,8 @@
           <!--<CountCardList :items="countItems"></CountCardList>-->
         <!--</v-flex>-->
         <v-flex>
-          <v-layout row wrap>
-            <v-flex sm7 xs12 order-xs2 order-sm-1 style="color: #e6e6e6">
+          <v-layout row wrap >
+            <v-flex sm6 xs12 order-xs2 order-sm-1 style="color: #e6e6e6" pa-1>
               <v-flex mb-4 >
                 <h2 class="headline font-weight-medium mb-2">Blocks</h2>
                 <v-card
@@ -21,9 +21,23 @@
                 </div>
               </v-flex>
               <v-flex mb-4>
-                <h2 class="headline font-weight-medium mb-2">Transactions</h2>
+                <h2 class="headline font-weight-medium mb-2" style="color: #e6e6e6">Validators</h2>
                 <v-card
-                    dark
+                        dark
+                >
+                  <RecentValidatorWidget :txs="txs" :linkBase="linkBase"/>
+                </v-card>
+              </v-flex>
+              <v-container class="Validators-sidebar-wrap">
+                <div>
+                </div>
+              </v-container>
+            </v-flex>
+            <v-flex sm6 xs12 order-xs1 order-sm2 pa-1>
+              <v-flex mb-4>
+                <h2 class="headline font-weight-medium mb-2" style="color: #e6e6e6">Transactions</h2>
+                <v-card
+                        dark
                 >
                   <RecentTxWidget :txs="txs" :linkBase="linkBase"/>
                 </v-card>
@@ -32,16 +46,6 @@
                     See all transactions</v-btn>
                 </div>
               </v-flex>
-            </v-flex>
-
-            <v-flex sm5 xs12 order-xs1 order-sm2>
-              <v-flex mb-4>
-                <h2 class="headline font-weight-medium mb-2" style="color: #e6e6e6">Validators</h2>
-              </v-flex>
-              <v-container class="Validators-sidebar-wrap">
-                <div>
-                </div>
-              </v-container>
             </v-flex>
 
           </v-layout>
@@ -56,6 +60,7 @@ import { mapState, mapGetters } from 'vuex'
 import CountCardList from '../components/CountCardList'
 import RecentBlockWidget from '../components/RecentBlockWidget'
 import RecentTxWidget from '../components/RecentTxWidget'
+import RecentValidatorWidget from '../components/RecentValidatorWidget'
 import BranchSidebar from '../components/BranchSidebar'
 import {
   LOAD_BLOCKS,
@@ -68,6 +73,7 @@ export default {
     CountCardList,
     RecentBlockWidget,
     RecentTxWidget,
+    RecentValidatorWidget,
     BranchSidebar,
   },
   computed: {
