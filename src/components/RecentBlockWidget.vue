@@ -2,6 +2,7 @@
   <v-data-table
           :headers="headers"
           :items="blocks"
+          :loading="loading"
           :pagination.sync="pagination"
           hide-actions
   >
@@ -27,14 +28,15 @@
   export default {
     props: [ 'blocks', 'linkBase' ],
     data: () => ({
-      headers: [
+        loading: false,
+        headers: [
         { text: 'Block #', sortable: false },
         { text: 'Block Proposer', sortable: false },
         { text: '# of TXs', sortable: false },
         { text: 'Date', sortable: false },
       ],
       pagination: {
-        rowsPerPage: 7
+        rowsPerPage: 5
       }
     }),
   }
@@ -42,7 +44,6 @@
 <style lang="scss" scoped>
   td {
     font-family: 'Roboto Mono', monospace;
-    /*color: white;*/
     > a {
       text-decoration: none;
       color: #e6e6e6;

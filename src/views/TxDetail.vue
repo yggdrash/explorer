@@ -117,12 +117,6 @@
                 return v
             }
         },
-        test(tx) {
-            // console.log(JSON.parse(tx.body).contractVersion)
-            // this.body.push(JSON.parse(tx.body).contractVersion)
-            // this.body.push(tx)
-            // console.log(this.body)
-        }
     },
     watch: {
       '$route' (to) {

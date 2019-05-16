@@ -1,51 +1,55 @@
 <template>
     <v-slide-y-transition mode="out-in">
-      <v-layout column>
-        <!--<v-flex mb-4>-->
-          <!--<CountCardList :items="countItems"></CountCardList>-->
-        <!--</v-flex>-->
+      <v-layout column style="color: #e6e6e6">
         <v-flex>
           <v-layout row wrap >
-            <v-flex sm6 xs12 order-xs2 order-sm-1 style="color: #e6e6e6" pa-1>
+            <v-flex sm6 xs12 order-xs2 order-sm-1 pa-1>
               <v-flex mb-4 >
-                <h2 class="headline font-weight-medium mb-2">Blocks</h2>
-                <v-card
-                    dark
-                    tile
-                >
+                <h2 class="headline font-weight-medium mb-2">Most Recent Blocks</h2>
+                <v-card dark tile>
                   <RecentBlockWidget :blocks="blocks" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
                   <v-btn flat :to="`${linkBase}/blocks`" style="text-decoration: underline; color: #e6e6e6">
-                    See all blocks</v-btn>
+                    View all blocks</v-btn>
                 </div>
               </v-flex>
-              <v-flex mb-4>
-                <h2 class="headline font-weight-medium mb-2" style="color: #e6e6e6">Validators</h2>
-                <v-card
-                        dark
-                >
-                  <RecentValidatorWidget :txs="txs" :linkBase="linkBase"/>
-                </v-card>
-              </v-flex>
-              <v-container class="Validators-sidebar-wrap">
-                <div>
-                </div>
-              </v-container>
+              <!--<v-flex mb-4>-->
+                <!--<h2 class="headline font-weight-medium mb-2" >Validators</h2>-->
+                <!--<v-card dark>-->
+                  <!--<RecentValidatorWidget :txs="txs" :linkBase="linkBase"/>-->
+                <!--</v-card>-->
+              <!--</v-flex>-->
             </v-flex>
             <v-flex sm6 xs12 order-xs1 order-sm2 pa-1>
+              <!--<v-container class="sidebar-wrap">-->
+                <!--<div>-->
+                  <!--<div style="">-->
+                    <!--<h3>Branch</h3>-->
+                    <!--<template>-->
+                      <!--<kbd> > YGGDRASH </kbd>-->
+                      <!--<kbd> > {{ currentBranch.id }}</kbd>-->
+                    <!--</template>-->
+                    <!--<BranchSidebar :info="currentBranchInfo"/>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</v-container>-->
               <v-flex mb-4>
-                <h2 class="headline font-weight-medium mb-2" style="color: #e6e6e6">Transactions</h2>
-                <v-card
-                        dark
-                >
+                <h2 class="headline font-weight-medium mb-2" >Most Recent Transactions</h2>
+                <v-card dark>
                   <RecentTxWidget :txs="txs" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
                   <v-btn flat :to="`${linkBase}/txs`" style="text-decoration: underline; color: #e6e6e6">
-                    See all transactions</v-btn>
+                    View all transactions</v-btn>
                 </div>
               </v-flex>
+              <!--<v-flex mb-4>-->
+                <!--<h2 class="headline font-weight-medium mb-2" >Contracts</h2>-->
+                <!--<v-card dark>-->
+                  <!--<RecentContractWidget :txs="txs" :linkBase="linkBase"/>-->
+                <!--</v-card>-->
+              <!--</v-flex>-->
             </v-flex>
 
           </v-layout>
@@ -60,12 +64,12 @@ import { mapState, mapGetters } from 'vuex'
 import CountCardList from '../components/CountCardList'
 import RecentBlockWidget from '../components/RecentBlockWidget'
 import RecentTxWidget from '../components/RecentTxWidget'
+import RecentContractWidget from '../components/RecentContractWidget'
 import RecentValidatorWidget from '../components/RecentValidatorWidget'
 import BranchSidebar from '../components/BranchSidebar'
 import {
   LOAD_BLOCKS,
   LOAD_TXS,
-  LOAD_STATES,
 } from '../store/action-types'
 
 export default {
@@ -73,6 +77,7 @@ export default {
     CountCardList,
     RecentBlockWidget,
     RecentTxWidget,
+    RecentContractWidget,
     RecentValidatorWidget,
     BranchSidebar,
   },
@@ -144,14 +149,12 @@ export default {
   mounted () {
     this.$store.dispatch(LOAD_BLOCKS)
     this.$store.dispatch(LOAD_TXS)
-    this.$store.dispatch(LOAD_STATES)
   },
 
   watch: {
     currentBranch: function() {
       this.$store.dispatch(LOAD_BLOCKS)
       this.$store.dispatch(LOAD_TXS)
-      this.$store.dispatch(LOAD_STATES)
     },
   },
 }

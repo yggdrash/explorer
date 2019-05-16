@@ -112,10 +112,10 @@ export default new Vuex.Store({
 
   actions: {
     async [aTypes.LOAD_STATES] ({ commit, state }) {
-      if(!state.currentBranch.active) {
-        commit(mTypes.SET_STATES, [])
-        return
-      }
+      // if(!state.currentBranch.active) {
+      //   commit(mTypes.SET_STATES, [])
+      //   return
+      // }
       const res = await request.getStates(state.currentBranch.id)
       let payload = res.data
       commit(mTypes.SET_STATES, payload)
@@ -152,7 +152,7 @@ export default new Vuex.Store({
 
     async [aTypes.LOAD_MORE_BLOCKS] ({ commit, state }, offset) {
       if (offset === 0) return
-      const res = await request.getBlocks(state.currentBranch.id, offset, 5)
+      const res = await requestEs.getBlocks(state.currentBranch.id, offset, 5)
       let payload = res.data
       commit(mTypes.SET_BLOCKS, [...state.blocks, ...payload])
     },
@@ -189,6 +189,7 @@ export default new Vuex.Store({
 
     async [aTypes.LOAD_TX] ({ commit, state}, id) {
       let foundTx
+
       if(state.txs) {
         foundTx = await state.txs.find(tx => {
           return id === tx.txHash
@@ -200,8 +201,10 @@ export default new Vuex.Store({
         return
       }
 
-      const res = await request.getTx(state.currentBranch.id, id)
+      // const res = await request.getTx(state.currentBranch.id, id)
+      const res = await requestEs.getTxsByBlockId(id)
       foundTx = res.data
+
       commit(mTypes.SELECT_TX, foundTx)
     },
 

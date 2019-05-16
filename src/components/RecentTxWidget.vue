@@ -33,7 +33,7 @@
         { text: 'Date', sortable: false },
       ],
       pagination: {
-        rowsPerPage: 7
+        rowsPerPage: 5
       }
     }),
   }

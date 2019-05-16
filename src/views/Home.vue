@@ -51,7 +51,7 @@
     },
 
     mounted() {
-      this.$store.commit(SET_CURRENT_BRANCHE, {id: '', name: 'HOME'})
+      this.$store.commit(SET_CURRENT_BRANCHE, {id: `98790b39c9010759bf3a588eb2d5ea5467764b8e`, name: 'HOME'})
       this.$store.dispatch(LOAD_MERGED_BLOCKS)
     }
   }
