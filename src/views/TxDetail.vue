@@ -1,5 +1,5 @@
 <template>
-  <div style="color: #e6e6e6">
+  <div>
     <h2 class="font-weight-black display-1 py-2 mb-4">TRANSACTION</h2>
     <v-chip color="#e6fff2" text-color="black" small>
       {{ selectedTx.txId }}
@@ -37,10 +37,7 @@
             SUCCESS
         </v-chip>
     </v-container>
-    <v-card
-            dark
-            class="py-2"
-    >
+    <v-card class="py-2">
       <v-data-table
             :headers="receipt"
             hide-actions
@@ -133,6 +130,7 @@
     .row {
       &:nth-child(odd) {
         border-left: 3px solid #E0E0E0;
+        background-color: white;
       }
       &:nth-child(even) {
         border-left: 3px solid #06b67b;
@@ -157,7 +155,6 @@
     font-family: 'Roboto Mono', monospace;
     > a {
       text-decoration: none;
-      color: #e6e6e6;
     }
     > a:hover { color: #66ff99; }
   }

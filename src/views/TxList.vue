@@ -1,9 +1,7 @@
 <template>
   <div>
-    <h2 class="display-1 font-weight-bold mb-2" style="color: #e6e6e6">Transactions</h2>
-    <v-card
-      dark
-    >
+    <h2 class="display-1 font-weight-bold mb-2">Transactions</h2>
+    <v-card>
       <v-data-table
               :headers="headers"
               :items="txs"
@@ -90,7 +88,6 @@
     font-family: 'Roboto Mono', monospace;
     > a {
       text-decoration: none;
-      color: #e6e6e6;
     }
     > a:hover {
       color: #66ff99;

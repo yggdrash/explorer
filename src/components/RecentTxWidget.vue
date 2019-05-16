@@ -43,7 +43,6 @@
     font-family: 'Roboto Mono', monospace;
     > a {
       text-decoration: none;
-      color: #e6e6e6;
     }
     > a:hover { color: #66ff99; }
   }

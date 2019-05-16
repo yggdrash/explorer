@@ -5,7 +5,7 @@
         <v-flex mb-4>
           <v-layout align-end>
             <v-flex class="branch-name">
-              <span class="font-weight-black display-2 mr-2" style="color: #e6e6e6;">
+              <span class="font-weight-black display-2 mr-2" >
                 {{ currentBranch.name }}</span>
             </v-flex>
             <v-flex>

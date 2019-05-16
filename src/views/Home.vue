@@ -3,12 +3,11 @@
     <v-slide-y-transition mode="out-in">
       <v-layout column>
         <v-flex mb-5 class="text-xs-center">
-          <span class="display-2 mr-2" style="color: #e6e6e6;">YGGDRASH Blockchain Explorer</span>
+          <span class="display-2 mr-2">YGGDRASH Blockchain Explorer</span>
         </v-flex>
         <v-flex mb-5>
         <v-text-field
                 flat
-                dark
                 counter="130"
                 single-line
                 hide-details

@@ -1,16 +1,12 @@
 <template>
-  <v-toolbar
-          dark
-          flat
-          app
-  >
+  <v-toolbar flat app color="primary" fixed clipped-left>
     <v-toolbar-side-icon @click.stop="toggleDrawer"></v-toolbar-side-icon>
-    <v-btn icon flat to="/">
-      <v-icon>
+    <v-btn icon flat >
+      <v-icon @click="goHome">
         home
       </v-icon>
     </v-btn >
-    <v-btn icon flat>
+    <v-btn icon flat >
       <v-icon>
         arrow_back
       </v-icon>
@@ -47,6 +43,9 @@ export default {
     },
 
   methods: {
+    goHome() {
+        this.$router.push("/")
+    },
     toggleDrawer() {
       this.$store.commit(TOGGLE_DRAWER)
     }
@@ -54,9 +53,8 @@ export default {
 }
 </script>
 
-<style scoped>
-  .v-toolbar {
-    height: 60px;
-    opacity: 0.8;
+<style lang="scss" scoped>
+  .v-btn {
+    color: white;
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div style="color: #e6e6e6">
+  <div >
     <h2 class="font-weight-black display-1 py-2 mb-4" >BLOCK</h2>
-    <span class="font-weight-black display-1 py-2 mb-4" style="color: #e6fff2" > #{{ block.index }}</span>
+    <span class="font-weight-black display-1 py-2 mb-4" > #{{ block.index }}</span>
     <v-layout row wrap>
       <v-flex sm8 xs12 order-xs2 order-sm-1>
         <v-container class="block-sidebar-wrap">
@@ -40,22 +40,19 @@
              :to="`${linkBase}/blocks/${block.index - 1}`"
              :disabled="isLast"
       >
-        <v-icon color="#ffd6cc">arrow_back</v-icon>
+        <v-icon >arrow_back</v-icon>
       </v-btn>
       <span class="pipe">&nbsp;</span>
       <v-btn flat color="primary"
              :to="`${linkBase}/blocks/${block.index + 1}`"
              :disabled="isFirst"
       >
-        <v-icon color="#ffd6cc">arrow_forward</v-icon>
+        <v-icon >arrow_forward</v-icon>
       </v-btn>
     </div>
     <div class="block-sidebar-wrap py-5">
       <h2 class="py-4">Transactions</h2>
-        <v-card
-                dark
-                class="py-2"
-        >
+        <v-card class="py-2">
           <v-data-table
                   :headers="transactions"
                   :items="txsInBlock"
@@ -166,6 +163,7 @@
     .row {
       &:nth-child(odd) {
         border-left: 3px solid #E0E0E0;
+        background-color: white;
       }
       &:nth-child(even) {
         border-left: 3px solid #06b67b;
@@ -186,14 +184,13 @@
     display: inline-block;
     margin: 15px 0;
     width: 2px;
-    background-color: #e6e6e6;
+    background-color: #06b67b;
   }
 
   td {
     font-family: 'Roboto Mono', monospace;
     > a {
       text-decoration: none;
-      color: #e6e6e6;
     }
     > a:hover {
       color: #66ff99;

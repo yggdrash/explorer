@@ -1,16 +1,16 @@
 <template>
     <v-slide-y-transition mode="out-in">
-      <v-layout column style="color: #e6e6e6">
+      <v-layout column >
         <v-flex>
           <v-layout row wrap >
             <v-flex sm6 xs12 order-xs2 order-sm-1 pa-1>
               <v-flex mb-4 >
                 <h2 class="headline font-weight-medium mb-2">Most Recent Blocks</h2>
-                <v-card dark tile>
+                <v-card >
                   <RecentBlockWidget :blocks="blocks" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
-                  <v-btn flat :to="`${linkBase}/blocks`" style="text-decoration: underline; color: #e6e6e6">
+                  <v-btn flat :to="`${linkBase}/blocks`" style="text-decoration: underline;">
                     View all blocks</v-btn>
                 </div>
               </v-flex>
@@ -36,11 +36,11 @@
               <!--</v-container>-->
               <v-flex mb-4>
                 <h2 class="headline font-weight-medium mb-2" >Most Recent Transactions</h2>
-                <v-card dark>
+                <v-card>
                   <RecentTxWidget :txs="txs" :linkBase="linkBase"/>
                 </v-card>
                 <div class="text-xs-center mt-3">
-                  <v-btn flat :to="`${linkBase}/txs`" style="text-decoration: underline; color: #e6e6e6">
+                  <v-btn flat :to="`${linkBase}/txs`" style="text-decoration: underline;">
                     View all transactions</v-btn>
                 </div>
               </v-flex>

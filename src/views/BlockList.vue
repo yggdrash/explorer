@@ -1,10 +1,7 @@
 <template>
   <div>
-    <h2 class="display-1 font-weight-bold mb-2" style="color: #e6e6e6">Blocks</h2>
-    <v-card
-      dark
-      class="member__account flexcard"
-    >
+    <h2 class="display-1 font-weight-bold mb-2" >Blocks</h2>
+    <v-card class="member__account flexcard">
       <template>
         <v-data-table
                 :headers="headers"
@@ -106,7 +103,6 @@
     font-family: 'Roboto Mono', monospace;
     > a {
       text-decoration: none;
-      color: #e6e6e6;
     }
     > a:hover { color: #66ff99; }
   }

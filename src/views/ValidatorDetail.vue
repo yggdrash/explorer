@@ -1,5 +1,5 @@
 <template>
-  <div style="color: #e6e6e6">
+  <div >
     <h2 class="font-weight-black display-1 py-2 mb-4" >VALIDATOR</h2>
     <v-chip color="#e6fff2" text-color="black" small>
       {{ block.author }}
@@ -31,7 +31,7 @@
 
     <div class="block-sidebar-wrap py-5">
       <h2>Transactions</h2>
-        <v-card dark>
+        <v-card>
           <v-data-table
                   :headers="transactions"
                   :items="txsInBlock"
@@ -168,7 +168,6 @@
     font-family: 'Roboto Mono', monospace;
     > a {
       text-decoration: none;
-      color: #e6e6e6;
     }
     > a:hover {
       color: #66ff99;
