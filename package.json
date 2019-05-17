@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "echarts": "^4.2.1",
     "sockjs-client": "^1.1.5",
+    "v-charts": "^1.19.0",
     "vue": "^2.5.17",
     "vue-clipboard2": "^0.3.0",
     "vue-moment": "^4.0.0",

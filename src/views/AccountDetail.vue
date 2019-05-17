@@ -37,10 +37,8 @@
                 </router-link>
               </td>
               <td>
-                <router-link :to="`${linkBase}/txs/${props.item.txId}`">
                   {{ JSON.parse(props.item.body).contractVersion | shortHash(7) }}...
                   {{ JSON.parse(props.item.body).contractVersion.slice(-5) }}
-                </router-link>
               </td>
               <td>
                 <router-link :to="`${linkBase}/txs/${props.item.txId}`">

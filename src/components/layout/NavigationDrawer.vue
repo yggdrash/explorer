@@ -9,8 +9,9 @@
           @input="listenInput"
   >
     <v-list class="pa-3">
-      <v-list-tile avatar>
-        <v-list-tile-avatar >
+      <v-list-tile
+              class="justify-center">
+        <v-list-tile-avatar>
         </v-list-tile-avatar>
       </v-list-tile>
     </v-list>

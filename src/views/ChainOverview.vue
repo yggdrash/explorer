@@ -14,12 +14,14 @@
                     View all blocks</v-btn>
                 </div>
               </v-flex>
-              <!--<v-flex mb-4>-->
-                <!--<h2 class="headline font-weight-medium mb-2" >Validators</h2>-->
-                <!--<v-card dark>-->
-                  <!--<RecentValidatorWidget :txs="txs" :linkBase="linkBase"/>-->
-                <!--</v-card>-->
-              <!--</v-flex>-->
+              <v-flex mb-4>
+                <h2 class="headline font-weight-medium mb-2" >Transaction History (weekly) </h2>
+                <v-card>
+                  <div>
+                    <ve-line :data="chartData"></ve-line>
+                  </div>
+                </v-card>
+              </v-flex>
             </v-flex>
             <v-flex sm6 xs12 order-xs1 order-sm2 pa-1>
               <!--<v-container class="sidebar-wrap">-->
@@ -71,6 +73,7 @@ import {
   LOAD_BLOCKS,
   LOAD_TXS,
 } from '../store/action-types'
+import VeLine from 'v-charts/lib/line.common'
 
 export default {
   components: {
@@ -80,7 +83,27 @@ export default {
     RecentContractWidget,
     RecentValidatorWidget,
     BranchSidebar,
+    VeLine,
   },
+    data () {
+      //TODO: 현재 날짜에 -7 weekly data setting
+        // tx timestamp query
+        // this.time = `${new Date().getMonth() + 1} - ${new Date().getData()}`
+        return {
+            chartData: {
+                columns: ['date', 'TX'],
+                rows: [
+                    {'date': '05-11', 'TX': 1231},
+                    {'date': '05-12', 'TX': 1231},
+                    {'date': '05-13', 'TX': 1223},
+                    {'date': '05-14', 'TX': 2123},
+                    {'date': '05-15', 'TX': 4123},
+                    {'date': '05-16', 'TX': 3123},
+                    {'date': '05-17', 'TX': 8000}
+                ]
+            }
+        }
+    },
   computed: {
     ...mapState([
       'blocks',

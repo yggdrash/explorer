@@ -20,10 +20,8 @@
             </router-link>
           </td>
           <td>
-            <router-link :to="'txs/' + props.item.txId">
               {{ JSON.parse(props.item.body).contractVersion | shortHash(5) }}...
               {{ JSON.parse(props.item.body).contractVersion.slice(-4) }}
-            </router-link>
           </td>
           <td>
             <router-link :to="'account/' + props.item.author">

@@ -110,7 +110,6 @@
                 { text: 'To', sortable: false },
                 { text: 'Value', sortable: false },
             ],
-            body: []
         }
     },
     computed: {
