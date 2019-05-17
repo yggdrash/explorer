@@ -53,7 +53,7 @@ export async function getTxsByBlockId (blockId) {
 
 export function getBlocks (branchId, offset) {
   if (offset) {
-    return request.get(`${API_HOST}/blocks?from=${offset}`);
+    return request.get(`${API_HOST}/blocks?index=${offset}`);
   } else {
     return request.get(`${API_HOST}/blocks`);
   }

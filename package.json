@@ -12,6 +12,7 @@
     "axios": "^0.18.0",
     "sockjs-client": "^1.1.5",
     "vue": "^2.5.17",
+    "vue-clipboard2": "^0.3.0",
     "vue-moment": "^4.0.0",
     "vue-router": "^3.0.1",
     "vuetify": "^1.0.19",

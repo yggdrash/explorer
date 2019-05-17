@@ -67,6 +67,7 @@
             this.$store.dispatch(LOAD_BLOCKS)
           } else if((page + 1) * rowsPerPage > this.blocks.length) {
             let offset = this.blocks[this.blocks.length - 1].index - 1
+              console.log(offset)
             this.$store.dispatch(LOAD_MORE_BLOCKS, offset)
           }
         },
@@ -91,14 +92,6 @@
   }
 </script>
 <style lang="scss" scoped>
-  .v-card {
-    /*background-color: white!important;*/
-    /*opacity: 0.3;*/
-    /*border-color: transparent!important;*/
-    /*background-color: rgba( 66, 66, 66, 0.3 );*/
-    /*border-radius: 7px;*/
-  }
-
   td {
     font-family: 'Roboto Mono', monospace;
     > a {

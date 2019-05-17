@@ -18,9 +18,6 @@
 </template>
 <script>
   import { mapState } from 'vuex'
-  import {
-    LOAD_STATES
-  } from '../store/action-types'
 
   export default {
     data () {

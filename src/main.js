@@ -5,10 +5,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { shortHash } from './filters'
+import VueClipboard from 'vue-clipboard2'
 
 Vue.config.productionTip = false
 
 Vue.use(require('vue-moment'))
+Vue.use(VueClipboard)
 
 Vue.filter('shortHash', shortHash)
 

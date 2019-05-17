@@ -4,33 +4,53 @@
     <v-chip color="#e6fff2" text-color="black" small>
       {{ selectedTx.txId }}
     </v-chip>
-    <v-container class="block-sidebar-wrap">
-      <h2>Overview</h2>
-      <v-chip color="#e6fff2" text-color="black" small>
-        TYPE - Coin
-      </v-chip>
-    </v-container>
-    <div class="tx-detail">
-      <v-layout row
-                wrap
-                v-for="(value, props) in selectedTx" :key="props"
-                class="py-2"
-                v-show="props != 'body' & props != 'type' & props != 'version'">
-        <v-flex xs12 sm2>
-          {{ props }}
+    <v-layout row wrap>
+      <v-flex sm8 xs12 order-xs2 order-sm-1>
+        <v-container class="block-sidebar-wrap">
+          <h2>Overview</h2>
+          <v-chip color="#e6fff2" text-color="black" small>
+            TYPE - Coin
+          </v-chip>
+        </v-container>
+        <div class="tx-detail">
+          <v-layout row
+                    wrap
+                    v-for="(value, props) in selectedTx" :key="props"
+                    class="py-2"
+                    v-show="props != 'body' & props != 'type' & props != 'version' & props != 'rawTx'">
+            <v-flex xs12 sm2>
+              {{ props }}
+            </v-flex>
+            <v-flex xs12 sm10 class="font-weight-bold value"
+                    v-if="props == 'timestamp'"
+            >
+              {{ lengthCheck(value) | moment('from') }}
+            </v-flex>
+            <v-flex xs12 sm8 class="font-weight-bold value"
+                    v-else
+            >
+              {{ lengthCheck(value) }}
+            </v-flex>
+          </v-layout>
+        </div>
+      </v-flex>
+        <v-flex sm4 xs12 order-xs1 order-sm2>
+          <v-container class="validator-sidebar-wrap">
+            <h2>Raw Transaction</h2>
+          </v-container>
+          <div class="tx-raw">
+            <v-layout row
+                      wrap
+                      v-for="(value, props) in selectedTx" :key="props"
+                      class="py-2"
+                      v-show="props === 'rawTx'">
+              <v-flex xs12 sm10 class="font-weight-bold value">
+                {{ value }}
+              </v-flex>
+            </v-layout>
+          </div>
         </v-flex>
-        <v-flex xs12 sm10 class="font-weight-bold value"
-                v-if="props == 'timestamp'"
-        >
-          {{ lengthCheck(value) | moment('from') }}
-        </v-flex>
-        <v-flex xs12 sm10 class="font-weight-bold value"
-                v-else
-        >
-          {{ lengthCheck(value) }}
-        </v-flex>
-      </v-layout>
-    </div>
+    </v-layout >
     <v-container class="block-sidebar-wrap py-4">
       <h2>Receipt</h2>
         <v-chip color="#e6fff2" text-color="black" small>
@@ -109,7 +129,7 @@
     methods: {
         lengthCheck(v) {
             if(v.length > 40) {
-                return v.slice(0, 32) + "..." + v.slice(-16)
+                return v.slice(0, 45) + "..." + v.slice(-5)
             } else {
                 return v
             }
@@ -128,14 +148,21 @@
   }
   .tx-detail {
     .row {
-      &:nth-child(odd) {
-        border-left: 3px solid #E0E0E0;
-        background-color: white;
-      }
-      &:nth-child(even) {
-        border-left: 3px solid #06b67b;
-      }
+      background-color: white;
+      .flex {
+        padding: 4px 1.5em;
 
+        &.value {
+          word-break: break-all;
+          font-family: 'Roboto Mono', monospace;
+        }
+      }
+    }
+  }
+
+  .tx-raw {
+    .row {
+      background-color: white;
       .flex {
         padding: 4px 1.5em;
 

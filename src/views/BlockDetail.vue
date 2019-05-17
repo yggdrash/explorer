@@ -20,9 +20,8 @@
             >
                 {{ lengthCheck(value) | moment('from') }}
             </v-flex>
-              <v-flex xs12 sm10 class="font-weight-bold value"
-                      v-else
-              >
+              <v-flex xs12 sm8 class="font-weight-bold value"
+                      v-else>
                   {{ lengthCheck(value) }}
               </v-flex>
           </v-layout>
@@ -64,10 +63,8 @@
                 </router-link>
               </td>
               <td>
-                <router-link :to="`${linkBase}/txs/${props.item.txId}`">
                   {{ JSON.parse(props.item.body).contractVersion | shortHash(7) }}...
                   {{ JSON.parse(props.item.body).contractVersion.slice(-5) }}
-                </router-link>
               </td>
               <td>
                 <router-link :to="`${linkBase}/txs/${props.item.txId}`">
@@ -137,11 +134,11 @@
     methods: {
         lengthCheck(v) {
             if(v.length > 40) {
-                return v.slice(0, 32) + "..." + v.slice(-16)
+                return v.slice(0, 45) + "..." + v.slice(-5)
             } else {
                 return v
             }
-        }
+        },
     },
     mounted() {
       let blockId = this.$route.params.blockId
@@ -161,14 +158,7 @@
   }
   .block-detail {
     .row {
-      &:nth-child(odd) {
-        border-left: 3px solid #E0E0E0;
-        background-color: white;
-      }
-      &:nth-child(even) {
-        border-left: 3px solid #06b67b;
-      }
-
+      background-color: white;
       .flex {
         padding: 4px 1.5em;
 
