@@ -12,10 +12,10 @@
                     wrap
                     v-for="(value, props) in block" :key="props"
                     class="py-2"
-                    v-show="props != 'type' & props != 'version'"
+                    v-show="props != 'type' & props != 'version' & props != 'consensusMessages'"
           >
             <v-flex xs12 sm2 >{{ props }}</v-flex>
-            <v-flex xs12 sm10 class="font-weight-bold value"
+            <v-flex xs12 sm8 class="font-weight-bold value"
                     v-if="props == 'timestamp'"
             >
                 {{ lengthCheck(value) | moment('from') }}
@@ -30,8 +30,19 @@
       <v-flex sm4 xs12 order-xs1 order-sm2>
         <v-container class="validator-sidebar-wrap">
             <h2>Consensus</h2>
-            comming up
         </v-container>
+        <div class="block-detail">
+          <v-layout row
+                    wrap
+                    v-for="(value, props) in block" :key="props"
+                    class="py-2"
+                    v-show="props === 'consensusMessages'"
+          >
+            <v-flex xs12 sm8 class="font-weight-bold value">
+              {{ value.prePrepare }}
+            </v-flex>
+          </v-layout>
+        </div>
       </v-flex>
     </v-layout >
     <div class="text-xs-center mt-3">

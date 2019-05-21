@@ -81,7 +81,8 @@
           </td>
           <td>
             <router-link
-                    :to="`${linkBase}/account/${props.item.author}`">
+                    :to="`${linkBase}/account/${props.item.author}`"
+                    v-if="JSON.parse(props.item.body).params.to">
               {{ JSON.parse(props.item.body).params.to | shortHash(7)}}...
               {{ JSON.parse(props.item.body).params.to.slice(-5) }}
             </router-link>

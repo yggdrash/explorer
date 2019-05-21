@@ -91,9 +91,9 @@ export default {
         // this.time = `${new Date().getMonth() + 1} - ${new Date().getData()}`
         return {
             chartData: {
-                columns: ['date', 'TX'],
+                columns: ['date', 'TX', 'CONTRACT'],
                 rows: [
-                    {'date': '05-11', 'TX': 1231},
+                    {'date': '05-11', 'TX': 1231, 'CONTRACT': 'YEED'},
                     {'date': '05-12', 'TX': 1231},
                     {'date': '05-13', 'TX': 1223},
                     {'date': '05-14', 'TX': 2123},
