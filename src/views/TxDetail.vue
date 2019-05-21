@@ -138,7 +138,7 @@
       ]),
     },
     mounted() {
-      let hash = this.$route.params.hash
+      let hash = this.$route.params.txId
       this.$store.dispatch(LOAD_TX, hash)
     },
     methods: {

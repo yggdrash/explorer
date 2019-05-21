@@ -24,18 +24,6 @@
               </v-flex>
             </v-flex>
             <v-flex sm6 xs12 order-xs1 order-sm2 pa-1>
-              <!--<v-container class="sidebar-wrap">-->
-                <!--<div>-->
-                  <!--<div style="">-->
-                    <!--<h3>Branch</h3>-->
-                    <!--<template>-->
-                      <!--<kbd> > YGGDRASH </kbd>-->
-                      <!--<kbd> > {{ currentBranch.id }}</kbd>-->
-                    <!--</template>-->
-                    <!--<BranchSidebar :info="currentBranchInfo"/>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</v-container>-->
               <v-flex mb-4>
                 <h2 class="headline font-weight-medium mb-2" >Most Recent Transactions</h2>
                 <v-card>
@@ -46,14 +34,7 @@
                     View all transactions</v-btn>
                 </div>
               </v-flex>
-              <!--<v-flex mb-4>-->
-                <!--<h2 class="headline font-weight-medium mb-2" >Contracts</h2>-->
-                <!--<v-card dark>-->
-                  <!--<RecentContractWidget :txs="txs" :linkBase="linkBase"/>-->
-                <!--</v-card>-->
-              <!--</v-flex>-->
             </v-flex>
-
           </v-layout>
         </v-flex>
       </v-layout>

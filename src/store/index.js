@@ -192,7 +192,7 @@ export default new Vuex.Store({
 
       if(state.txs) {
         foundTx = await state.txs.find(tx => {
-          return id === tx.txHash
+          return id === tx.txId
         })
       }
 
