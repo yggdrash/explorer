@@ -41,12 +41,27 @@
           <div class="tx-raw">
             <v-layout row
                       wrap
+                      justify-center align-center
                       v-for="(value, props) in selectedTx" :key="props"
                       class="py-2"
                       v-show="props === 'rawTx'">
-              <v-flex xs12 sm10 class="font-weight-bold value">
-                {{ value }}
-              </v-flex>
+              <v-container
+                      id="scroll-target"
+                      style="max-height: 400px"
+                      class="scroll-y"
+              >
+                <v-layout
+                        v-scroll:#scroll-target="onScroll"
+                        column
+                        align-center
+                        justify-center
+                        style="height: 1000px"
+                >
+                  <v-flex xs12 sm10 class="font-weight-bold value">
+                    {{ value }}
+                  </v-flex>
+                </v-layout>
+              </v-container>
             </v-layout>
           </div>
         </v-flex>
@@ -134,6 +149,9 @@
                 return v
             }
         },
+        onScroll (e) {
+            this.offsetTop = e.target.scrollTop
+        }
     },
     watch: {
       '$route' (to) {

@@ -15,7 +15,7 @@
                 </div>
               </v-flex>
               <v-flex mb-4>
-                <h2 class="headline font-weight-medium mb-2" >Transaction History (weekly) </h2>
+                <h2 class="headline font-weight-medium mb-2" >Transaction History (Weekly) </h2>
                 <v-card>
                   <div>
                     <ve-line :data="chartData"></ve-line>

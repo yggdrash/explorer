@@ -88,12 +88,13 @@
                     </v-icon>
                 </td>
               <td>
-                <router-link :to="`${linkBase}/txs/${props.item.txId}`">
+                <router-link :to="`${linkBase}/txs/${props.item.txId}`"
+                              v-if="JSON.parse(props.item.body).params.to">
                   {{ JSON.parse(props.item.body).params.to | shortHash(7)}}...
                   {{ JSON.parse(props.item.body).params.to.slice(-5) }}
                 </router-link>
               </td>
-              <td>
+              <td v-if="JSON.parse(props.item.body).params.amount">
                 {{ JSON.parse(props.item.body).params.amount }}
               </td>
             </template>
