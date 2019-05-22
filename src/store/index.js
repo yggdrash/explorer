@@ -66,7 +66,10 @@ export default new Vuex.Store({
 
     [mTypes.SET_TXS] (state, payload) {
       state.txs = payload;
-      state.countOfTxs = payload.length;
+    },
+
+    [mTypes.SET_TXS_COUNT] (state, payload) {
+        state.countOfTxs = payload;
     },
 
     [mTypes.SET_TXS_IN_BLOCK] (state, payload) {
@@ -75,7 +78,6 @@ export default new Vuex.Store({
 
     [mTypes.ADD_TXS] (state, payload) {
       state.txs = payload.concat(state.txs)
-      state.countOfTxs += payload.length
     },
 
     [mTypes.ADD_TX] (state, payload) {
@@ -122,14 +124,10 @@ export default new Vuex.Store({
     },
 
     async [aTypes.LOAD_TXS] ({ commit, state }) {
-      // if(!state.currentBranch.active) {
-      //   commit(mTypes.SET_TXS, [])
-      //   return
-      // }
-
-      const res = await requestEs.getTxs(state.currentBranch.id)
-      let payload = res.data
-      commit(mTypes.SET_TXS, payload)
+      const txs = await requestEs.getTxs(state.currentBranch.id)
+      const count = await requestEs.getTxsCount()
+      commit(mTypes.SET_TXS, txs.data)
+      commit(mTypes.SET_TXS_COUNT, count.data.count)
     },
 
     async [aTypes.LOAD_BLOCKS] ({ commit, state }) {
@@ -201,8 +199,6 @@ export default new Vuex.Store({
         return
       }
 
-      // const res = await request.getTx(state.currentBranch.id, id)
-      // const res = await requestEs.getTxsByBlockId(id)
       const res = await requestEs.getTx(id)
       foundTx = res.data
 

@@ -8,6 +8,10 @@ export function getTx (txId) {
   return request.get(`${API_HOST}/txs/${txId}`)
 }
 
+export function getTxsCount () {
+    return request.get(`${API_HOST}/txs/count`)
+}
+
 export async function getBlock (branchId, blockId) {
   let res = await request.get(`${API_HOST}/blocks/${blockId}`)
   return res.data

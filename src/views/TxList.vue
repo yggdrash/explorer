@@ -6,6 +6,7 @@
               :headers="headers"
               :items="txs"
               :pagination.sync="pagination"
+              :total-items="totalTxs"
               :rows-per-page-items="[15]"
       >
         <template slot="items" slot-scope="props">
@@ -67,8 +68,11 @@
 
     computed: {
       ...mapState([
-        'txs'
+        'txs', 'countOfTxs'
       ]),
+      totalTxs() {
+          return this.countOfTxs + 1
+      },
     },
 
     mounted() {
