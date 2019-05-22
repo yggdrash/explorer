@@ -4,9 +4,9 @@ import request from 'axios'
 //   return request.get(`${API_HOST}/branches/${branchId}/states`)
 // }
 
-// export function getTx (branchId, txId) {
-//   return request.get(`${API_HOST}/branches/${branchId}/txs/${txId}`)
-// }
+export function getTx (txId) {
+  return request.get(`${API_HOST}/txs/${txId}`)
+}
 
 export async function getBlock (branchId, blockId) {
   let res = await request.get(`${API_HOST}/blocks/${blockId}`)

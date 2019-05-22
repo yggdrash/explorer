@@ -79,7 +79,7 @@
               </td>
               <td>
                 <router-link :to="`${linkBase}/txs/${props.item.txId}`">
-                  {{ props.item.issuer | shortHash(7)}}...{{ props.item.issuer.slice(-5) }}
+                  {{ props.item.author | shortHash(7)}}...{{ props.item.author.slice(-5) }}
                 </router-link>
               </td>
                 <td>

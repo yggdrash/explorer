@@ -190,7 +190,7 @@ export default new Vuex.Store({
     async [aTypes.LOAD_TX] ({ commit, state}, id) {
       let foundTx
 
-      if(state.txs.length != 0) {
+      if(state.txs.length !== 0) {
         foundTx = await state.txs.find(tx => {
           return id === tx.txId
         })
@@ -202,7 +202,8 @@ export default new Vuex.Store({
       }
 
       // const res = await request.getTx(state.currentBranch.id, id)
-      const res = await requestEs.getTxsByBlockId(id)
+      // const res = await requestEs.getTxsByBlockId(id)
+      const res = await requestEs.getTx(id)
       foundTx = res.data
 
       commit(mTypes.SELECT_TX, foundTx)
