@@ -10,7 +10,7 @@
       >
         <template slot="items" slot-scope="props">
           <td>
-            <router-link :to="'blocks/' + props.item.blockIndex">
+            <router-link :to="'blocks/' + props.item.blockId">
               {{ props.item.blockIndex }}
             </router-link>
           </td>

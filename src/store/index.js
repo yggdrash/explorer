@@ -174,7 +174,7 @@ export default new Vuex.Store({
       let foundBlock
       if(state.blocks) {
         foundBlock = await state.blocks.find(b => {
-          return Number(id) === b.index || id === b.hash
+          return Number(id) === b.index || id === b.blockId
         })
       }
 
@@ -190,7 +190,7 @@ export default new Vuex.Store({
     async [aTypes.LOAD_TX] ({ commit, state}, id) {
       let foundTx
 
-      if(state.txs) {
+      if(state.txs.length != 0) {
         foundTx = await state.txs.find(tx => {
           return id === tx.txId
         })

@@ -12,7 +12,7 @@
                     wrap
                     v-for="(value, props) in block" :key="props"
                     class="py-2"
-                    v-show="props != 'type' & props != 'version' & props != 'consensusMessages'"
+                    v-show="props != 'type' & props != 'version' & props != 'consensusMessages' & props != 'index'"
           >
             <v-flex xs12 sm2 >{{ props }}</v-flex>
             <v-flex xs12 sm8 class="font-weight-bold value"
@@ -39,7 +39,7 @@
                     v-show="props === 'consensusMessages'"
           >
             <v-flex xs12 sm8 class="font-weight-bold value">
-              {{ value.prePrepare }}
+              {{ value }}
             </v-flex>
           </v-layout>
         </div>

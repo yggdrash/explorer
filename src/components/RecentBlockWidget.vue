@@ -9,7 +9,7 @@
     <template slot="items" slot-scope="props">
       <td>
         <router-link
-                :to="`${linkBase}/blocks/${props.item.index}`">
+                :to="`${linkBase}/blocks/${props.item.blockId}`">
           {{ props.item.index }}
         </router-link>
       </td>

@@ -13,12 +13,12 @@
         >
           <template slot="items" slot-scope="props">
             <td>
-              <router-link :to="'blocks/' + props.item.index">
+              <router-link :to="'blocks/' + props.item.blockId">
                 {{ props.item.index }}
               </router-link>
             </td>
             <td>
-              <router-link :to="'blocks/' + props.item.index">
+              <router-link :to="'blocks/' + props.item.blockId">
                 {{ props.item.blockId | shortHash(5)}}...{{props.item.blockId.slice(-4)}}
               </router-link>
             </td>
